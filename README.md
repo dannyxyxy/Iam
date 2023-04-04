@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=Iam - Front&fontSize=90" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=Iam-Front&fontSize=90"  alt=""/>
 <div align="center">
 	<img src="https://img.shields.io/badge/Vue-4FC08D?style=flat&logo=Vue.js&logoColor=white" />
 	<img src="https://img.shields.io/badge/Vite-646CFF?style=flat&logo=Vite&logoColor=white" />
