@@ -5,7 +5,7 @@ import HelloWorld from "./views/Home.vue";
 </script>
 
 <template>
-  <!--  <sidebar />-->
+  <sidebar />
   <topbar />
   <HelloWorld />
 </template>
