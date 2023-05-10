@@ -77,6 +77,114 @@ body {
   background-color: #000;
   color: #fff;
 }
+.dark-mode box{
+  background-color: #000;
+  color:#fff;
+}
+.trend-sort{
+  border: none;
+  background-color:rgba(255,255,255,0);
+  margin-top:5px;
+  float:left;
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size:20px;
+  font-weight: 600;
+}
+.trend-sort img{
+  margin-right: 5px;
+  display:inline-block;
+  vertical-align:middle;
+}
+.latest-sort {
+  border: none;
+  background-color:rgba(255,255,255,0);
+  margin-top:5px;
+  float:left;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size:20px;
+  font-weight: 600;
+}
+.latest-sort img{
+  margin-right: 5px;
+  display:inline-block;
+  vertical-align:middle;
+}
+.dark-mode button{
+  background-color: #000;
+  color:#fff;
+}
+.container{
+  margin-top:70px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.box{
+  width:300px;
+  height: 350px;
+  border:1px solid rgb(240, 240, 240);
+  border-radius: 15px; 
+  margin:10px;
+  box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.box img{
+  width:300px;
+  height: 200px;
+  border-radius: 12px;
+}
+.box:hover{
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transform: scale(1.1);
+}
+.box-summary{
+  margin-top:20px;
+  margin-left:20px;
+  text-align: left;
+}
+.circle img{
+  float:left;
+  margin-top:50px;
+  width:24px;
+  height: 24px;
+  border-radius: 50%;
+}
+.username{
+  margin-top: 53px;
+  margin-left: 10px;
+  float:left;
+  font-weight: 550;
+  font-size: 15px;
+}
+.like-btn{
+  float: right;
+  margin-right: 20px;
+  margin-top:50px;
+  width: 60px;
+  height: 25px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  padding: 5px 15px; 
+  border-radius: 15px; 
+  cursor: pointer; 
+  font-size: 12px;
+}
+.like-btn img{
+  width:13px;
+  height: 13px;
+  float:left;
+  margin:auto;
+  margin-right:2px;
+}
+button.active{
+  border-bottom: 1px solid #000;
+  padding-bottom : 3px;
+}
 #app {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
