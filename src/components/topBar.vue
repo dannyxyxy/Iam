@@ -33,7 +33,7 @@ export default {
         <button class="login-btn">로그인</button>
       </router-link>
     </div>
-    <div :class="{ 'dark-mode': isDarkMode }" id="darkmode">
+    <div>
       <button id="darkmode" @click="toggleMode">
         {{ isDarkMode ? "Day" : "Night"
         }}<img src="../assets/img/components/topBar/night.png" />
