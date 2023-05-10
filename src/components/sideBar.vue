@@ -1,19 +1,28 @@
-<script setup></script>
+<script>
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: ["Home", "Search"],
+  data() {
+    return {
+      Home: "/",
+      Search: "/Search",
+    };
+  },
+});
+</script>
 
 <template>
   <div>
     <ul class="menu">
-      <li style="margin-top: 110px">
-        <a href="">
-          <img src="../assets/img/components/sideBar/main.png" />
-          메인
-        </a>
-      </li>
-      <li>
-        <a href=""
-          ><img src="../assets/img/components/sideBar/search.png" />검색</a
-        >
-      </li>
+      <router-link :to="Home">
+        <img src="../assets/img/components/sideBar/main.png" />
+        메인
+      </router-link>
+      <router-link :to="Search">
+        <img src="../assets/img/components/sideBar/search.png" />
+        검색
+      </router-link>
       <li>
         <a href=""
           ><img
@@ -43,7 +52,7 @@
           ><img src="../assets/img/components/sideBar/setting.png" />세팅</a
         >
       </li>
-      <li style="margin-top: 200px">
+      <li>
         <a href=""
           ><img src="../assets/img/components/sideBar/more.png" />더보기</a
         >
@@ -51,5 +60,3 @@
     </ul>
   </div>
 </template>
-
-<style scoped></style>

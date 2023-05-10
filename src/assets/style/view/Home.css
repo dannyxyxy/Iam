@@ -16,7 +16,7 @@ a {
   font-weight: 500;
   background-color: rgb(240, 240, 240);
 }
-.menu img {
+.menu a img {
   margin: auto;
   display: block;
 }
