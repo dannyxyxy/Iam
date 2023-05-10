@@ -34,20 +34,20 @@
 <template>
   <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
     <div>
-      <button class="trend-sort" @click="toggleTrend" :class="{ 'active': isTrendActive }"><img src="../assets/img/components/trend.png">트렌드</button>
-    <button class="latest-sort" @click="toggleTrend" :class="{ 'active': !isTrendActive }"><img src="../assets/img/components/short.png">최신순</button>
+      <button class="trend-sort" @click="toggleTrend" :class="{ 'active': isTrendActive }"><img src="../assets/img/trend.png">트렌드</button>
+    <button class="latest-sort" @click="toggleTrend" :class="{ 'active': !isTrendActive }"><img src="../assets/img/short.png">최신순</button>
     </div>
     <div class="container">
       <div class="box" v-for="n in i" :key="n">
-        <img src="./assets/hi.jpg">
+        <img src="../assets/img/hi.jpg">
         <div class="box-summary">
           <div>
             <h3>{{title}}</h3><h5>{{summary}}</h5>
           </div>
-          <div class="circle"><img src="./assets/profile.jpg"></div>
+          <div class="circle"><img src="../assets/img/profile.jpg"></div>
           <div class="username">by <span style="font-weight:bold">{{user}}</span></div>
           <div>
-            <button class="like-btn" @click="likeCount++"><i class="fas fa-heart"></i><img src="./assets/heart.png">{{likeCount}}</button>
+            <button class="like-btn" @click="likeCount++"><i class="fas fa-heart"></i><img src="../assets/img/heart.png">{{likeCount}}</button>
           </div>
         </div>
       </div>
