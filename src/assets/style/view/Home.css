@@ -12,6 +12,7 @@ a {
   height: 100%;
   line-height: 50px;
   position: fixed;
+  top:0;
   float: left;
   font-weight: 500;
   background-color: rgb(240, 240, 240);
@@ -22,7 +23,6 @@ a {
 }
 .top {
   margin-left: 10%;
-  width: 100%;
   margin-top: 0px;
   height: 100px;
   background-color: #fff;
@@ -30,17 +30,16 @@ a {
 .logo {
   float: left;
   margin-top: 20px;
-  margin-left: 10%;
+  margin-left: 12%;
 }
 .search {
   float: right;
-  margin-right: 10px;
-  margin-top: 40px;
+  margin-top: 39px;
 }
 #darkmode {
   float: right;
-  margin-right: 5px;
-  margin-top: 12px;
+  margin-right: 25px;
+  margin-top: 10px;
   border: none;
   color: transparent;
   background-color: #fff;
@@ -50,7 +49,7 @@ a {
 }
 .login-btn {
   float: right;
-  margin-right: 20%;
+  margin-right: 15%;
   margin-top: 36px;
   border: none;
   background-color: #000;
@@ -67,7 +66,7 @@ a {
   margin-left: 20%;
   margin-right: 10%;
   width: 70%;
-  height: 900px;
+  height: 100%;
 }
 body {
   background-color: #fff;
@@ -148,22 +147,22 @@ body {
 }
 .circle img{
   float:left;
-  margin-top:50px;
+  margin-top:40px;
   width:24px;
   height: 24px;
   border-radius: 50%;
 }
 .username{
-  margin-top: 53px;
+  margin-top: 40px;
   margin-left: 10px;
   float:left;
-  font-weight: 550;
+  font-weight: 700;
   font-size: 15px;
 }
 .like-btn{
   float: right;
   margin-right: 20px;
-  margin-top:50px;
+  margin-top:40px;
   width: 60px;
   height: 25px;
   border: none;
@@ -189,6 +188,7 @@ button.active{
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 100%;
   text-align: center;
   color: #2c3e50;
   padding: 0;
