@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
-*{padding:0;margin:0}
+*{padding:0;margin:0;}
 li {
   list-style: none;
 }
@@ -7,50 +7,76 @@ a {
   text-decoration: none;
   font-size: 15px;
 }
+body{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10%;
+  width:90%;
+  color:#000;
+}
 .menu {
+  top:0;
+  left:0;
+  position:fixed;
+  padding-top:100px;
   width: 10%;
   height: 100%;
   line-height: 50px;
-  position: fixed;
-  top:0;
-  float: left;
   font-weight: 500;
   background-color: rgb(240, 240, 240);
+}
+.menu li:last-child{
+  margin-top: 200px;
 }
 .menu a img {
   margin: auto;
   display: block;
 }
-.top {
-  margin-left: 10%;
-  margin-top: 0px;
+.top{
+  position: fixed;
+  width:70%;
+  height:100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10%;
+  padding-left: 10%;
+  background-color: #fff;
+}
+.top-nav{
+  display: inline-block;
+  position: relative;
   height: 100px;
-  background-color: #fff;
 }
-.logo {
-  float: left;
-  margin-top: 20px;
-  margin-left: 12%;
+.top-nav ul{
+  display: flex;
+  align-items: center;
+  height: 100px;
 }
-.search {
-  float: right;
-  margin-top: 39px;
+.top-nav li{
+  margin-right: 10px;
 }
-#darkmode {
-  float: right;
-  margin-right: 25px;
-  margin-top: 10px;
+.logo{
+  display: inline-block;
+  align-items: center;
+}
+.search{
+  display: flex;
+}
+.darkmode-btn{
+  width:24px;
+  height:24px;
+  display: flex;
   border: none;
-  color: transparent;
-  background-color: #fff;
-  width: 24px;
-  height: 24px;
+  background-color: transparent;
   cursor: pointer;
 }
-.login-btn {
-  float: right;
-  margin-right: 15%;
-  margin-top: 36px;
+.dark-mode {
+  background-color: #000;
+  color: #fff;
+}
+.login-btn{
+  display: flex;
   border: none;
   background-color: #000;
   color: #fff;
@@ -62,57 +88,13 @@ a {
 }
 .maintext {
   float: right;
-  display: block;
-  margin-left: 20%;
-  margin-right: 10%;
-  width: 70%;
-  height: 100%;
-}
-.dark-mode {
-  background-color: #000;
-  color: #fff;
-}
-.dark-mode box{
-  background-color: #000;
-  color:#fff;
-}
-.trend-sort{
-  border: none;
-  background-color:rgba(255,255,255,0);
-  margin-top:5px;
-  float:left;
-  margin-left: 10px;
-  margin-right: 10px;
-  cursor: pointer;
-  font-size:20px;
-  font-weight: 600;
-}
-.trend-sort img{
-  margin-right: 5px;
-  display:inline-block;
-  vertical-align:middle;
-}
-.latest-sort {
-  border: none;
-  background-color:rgba(255,255,255,0);
-  margin-top:5px;
-  float:left;
-  margin-left: 10px;
-  cursor: pointer;
-  font-size:20px;
-  font-weight: 600;
-}
-.latest-sort img{
-  margin-right: 5px;
-  display:inline-block;
-  vertical-align:middle;
-}
-.dark-mode button{
-  background-color: #000;
-  color:#fff;
+  padding-left:10%;
+  padding-right:10%;
+  min-height: 100vh;
+  background-color: #fff;
 }
 .container{
-  margin-top:70px;
+  margin-top:150px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -122,10 +104,14 @@ a {
   height: 350px;
   border:1px solid rgb(240, 240, 240);
   border-radius: 15px; 
-  margin:10px;
+  margin:1.4%;
   box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+}
+.dark-mode .maintext{
+  background-color: #000;
+  color:#fff;
 }
 .box img{
   width:300px;
@@ -176,16 +162,13 @@ a {
   margin:auto;
   margin-right:2px;
 }
-button.active{
-  border-bottom: 1px solid #000;
-  padding-bottom : 3px;
-}
 #app {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  max-width: 100%;
+  max-width:100vw;
+  max-height:100vh;
   text-align: center;
-  color: #2c3e50;
+  margin:0;
   padding: 0;
 }

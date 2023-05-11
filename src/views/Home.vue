@@ -15,11 +15,6 @@
   methods:{//함수만드는곳 this. 꼭 붙힐것
     toggleMode(){
       this.isDarkMode=!this.isDarkMode;
-      if(this.isDarkMode){
-        document.body.classList.add('dark-mode');
-      }else{
-        document.body.classList.remove('dark-mode');
-      }  
     },
     toggleTrend(){
         this.isTrendActive =!this.isTrendActive;
@@ -33,10 +28,6 @@
 
 <template>
   <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
-    <div>
-      <button class="trend-sort" @click="toggleTrend" :class="{ 'active': isTrendActive }"><img src="../assets/img/trend.png">트렌드</button>
-    <button class="latest-sort" @click="toggleTrend" :class="{ 'active': !isTrendActive }"><img src="../assets/img/short.png">최신순</button>
-    </div>
     <div class="container">
       <div class="box" v-for="n in i" :key="n">
         <img src="../assets/img/hi.jpg">

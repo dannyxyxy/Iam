@@ -28,19 +28,24 @@ export default {
     <div class="logo">
       <img src="../assets/img/components/topBar/logo.png" />
     </div>
-    <div>
-      <router-link to="/login">
-        <button class="login-btn">로그인</button>
-      </router-link>
-    </div>
-    <div>
-      <button id="darkmode" @click="toggleMode">
-        {{ isDarkMode ? "Day" : "Night"
-        }}<img src="../assets/img/components/topBar/night.png" />
-      </button>
-    </div>
-    <div class="search">
-      <a href=""><img src="../assets/img/components/sideBar/search.png" /></a>
-    </div>
+    <nav class="top-nav">
+      <ul>
+        <li>
+          <router-link to="/Search" class="search">
+            <img src="../assets/img/components/sideBar/search.png"/>
+          </router-link>
+        </li>
+        <li>
+          <div class="darkmode-btn">
+            <img src="../assets/img/components/topBar/night.png" @click="toggleMode"/>
+          </div>
+        </li>
+        <li>
+          <router-link to="/login">
+            <button class="login-btn">로그인</button>
+          </router-link>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
