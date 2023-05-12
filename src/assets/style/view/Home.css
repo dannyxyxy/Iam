@@ -42,6 +42,7 @@ body{
   padding-right: 10%;
   padding-left: 10%;
   background-color: #fff;
+  z-index: 2;
 }
 .top-nav{
   display: inline-block;
@@ -88,13 +89,14 @@ body{
 }
 .maintext {
   float: right;
+  padding-top: 100px;
   padding-left:10%;
   padding-right:10%;
   min-height: 100vh;
   background-color: #fff;
 }
 .container{
-  margin-top:150px;
+  padding-top:50px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -161,6 +163,49 @@ body{
   float:left;
   margin:auto;
   margin-right:2px;
+}
+.button-container {
+  width:71%;
+  height: 50px;
+  position: absolute;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 1;
+}
+.button-container img{
+  width:18px;
+  height:18px;
+  margin-right: 5px;
+}
+.dark-mode .button-container img{
+  filter:invert(1);
+}
+.btn{
+  padding:5px;
+  margin-right:5px;
+  background-color: rgba(255, 255, 255, 0);
+  color:#000;
+  border:none;
+  font-size: 18px;
+  letter-spacing:-2px;
+  font-weight: bolder;
+  position: relative;
+}
+.btn.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0px; /* 밑줄의 위치를 조정 */
+  width: 100%;
+  height: 2px;
+  background-color: black; /* 밑줄의 색상을 지정 */
+}
+.dark-mode .btn{
+  color:#fff;
+}
+.dark-mode .btn.active::after{
+  background-color: #fff;
 }
 #app {
   font-family: "Roboto", sans-serif;

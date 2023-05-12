@@ -9,7 +9,8 @@
       summary:"summary",
       user:"danny",
       likeCount:0,
-      isTrendActive: true
+      isTrendActive: true,
+      selected: 'trend'
     }
   },
   methods:{//함수만드는곳 this. 꼭 붙힐것
@@ -28,6 +29,15 @@
 
 <template>
   <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
+    <div>
+      <div class="button-container">
+      <button class="btn" :class="{ active: selected === 'trend' }" @click="selected = 'trend'">
+        <img src="../assets/img/trend.png">트렌드
+      </button>
+      <button class="btn" :class="{ active: selected === 'latest' }" @click="selected = 'latest'">
+        <img src="../assets/img/latest.png">최신순
+      </button>
+    </div>
     <div class="container">
       <div class="box" v-for="n in i" :key="n">
         <img src="../assets/img/hi.jpg">
@@ -43,5 +53,6 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
