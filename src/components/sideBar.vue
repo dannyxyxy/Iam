@@ -2,11 +2,13 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: ["Home", "Search"],
+  name: ["Home", "Search","Category","Edit"],
   data() {
     return {
       Home: "/",
       Search: "/Search",
+      Category:"/Category",
+      Edit:"/Edit",
     };
   },
 });
@@ -23,18 +25,14 @@ export default defineComponent({
         <img src="../assets/img/components/sideBar/search.png" />
         검색
       </router-link>
-      <li>
-        <a href=""
-          ><img
-            src="../assets/img/components/sideBar/category.png"
-          />카테고리</a
-        >
-      </li>
-      <li>
-        <a href=""
-          ><img src="../assets/img/components/sideBar/edit.png" />글작성</a
-        >
-      </li>
+      <router-link :to="Category">
+        <img src="../assets/img/components/sideBar/category.png" />
+        카테고리
+      </router-link>
+      <router-link :to="Edit">
+        <img src="../assets/img/components/sideBar/edit.png" />
+        글작성
+      </router-link>
       <li>
         <a href=""
           ><img src="../assets/img/components/sideBar/crew.png" />크루</a
