@@ -1,0 +1,137 @@
+.title{
+
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  text-align: left;
+}
+.meta-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.actions {
+  margin-top: 10px;
+}
+
+
+.container{
+  padding-top:50px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background-color: white;
+}
+#info{
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.like-btn2{
+  float: right;
+  margin-right: 20px;
+  margin-top:10px;
+  margin-bottom: 10px;
+  width: 70px;
+  height: 30px;
+  border: none;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 5px; 
+  border-style: solid;
+  border-color: #000000;
+  cursor: pointer; 
+  font-size: 15px;
+  font-weight: bold;
+
+}
+.like-btn2 img{
+  width:15px;
+  height: 15px;
+  float:left;
+  margin:auto;
+  margin-right:2px;
+}
+.bold {
+  font-weight: bold;
+  font-size: 20px;
+}
+.button-container2 {
+  display: flex;
+}
+
+.button-container2 button {
+  margin-right: 10px;
+  padding: 5px 5x;
+  border: none;
+  border-radius: 15px;
+  background-color: rgb(204, 199, 199);
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button-container2 button:hover {
+  background-color: grey;
+}
+
+.apple {
+  min-height: 400px;
+  background-color: #ffffff;
+}
+
+.contents {
+  min-height: 400px;
+  background-color: #d4d2d2;
+}
+
+.carousel__item {
+  min-height: 400px;
+  width: 100%;
+  background-color: var(--vc-clr-primary);
+  color: var(--vc-clr-white);
+  font-size: 30px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel__slide {
+  padding: 10px;
+  color: #ffffff;
+}
+
+.carousel__prev,
+.carousel__next {
+  box-sizing: content-box;
+  border: 5px solid white;
+  color: #ffffff;
+}
+.page {
+  background-color: aqua;
+}
+.page-up-button {
+  position: fixed;
+  width: 80px;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 30px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #161515;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.page-up-button:hover {
+  background-color: #999;
+}
