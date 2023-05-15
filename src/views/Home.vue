@@ -1,8 +1,9 @@
-<script>
+<script>  
   export default {
   name: 'App',
   data(){//데이터 변수값 저장
     return{
+      PostMain: "/PostMain",
       isDarkMode:false,
       i:6,
       title:"Title",
@@ -40,7 +41,9 @@
     </div>
     <div class="container">
       <div class="box" v-for="n in i" :key="n">
+        <router-link :to="PostMain">
         <img src="../assets/img/hi.jpg">
+        </router-link>
         <div class="box-summary">
           <div>
             <h3>{{title}}</h3><h5>{{summary}}</h5>
