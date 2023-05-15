@@ -11,6 +11,12 @@ const routes = [
     name: "Search",
     component: () => import("../views/Search.vue"),
   },
+  
+  {
+    path: "/PostMain",
+    name: "PostMain",
+    component: () => import("../views/PostMain.vue"),
+  },
 ];
 
 const router = createRouter({
