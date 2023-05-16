@@ -5,7 +5,7 @@
     return{
       PostMain: "/PostMain",
       isDarkMode:false,
-      i:3,
+      i:4,
       title:"Title",
       summary:"summary",
       user:"danny",
