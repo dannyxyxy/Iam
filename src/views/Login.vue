@@ -1,8 +1,6 @@
 <script>
-import 'vue3-carousel/dist/carousel.css'
-
 export default {
-  name: 'App',
+  name: 'login',
   data() {
     return {
       showModal: false,
@@ -14,7 +12,7 @@ export default {
     toggleMode(){
       this.isDarkMode=!this.isDarkMode;
     },
-    
+
     submitForm() {
       // 로그인 폼 제출 로직 구현
       // 여기서는 단순히 콘솔에 입력한 사용자명과 비밀번호를 출력하는 예시를 제공합니다.
@@ -23,6 +21,10 @@ export default {
       
       // 폼 제출 후 모달 닫기
       this.showModal = false;
+    },
+    closeModal() {
+      console.log('이메일:', this.user_email);
+      this.$emit('sendClose', false);
     }
   }
 };
@@ -65,8 +67,12 @@ export default {
 
         </div>
         
-        <span class="close" @click="showModal = false">&times;</span>
+        <span class="close" @click="closeModal()">&times;</span>
       </div>
     </div>
   </div>
 </template>
+
+<style>
+  @import "../assets/style/view/Login.css";
+</style>

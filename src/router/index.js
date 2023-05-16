@@ -23,11 +23,6 @@ const routes = [
     name: "Category",
     component: () => import("../views/Category.vue"),
   },
-  {
-    path: "/Login",
-    name: "Login",
-    component: () => import("../views/Login.vue"),
-  },
 ];
 
 const router = createRouter({
