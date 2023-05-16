@@ -17,6 +17,12 @@ const routes = [
     name: "PostMain",
     component: () => import("../views/PostMain.vue"),
   },
+
+  {
+    path: "/Category",
+    name: "Category",
+    component: () => import("../views/Category.vue"),
+  },
 ];
 
 const router = createRouter({
