@@ -1,6 +1,7 @@
 @import "./view/Home.css";
 @import "./view/PostMain.css";
 @import "./view/Category.css";
+@import "./view/Login.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 :root{
   all:initial;
