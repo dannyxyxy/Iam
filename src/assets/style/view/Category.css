@@ -1,6 +1,5 @@
 
 .container{
-  padding-top:20px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -107,24 +106,21 @@
 .dark-mode .btn.active::after{
   background-color: #fff;
 }
-
 .button-container2 {
   display: flex;
   padding-top: 50px;
 }
-
 .button-container2 button {
   margin-right: 10px;
   padding: 5px 5x;
   border: none;
   border-radius: 15px;
-  background-color: rgb(204, 199, 199);
+  background-color: rgb(240, 240, 240);
   color: #000000;
   font-size: 16px;
   cursor: pointer;
   font-weight: bold;
 }
-
 .button-container2 button:hover {
   background-color: grey;
 }
