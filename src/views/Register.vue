@@ -67,6 +67,12 @@ export default {
             />
             <button type="submit" @click="signUp">회원가입</button>
           </form>
+          <div class="login-text">
+            이미 회원이신가요?
+            <a class="login-text" @click="$emit('closeRegisterModal')">
+              로그인
+            </a>
+          </div>
         </div>
         <span class="close" @click="$emit('closeRegisterModal')">&times;</span>
       </div>
