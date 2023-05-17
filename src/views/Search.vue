@@ -1,20 +1,23 @@
 <template>
+<div class="maintext">
   <div class="search-results">
-    <div class="search-bar">
-      <input type="text" v-model="searchQuery" placeholder="검색어를 입력하세요">
-      <button @click="search" style="background-color: transparent; border: none; padding: 0;">
-        <img src="..\assets\img\search_icon.png" alt="검색" style="display: block; width: 50%;">
-      </button>
+      <div class="search-bar">
+        <input type="text" v-model="searchQuery" placeholder="검색어를 입력하세요">
+        <button @click="search" style="background-color: transparent; border: none; padding: 0;">
+          <img src="..\assets\img\search_icon.png" alt="검색" style="display: block; width: 50%;">
+        </button>
+      </div>
+      <h2>검색 결과</h2>
+      <ul v-if="searchResults.length > 0">
+        <li v-for="result in searchResults" :key="result.id" class="search-result">
+          <h3>{{ result.title }}</h3>
+          <p>{{ result.content }}</p>
+        </li>
+      </ul>
+      <p v-else>검색 결과가 없습니다.</p>
     </div>
-    <h2>검색 결과</h2>
-    <ul v-if="searchResults.length > 0">
-      <li v-for="result in searchResults" :key="result.id" class="search-result">
-        <h3>{{ result.title }}</h3>
-        <p>{{ result.content }}</p>
-      </li>
-    </ul>
-    <p v-else>검색 결과가 없습니다.</p>
-  </div>
+</div>
+  
 </template>
 
 <script>
@@ -61,11 +64,12 @@ export default {
 <style>
 
 .search-results input[type="text"] {
-  width: 600px; /* 늘리고자 하는 크기에 맞게 값을 변경해주세요 */
+  width: 1200px; /* 늘리고자 하는 크기에 맞게 값을 변경해주세요 */
+  height:50px;
   padding: 10px 20px;
   font-size: 16px;
-  border: 1px solid #010000;
-  border-radius: 3px;
+  border: 1px solid #000;
+  border-radius: 5px;
   outline: none;
   box-shadow: none;
 }
