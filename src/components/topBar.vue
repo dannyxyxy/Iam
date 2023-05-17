@@ -3,12 +3,13 @@ import loginModal from "../views/Login.vue";
 
 export default {
   name: "topBar",
+  components: { loginModal },
   data() {
     //데이터 변수값 저장
     return {
-      showModal: false,
-      user_email: '',
+      user_email: "",
       isDarkMode: false,
+      showLoginModal: false,
     };
   },
   methods: {
@@ -21,13 +22,7 @@ export default {
         document.body.classList.remove("dark-mode");
       }
     },
-    openModal() {
-      console.log("modal open");
-      this.showModal = true;
-    }
   },
-
-  components: {loginModal},
 };
 </script>
 
@@ -40,18 +35,27 @@ export default {
       <ul>
         <li>
           <router-link to="/Search" class="search">
-            <img src="../assets/img/components/sideBar/search.png"/>
+            <img src="../assets/img/components/sideBar/search.png" />
           </router-link>
         </li>
         <li>
           <div class="darkmode-btn">
-            <img src="../assets/img/components/topBar/night.png" @click="toggleMode"/>
+            <img
+              src="../assets/img/components/topBar/night.png"
+              @click="toggleMode"
+            />
           </div>
         </li>
         <li>
-            <button class="login-btn" @click="openModal()">로그인</button>
+          <button class="login-btn" @click="showLoginModal = true">
+            로그인
+          </button>
         </li>
       </ul>
     </nav>
   </div>
+  <loginModal
+    v-if="showLoginModal === true"
+    @closeLoginModal="showLoginModal = false"
+  />
 </template>

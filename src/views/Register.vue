@@ -1,42 +1,35 @@
 <script>
 import { apiClient } from "../utils/axios.js";
-import registerModal from "./Register.vue";
 
 export default {
-  name: "login",
-  components: { registerModal },
-  data() {
-    return {
-      showRegisterModal: false,
-    };
-  },
-  emits: ["closeLoginModal"],
+  name: "register",
+  emits: ["closeRegisterModal"],
   methods: {
     toggleMode() {
       this.isDarkMode = !this.isDarkMode;
     },
   },
   setup() {
-    const loginInfo = {
+    const registerInfo = {
       userEmail: "",
       userPassword: "",
     };
-    const singIn = async () => {
-      if (loginInfo.userEmail && loginInfo.userPassword) {
-        const data = await apiClient("user/login", loginInfo);
+    const signUp = async () => {
+      if (registerInfo.userEmail && registerInfo.userPassword) {
+        const data = await apiClient("user/register", registerInfo);
         if (data.status === true) {
-          alert("로그인 성공!");
+          alert("회원가입 성공!");
           location.reload();
         } else {
-          alert("로그인 실패!");
+          alert("회원가입 실패!");
         }
       } else {
         alert("다시 입력 해주세요");
       }
     };
     return {
-      loginInfo,
-      singIn,
+      registerInfo,
+      signUp,
     };
   },
 };
@@ -56,39 +49,29 @@ export default {
         </div>
 
         <div class="modal-right">
-          <h2>로그인</h2>
-          <h4>이메일로 로그인</h4>
+          <h2>회원가입</h2>
+          <h4>이메일로 회원가입</h4>
 
           <form @submit.prevent>
             <input
               type="email"
               placeholder="이메일"
-              @input="loginInfo.userEmail = $event.target.value"
+              @input="registerInfo.userEmail = $event.target.value"
               required
             />
             <input
               type="password"
               placeholder="비밀번호"
-              @input="loginInfo.userPassword = $event.target.value"
+              @input="registerInfo.userPassword = $event.target.value"
               required
             />
-            <button type="submit" @click="singIn">로그인</button>
+            <button type="submit" @click="signUp">회원가입</button>
           </form>
-          <div class="registor-text">
-            아직 회원이 아니신가요?
-            <a class="registor-text" @click="showRegisterModal = true">
-              회원가입
-            </a>
-          </div>
         </div>
-        <span class="close" @click="$emit('closeLoginModal')">&times;</span>
+        <span class="close" @click="$emit('closeRegisterModal')">&times;</span>
       </div>
     </div>
   </div>
-  <registerModal
-    v-if="showRegisterModal === true"
-    @closeRegisterModal="showRegisterModal = false"
-  />
 </template>
 
 <style>
