@@ -1,5 +1,9 @@
 <script>
 import loginModal from "../views/Login.vue";
+import { onMounted, ref } from "vue";
+import { apiClient } from "../utils/axios.js";
+import commonUtil from "../utils/common-util.js";
+import { CONSTANTS } from "../utils/constants.js";
 
 export default {
   name: "topBar",
@@ -10,6 +14,7 @@ export default {
       user_email: "",
       isDarkMode: false,
       showLoginModal: false,
+      showLoginButton: true,
     };
   },
   methods: {
@@ -23,19 +28,22 @@ export default {
       }
     },
   },
+  setup() {
+    onMounted(() => {});
+  },
 };
 </script>
 
 <template>
   <div class="top">
     <div class="logo">
-      <img src="../assets/img/components/topBar/logo.png" />
+      <img src="../assets/img/components/topBar/logo.png" alt="" />
     </div>
     <nav class="top-nav">
       <ul>
         <li>
           <router-link to="/Search" class="search">
-            <img src="../assets/img/components/sideBar/search.png" />
+            <img src="../assets/img/components/sideBar/search.png" alt="" />
           </router-link>
         </li>
         <li>
@@ -43,12 +51,20 @@ export default {
             <img
               src="../assets/img/components/topBar/night.png"
               @click="toggleMode"
+              alt=""
             />
           </div>
         </li>
         <li>
-          <button class="login-btn" @click="showLoginModal = true">
+          <button
+            v-if="showLoginButton === true"
+            class="login-btn"
+            @click="showLoginModal = true"
+          >
             로그인
+          </button>
+          <button v-if="showLoginButton === false" class="login-btn" @click="">
+            로그아웃
           </button>
         </li>
       </ul>

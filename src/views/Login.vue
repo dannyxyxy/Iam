@@ -1,6 +1,10 @@
 <script>
-import { apiClient } from "../utils/axios.js";
+import { apiClient, setHeader } from "../utils/axios.js";
 import registerModal from "./Register.vue";
+import commonUtil from "../utils/common-util.js";
+import { CONSTANTS } from "../utils/constants.js";
+import { ref, watch } from "vue";
+import store, { STORE_TYPE } from "../utils/store.js";
 
 export default {
   name: "login",
@@ -24,7 +28,17 @@ export default {
     const singIn = async () => {
       if (loginInfo.userEmail && loginInfo.userPassword) {
         const data = await apiClient("user/login", loginInfo);
-        if (data.status === true) {
+        if (data.resultCode === 1) {
+          if (data.data.token) {
+            setHeader(data.data.token);
+            commonUtil.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO, data.data);
+            commonUtil.setLocalStorage(
+              CONSTANTS.KEY_LIST.USER_INFO_TOKEN,
+              data.data.token
+            );
+            store.commit(STORE_TYPE.loginUserIdx, data.data.userIdx);
+            // localStorage.setItem("userData", JSON.stringify(data.data));
+          }
           alert("로그인 성공!");
           location.reload();
         } else {
@@ -34,6 +48,17 @@ export default {
         alert("다시 입력 해주세요");
       }
     };
+
+    const loginUser = ref(
+      commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+    );
+
+    watch(() => {
+      loginUser.value = commonUtil.getLocalStorage(
+        CONSTANTS.KEY_LIST.USER_INFO
+      );
+    });
+
     return {
       loginInfo,
       singIn,

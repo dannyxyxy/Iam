@@ -17,7 +17,7 @@ export default {
     const signUp = async () => {
       if (registerInfo.userEmail && registerInfo.userPassword) {
         const data = await apiClient("user/register", registerInfo);
-        if (data.status === true) {
+        if (data.resultCode === 1) {
           alert("회원가입 성공!");
           location.reload();
         } else {
