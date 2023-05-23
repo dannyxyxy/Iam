@@ -11,7 +11,7 @@ const routes = [
     name: "Search",
     component: () => import("../views/Search.vue"),
   },
-  
+
   {
     path: "/PostMain",
     name: "PostMain",
@@ -23,6 +23,11 @@ const routes = [
     name: "Category",
     component: () => import("../views/Category.vue"),
   },
+  // {
+  //   path: "/Edit",
+  //   name: "Edit",
+  //   component: () => import("../views/Edit.vue"),
+  // },
 ];
 
 const router = createRouter({

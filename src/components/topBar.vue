@@ -1,7 +1,6 @@
 <script>
 import loginModal from "../views/Login.vue";
-import { onMounted, ref } from "vue";
-import { apiClient } from "../utils/axios.js";
+import { ref } from "vue";
 import commonUtil from "../utils/common-util.js";
 import { CONSTANTS } from "../utils/constants.js";
 
@@ -14,7 +13,6 @@ export default {
       user_email: "",
       isDarkMode: false,
       showLoginModal: false,
-      showLoginButton: true,
     };
   },
   methods: {
@@ -29,7 +27,15 @@ export default {
     },
   },
   setup() {
-    onMounted(() => {});
+    const loginCheck = ref(commonUtil.loginCheck());
+    const signOut = () => {
+      commonUtil.logOutUser();
+      location.reload();
+    };
+    return {
+      loginCheck,
+      signOut,
+    };
   },
 };
 </script>
@@ -57,13 +63,13 @@ export default {
         </li>
         <li>
           <button
-            v-if="showLoginButton === true"
+            v-if="!loginCheck"
             class="login-btn"
             @click="showLoginModal = true"
           >
             로그인
           </button>
-          <button v-if="showLoginButton === false" class="login-btn" @click="">
+          <button v-if="loginCheck" class="login-btn" @click="signOut()">
             로그아웃
           </button>
         </li>

@@ -118,6 +118,10 @@ const getImgUrl = (fileName) => {
   }
 };
 
+const loginCheck = () => {
+  return !!getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
+};
+
 export default {
   getLocalStorage,
   setLocalStorage,
@@ -125,6 +129,7 @@ export default {
   parseJson,
   checkForm,
   isCheckNull,
+  loginCheck,
   logOutUser,
   removeLocalStorage,
   getImgUrl,

@@ -40,6 +40,7 @@ export default {
             // localStorage.setItem("userData", JSON.stringify(data.data));
           }
           alert("로그인 성공!");
+          console.log(data.data);
           location.reload();
         } else {
           alert("로그인 실패!");
