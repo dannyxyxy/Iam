@@ -40,7 +40,7 @@
       <button>{{category1}}</button>
       <button>{{category1_1}}</button>
     </div>
-    <div class="container">
+    <div class="container2">
       <div class="box" v-for="n in i" :key="n">
         <router-link :to="PostMain">
         <img src="../assets/img/hi.jpg">
@@ -62,7 +62,7 @@
       <button>{{category2}}</button>
       <button>{{category2_1}}</button>
     </div>
-    <div class="container">
+    <div class="container2">
       <div class="box" v-for="n in i" :key="n">
         <router-link :to="PostMain">
         <img src="../assets/img/hi.jpg">
