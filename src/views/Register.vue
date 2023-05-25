@@ -12,19 +12,30 @@ export default {
   setup() {
     const registerInfo = {
       userEmail: "",
+      userName: "",
       userPassword: "",
+      userPasswordCheck: "",
     };
     const signUp = async () => {
-      if (registerInfo.userEmail && registerInfo.userPassword) {
-        const data = await apiClient("user/register", registerInfo);
-        if (data.resultCode === 1) {
-          alert("회원가입 성공!");
-          location.reload();
+      if (
+        registerInfo.userEmail &&
+        registerInfo.userName &&
+        registerInfo.userPassword &&
+        registerInfo.userPasswordCheck
+      ) {
+        if (registerInfo.userPassword === registerInfo.userPasswordCheck) {
+          const data = await apiClient("user/register", registerInfo);
+          if (data.resultCode === 1) {
+            alert("회원가입 성공!");
+            location.reload();
+          } else {
+            alert("회원가입 실패!");
+          }
         } else {
-          alert("회원가입 실패!");
+          alert("비밀번호를 확인해주세요.");
         }
       } else {
-        alert("다시 입력 해주세요");
+        alert("빈 칸 없이 모두 입력 해주세요.");
       }
     };
     return {
@@ -48,7 +59,7 @@ export default {
           </div>
         </div>
 
-        <div class="modal-right">
+        <div class="modal-right" id="register">
           <h2>회원가입</h2>
           <h4>이메일로 회원가입</h4>
 
@@ -60,9 +71,21 @@ export default {
               required
             />
             <input
+              type="text"
+              placeholder="닉네임"
+              @input="registerInfo.userName = $event.target.value"
+              required
+            />
+            <input
               type="password"
               placeholder="비밀번호"
               @input="registerInfo.userPassword = $event.target.value"
+              required
+            />
+            <input
+              type="password"
+              placeholder="비밀번호 확인"
+              @input="registerInfo.userPasswordCheck = $event.target.value"
               required
             />
             <button type="submit" @click="signUp">회원가입</button>

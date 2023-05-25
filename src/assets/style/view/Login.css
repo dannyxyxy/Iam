@@ -31,13 +31,17 @@
   height: 70%;
   width: 100%;
 }
+#register {
+  height: 95%;
+}
 
 form {
   display: flex;
   flex-direction: column;
 }
 
-.modal-right input, button[type="submit"] {
+.modal-right input,
+button[type="submit"] {
   min-height: 24px;
   border-radius: 10px;
   padding: 0.5rem;
