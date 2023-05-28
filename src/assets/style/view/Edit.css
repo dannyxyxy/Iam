@@ -1,0 +1,22 @@
+.editdiv {
+
+    padding-left: 150px;
+  }
+
+.savebutton {
+    position: fixed;
+    width: 80px;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 30px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #161515;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+}
+.savebutton:hover {
+    background-color: #999;
+  }
