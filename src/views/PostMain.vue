@@ -10,9 +10,9 @@ export default defineComponent({
       isDarkMode: false,
       user: "danny",
       title: "나를 성장시켜준 환상적인 미국 서부",
-      contents: "",
+      contents: "데이터값 입력 예시, 데이터값 입력 없을 시 maintext 부분 반토막, 데이터 값이 있으면 정상표출 데이터값 입력 예시, 데이터값 입력 없을 시 maintext 부분 반토막, 데이터 값이 있으면 정상표출 데이터값 입력 예시, 데이터값 입력 없을 시 maintext 부분 반토막, 데이터 값이 있으면 정상표출",
       likeCount: 0,
-      day: 2,
+      day: 3  ,
       category1: "여행",
       category2: "미국서부",
       category3: "YOLO",
@@ -64,7 +64,7 @@ export default defineComponent({
 <template>
   <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
     <div class="title">
-      <h1>{{ title }}</h1>
+      {{ title }}
     </div>
     <section id="info">
       <div class="meta-info">
@@ -76,13 +76,14 @@ export default defineComponent({
       </div>
       <div>
         <button class="like-btn2" @click="likeCount++">
-          <i class="fas fa-like"></i><img src="../assets/img/like.png" />{{
+          <i class="fas fa-heart"></i
+                ><img src="../assets/img/heart.png" />{{
             likeCount
           }}
         </button>
       </div>
     </section>
-    <div class="button-container2">
+    <div class="button-container5">
       <!-- 추후 카테고리로 라우팅하거나 a 태그로 링크 활용가능 -->
       <button>{{ category1 }}</button>
       <button>{{ category2 }}</button>
