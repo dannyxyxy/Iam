@@ -60,12 +60,17 @@ export default {
           <!-- 자기소개글 -->
           <h3>{{ introduction }}</h3>
           <p>{{ email }}</p>
-        </div>
+        </div> 
+      </div>
+    </div>
+    <div class="divider">
+      <div class="mypost">
+        <h2>내 게시물 보기</h2>
+      </div>
+      <div class="mypost-container">
         
       </div>
     </div>
-    
-    <div class="divider"></div>
   </div>
 </template>
 <style>

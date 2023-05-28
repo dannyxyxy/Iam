@@ -8,10 +8,6 @@
   justify-content: center;
   align-items: center;
 }
-.dark-mode .profile {
-  background-color: #000;
-  color: #fff;
-}
 .profile-picture {
   width: 200px;
   height: 200px;
@@ -62,4 +58,8 @@
   border-radius: 4px;
   cursor: pointer;
   /* 필요한 추가 스타일링 */
+}
+.mypost{
+  padding-top:1em;
+  padding-bottom: 1em;
 }
