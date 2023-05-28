@@ -23,11 +23,16 @@ const routes = [
     name: "Category",
     component: () => import("../views/Category.vue"),
   },
- {
-   path: "/Edit",
-   name: "Edit",
-   component: () => import("../views/Edit.vue"),
- },
+  {
+    path: "/Edit",
+    name: "Edit",
+    component: () => import("../views/Edit.vue"),
+  },
+  {
+    path: "/Mypage",
+    name: "Mypage",
+    component: () => import("../views/Mypage.vue"),
+  },
 ];
 
 const router = createRouter({

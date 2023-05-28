@@ -3,6 +3,7 @@
 @import "./view/Category.css";
 @import "./view/Login.css";
 @import "./view/Edit.css";
+@import "./view/Mypage.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 :root {
   all: initial;
@@ -31,7 +32,6 @@ a {
 }
 body {
   display: flex;
-  width: 90%;
   margin-left: 10%;
   color: #000;
 }
@@ -110,7 +110,7 @@ body {
   font-size: 15px;
 }
 .maintext {
-  width: 80%;
+  width: fit-content;
   margin-top: 100px;
   margin-left: 10%;
   margin-right: 10%;

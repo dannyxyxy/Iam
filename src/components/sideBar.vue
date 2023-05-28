@@ -9,6 +9,7 @@ export default defineComponent({
       Search: "/Search",
       Category:"/Category",
       Edit:"/Edit",
+      Mypage:"/Mypage",
     };
   },
 });
@@ -38,13 +39,10 @@ export default defineComponent({
           ><img src="../assets/img/components/sideBar/crew.png" />크루</a
         >
       </li>
-      <li>
-        <a href=""
-          ><img
-            src="../assets/img/components/sideBar/mypage.png"
-          />마이페이지</a
-        >
-      </li>
+      <router-link :to="Mypage">
+        <img src="../assets/img/components/sideBar/mypage.png" />
+        마이페이지
+      </router-link>
       <li>
         <a href=""
           ><img src="../assets/img/components/sideBar/setting.png" />세팅</a
