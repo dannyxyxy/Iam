@@ -3,6 +3,8 @@
   padding-top: 20px;
   padding-bottom: 20px;
   text-align: left;
+  font-size: 45px;
+  font-weight: 900;
 }
 .meta-info {
   display: flex;
@@ -34,8 +36,8 @@
   width: 70px;
   height: 30px;
   border: none;
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #080808;
+  color: #ffffff;
   padding: 5px; 
   border-style: solid;
   border-color: #000000;
@@ -54,10 +56,14 @@
   font-weight: bold;
   font-size: 20px;
 }
-.button-container2 {
+.button-container5 {
   display: flex;
+  padding-left: 10px;
+
+  
+
 }
-.button-container2 button {
+.button-container5 button {
   margin-right: 10px;
   padding: 5px 5x;
   border: none;
@@ -68,7 +74,7 @@
   cursor: pointer;
   font-weight: bold;
 }
-.button-container2 button:hover {
+.button-container5 button:hover {
   background-color: grey;
 }
 .apple {
@@ -120,3 +126,4 @@
 .page-up-button:hover {
   background-color: #999;
 }
+
