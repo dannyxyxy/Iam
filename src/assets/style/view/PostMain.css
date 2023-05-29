@@ -86,7 +86,7 @@
   background-color: #d4d2d2;
 }
 .carousel__item {
-  min-height: 400px;
+  min-height: 300px;
   width: 100%;
   background-color: var(--vc-clr-primary);
   color: var(--vc-clr-white);
