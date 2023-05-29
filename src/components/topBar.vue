@@ -2,7 +2,6 @@
 import loginModal from "../views/Login.vue";
 import { ref } from "vue";
 import commonUtil from "../utils/common-util.js";
-import { CONSTANTS } from "../utils/constants.js";
 
 export default {
   name: "topBar",

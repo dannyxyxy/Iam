@@ -46,6 +46,7 @@ export default {
         boardData.value = data.data;
       }
     };
+
     onMounted(getBoardData);
 
     return {

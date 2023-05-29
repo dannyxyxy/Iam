@@ -1,5 +1,6 @@
 <script>
 import { apiClient } from "../utils/axios.js";
+import commonUtil from "../utils/common-util.js";
 
 export default {
   name: "register",
@@ -17,12 +18,7 @@ export default {
       userPasswordCheck: "",
     };
     const signUp = async () => {
-      if (
-        registerInfo.userEmail &&
-        registerInfo.userName &&
-        registerInfo.userPassword &&
-        registerInfo.userPasswordCheck
-      ) {
+      if (commonUtil.checkForm(registerInfo)) {
         if (registerInfo.userPassword === registerInfo.userPasswordCheck) {
           const data = await apiClient("user/register", registerInfo);
           if (data.resultCode === 1) {
