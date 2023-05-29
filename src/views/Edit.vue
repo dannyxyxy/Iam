@@ -7,6 +7,12 @@ import { ref } from "vue";
 import { CONSTANTS } from "../utils/constants.js";
 
 export default {
+  data(){
+    return {
+      title: "",
+    };
+  },
+
   mounted() {
     const editor = new Editor({
       el: this.$refs.editorRef,
@@ -16,7 +22,7 @@ export default {
     });
 
     //  초기 텍스트 설정
-    editor.setMarkdown("# 여기에 글을 작성하세요");
+    editor.setMarkdown("여기에 글을 작성하세요");
 
     this.editor = editor;
 
@@ -28,6 +34,7 @@ export default {
   },
   methods: {
     async saveContent() {
+      const title = this.title;
       const content = this.editor.getMarkdown();
       const { userIdx } = commonUtil.getLocalStorage(
         CONSTANTS.KEY_LIST.USER_INFO
@@ -54,7 +61,8 @@ export default {
 
 <template>
   <div class="editdiv">
-    <div ref="editorRef"></div>
+    <input type="text" v-model="title" placeholder="제목을 입력하세요" class="title-input">
+    <div ref="editorRef" class="editor"></div>
     <button class="savebutton" @click="saveContent">저장</button>
   </div>
 </template>
