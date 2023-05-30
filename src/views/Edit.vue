@@ -45,15 +45,13 @@ export default {
         boardContents: content,
         userName: userIdx,
       };
-      // 여기에서 저장 로직을 구현하면 됩니다.
-      console.log("Saving content:", content);
 
       const data = await apiClient("board/writeBoard", boardData);
-      console.log(data);
       if (data.resultCode === 1) {
-        // 데이터 전송 성공 시 로직
+        alert("글 작성 완료!");
+        await router.push("/");
       } else {
-        // 데이터 전송 실패 시 로직
+        alert("글이 저장되지 않았습니다.");
       }
     },
   },

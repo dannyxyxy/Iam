@@ -18,7 +18,12 @@ export default {
       userPasswordCheck: "",
     };
     const signUp = async () => {
-      if (commonUtil.checkForm(registerInfo)) {
+      if (
+        registerInfo.userEmail &&
+        registerInfo.userName &&
+        registerInfo.userPassword &&
+        registerInfo.userPasswordCheck
+      ) {
         if (registerInfo.userPassword === registerInfo.userPasswordCheck) {
           const data = await apiClient("user/register", registerInfo);
           if (data.resultCode === 1) {
