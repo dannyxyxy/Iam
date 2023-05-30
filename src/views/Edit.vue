@@ -8,7 +8,7 @@ import { CONSTANTS } from "../utils/constants.js";
 import router from "../router/index.js";
 
 export default {
-  data(){
+  data() {
     return {
       title: "",
     };
@@ -41,7 +41,7 @@ export default {
         CONSTANTS.KEY_LIST.USER_INFO
       );
       const boardData = {
-        boardTitle: "",
+        boardTitle: title,
         boardContents: content,
         userName: userIdx,
       };
@@ -73,7 +73,12 @@ export default {
 
 <template>
   <div class="editdiv" v-if="loginCheck ? true : errAlert()">
-    <input type="text" v-model="title" placeholder="제목을 입력하세요" class="title-input">
+    <input
+      type="text"
+      v-model="title"
+      placeholder="제목을 입력하세요"
+      class="title-input"
+    />
     <div ref="editorRef" class="editor"></div>
     <button class="savebutton" @click="saveContent">저장</button>
   </div>
