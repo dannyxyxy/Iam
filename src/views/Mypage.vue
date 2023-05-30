@@ -62,9 +62,9 @@ export default {
         await router.push("/");
       }
     };
-    const errAlert = () => {
+    const errAlert = async () => {
       alert("로그인 후에 이용해주세요");
-      router.push("/");
+      await router.push("/");
     };
     onMounted(getUserData);
     return {
