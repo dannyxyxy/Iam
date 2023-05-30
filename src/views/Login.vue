@@ -25,7 +25,7 @@ export default {
       userEmail: "",
       userPassword: "",
     };
-    const singIn = async () => {
+    const loginHandler = async () => {
       if (loginInfo.userEmail && loginInfo.userPassword) {
         const data = await apiClient("user/login", loginInfo);
         if (data.resultCode === 1) {
@@ -62,7 +62,7 @@ export default {
 
     return {
       loginInfo,
-      singIn,
+      loginHandler,
     };
   },
 };
@@ -98,7 +98,7 @@ export default {
               @input="loginInfo.userPassword = $event.target.value"
               required
             />
-            <button type="submit" @click="singIn">로그인</button>
+            <button type="submit" @click="loginHandler">로그인</button>
           </form>
           <div class="registor-text">
             아직 회원이 아니신가요?

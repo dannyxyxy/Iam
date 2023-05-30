@@ -5,6 +5,7 @@ import { apiClient } from "../utils/axios.js";
 import commonUtil from "../utils/common-util.js";
 import { ref } from "vue";
 import { CONSTANTS } from "../utils/constants.js";
+import router from "../router/index.js";
 
 export default {
   data(){
@@ -56,11 +57,22 @@ export default {
       }
     },
   },
+  setup() {
+    const loginCheck = commonUtil.loginCheck();
+    const errAlert = async () => {
+      alert("로그인 후에 이용해주세요");
+      await router.push("/");
+    };
+    return {
+      errAlert,
+      loginCheck,
+    };
+  },
 };
 </script>
 
 <template>
-  <div class="editdiv">
+  <div class="editdiv" v-if="loginCheck ? true : errAlert()">
     <input type="text" v-model="title" placeholder="제목을 입력하세요" class="title-input">
     <div ref="editorRef" class="editor"></div>
     <button class="savebutton" @click="saveContent">저장</button>

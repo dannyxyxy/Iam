@@ -10,9 +10,10 @@ export default defineComponent({
       isDarkMode: false,
       user: "danny",
       title: "나를 성장시켜준 환상적인 미국 서부",
-      contents: "데이터값 입력 예시, 데이터값 입력 없을 시 maintext 부분 반토막, 데이터 값이 있으면 정상표출 데이터값 입력 예시, 데이터값 입력 없을 시 maintext 부분 반토막, 데이터 값이 있으면 정상표출 데이터값 입력 예시, 데이터값 입력 없을 시 maintext 부분 반토막, 데이터 값이 있으면 정상표출",
+      contents:
+        "데이터값 입력 예시, 데이터값 입력 없을 시 maintext 부분 반토막, 데이터 값이 있으면 정상표출 데이터값 입력 예시, 데이터값 입력 없을 시 maintext 부분 반토막, 데이터 값이 있으면 정상표출 데이터값 입력 예시, 데이터값 입력 없을 시 maintext 부분 반토막, 데이터 값이 있으면 정상표출",
       likeCount: 0,
-      day: 3  ,
+      day: 3,
       category1: "여행",
       category2: "미국서부",
       category3: "YOLO",
@@ -76,8 +77,7 @@ export default defineComponent({
       </div>
       <div>
         <button class="like-btn2" @click="likeCount++">
-          <i class="fas fa-heart"></i
-                ><img src="../assets/img/heart.png" />{{
+          <i class="fas fa-heart"></i><img src="../assets/img/heart.png" />{{
             likeCount
           }}
         </button>

@@ -1,5 +1,6 @@
 import { CONSTANTS } from "./constants.js";
 import lzString from "lz-string";
+import router from "../router/index.js";
 
 /**
  * 로컬 스토리지 저장
@@ -72,6 +73,7 @@ const parseJson = (value) => {
  * @returns {boolean}
  */
 const checkForm = (form) => {
+  console.log(makeJson(form));
   if (form) {
     for (let item in form) {
       if (isCheckNull(form[item])) {
