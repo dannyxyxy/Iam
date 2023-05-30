@@ -47,14 +47,14 @@ export default {
     <nav class="top-nav">
       <ul>
         <li>
-          <router-link to="/Search" class="search">
-            <img src="../assets/img/components/sideBar/search.png" alt="" />
+          <router-link to="" class="make-crew">
+            <img src="../assets/img/components/topbar/makecrew.png" alt="" />
           </router-link>
         </li>
         <li>
           <div class="darkmode-btn">
             <img
-              src="../assets/img/components/topBar/night.png"
+              src="../assets/img/components/topBar/darkmode.png"
               @click="toggleMode"
               alt=""
             />

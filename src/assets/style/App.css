@@ -1,6 +1,5 @@
 @import "./view/Home.css";
 @import "./view/PostMain.css";
-@import "./view/Category.css";
 @import "./view/Login.css";
 @import "./view/Edit.css";
 @import "./view/Mypage.css";
@@ -47,7 +46,7 @@ body {
   background-color: rgb(240, 240, 240);
 }
 .menu li:last-child {
-  margin-top: 200px;
+  margin-top: 300px;
 }
 .menu a img {
   margin: auto;
@@ -63,7 +62,6 @@ body {
   align-items: center;
   padding-right: 10%;
   padding-left: 10%;
-  background-color: #fff;
   z-index: 2;
 }
 .top-nav {
@@ -110,11 +108,24 @@ body {
   font-size: 15px;
 }
 .maintext {
+  position: fixed;
+  top:0;
   margin-top: 100px;
+  width:70%;
+  height: 100vh;
+  overflow-y:auto;
   margin-left: 10%;
   margin-right: 10%;
 }
+.maintext::-webkit-scrollbar{
+  width:0;
+  background:transparent;
+}
 .dark-mode .maintext {
+  height: 100%;
   background-color: #000;
   color: #fff;
+}
+.dark-mode .logo, .dark-mode .login-btn, .dark-mode .make-crew, .dark-mode .darkmode-btn{
+  filter:invert(1);
 }

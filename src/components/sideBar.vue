@@ -7,7 +7,6 @@ export default defineComponent({
     return {
       Home: "/",
       Search: "/Search",
-      Category:"/Category",
       Edit:"/Edit",
       Mypage:"/Mypage",
     };
@@ -25,10 +24,6 @@ export default defineComponent({
       <router-link :to="Search">
         <img src="../assets/img/components/sideBar/search.png" />
         검색
-      </router-link>
-      <router-link :to="Category">
-        <img src="../assets/img/components/sideBar/category.png" />
-        카테고리
       </router-link>
       <router-link :to="Edit">
         <img src="../assets/img/components/sideBar/edit.png" />
