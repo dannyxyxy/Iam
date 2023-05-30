@@ -81,9 +81,9 @@ export default {
     class="maintext"
     :class="{ 'dark-mode': isDarkMode }"
     v-if="loginCheck ? true : errAlert()"
-  >
-    <div>
-      <div class="profile">
+    >
+    <div class="profile">
+      <div class="profile-container">
         <div class="profile-picture">
           <!-- 프로필 사진 -->
           <img src="../assets/img/profile.jpg" alt="프로필 사진" />
@@ -111,10 +111,9 @@ export default {
         </div>
       </div>
     </div>
-    <div class="divider">
-      <div class="mypost">
-        <h2>내 게시물 보기</h2>
-      </div>
+    <div class="divider"></div>
+    <div class="mypost">
+      <h2>내 게시물 보기</h2>
       <div class="mypost-container"></div>
     </div>
   </div>

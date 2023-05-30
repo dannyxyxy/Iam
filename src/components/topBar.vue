@@ -47,7 +47,7 @@ export default {
     <nav class="top-nav">
       <ul>
         <li>
-          <router-link to="" class="make-crew">
+          <router-link to="/CreateCrew" class="make-crew">
             <img src="../assets/img/components/topbar/makecrew.png" alt="" />
           </router-link>
         </li>

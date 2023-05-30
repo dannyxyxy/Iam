@@ -2,13 +2,14 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: ["Home", "Search","Category","Edit"],
+  name: ["Home", "Search","Category","Edit","CrewMain"],
   data() {
     return {
       Home: "/",
       Search: "/Search",
       Edit:"/Edit",
       Mypage:"/Mypage",
+      CrewMain:"/CrewMain"
     };
   },
 });
@@ -29,11 +30,10 @@ export default defineComponent({
         <img src="../assets/img/components/sideBar/edit.png" />
         글작성
       </router-link>
-      <li>
-        <a href=""
-          ><img src="../assets/img/components/sideBar/crew.png" />크루</a
-        >
-      </li>
+      <router-link :to="CrewMain">
+        <img src="../assets/img/components/sideBar/crew.png" />
+        크루
+      </router-link>
       <router-link :to="Mypage">
         <img src="../assets/img/components/sideBar/mypage.png" />
         마이페이지

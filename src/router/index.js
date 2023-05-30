@@ -23,6 +23,16 @@ const routes = [
     component: () => import("../views/Edit.vue"),
   },
   {
+    path: "/CrewMain",
+    name: "CrewMain",
+    component: () => import("../views/CrewMain.vue"),
+  },
+  {
+    path: "/CreateCrew",
+    name: "CreateCrew",
+    component: () => import("../views/CreateCrew.vue"),
+  },
+  {
     path: "/Mypage",
     name: "Mypage",
     component: () => import("../views/Mypage.vue"),
