@@ -1,5 +1,4 @@
 .title{
-  background-color: white;
   padding-top: 20px;
   padding-bottom: 20px;
   text-align: left;
@@ -24,7 +23,6 @@
 #info{
   display: flex;
   justify-content: space-between;
-  background-color: #ffffff;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -42,8 +40,8 @@
   border-style: solid;
   border-color: #000000;
   cursor: pointer; 
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 13px;
+  font-weight: lighter;
 }
 .like-btn2 img{
   width:15px;
@@ -59,31 +57,31 @@
 .button-container5 {
   display: flex;
   padding-left: 10px;
-
-  
-
 }
 .button-container5 button {
   margin-right: 10px;
   padding: 5px 5x;
   border: none;
   border-radius: 15px;
-  background-color: rgb(204, 199, 199);
+  background-color: rgb(240, 240, 240);
   color: #000000;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: li;
 }
 .button-container5 button:hover {
-  background-color: grey;
+  background-color: rgb(240, 240, 240);
 }
 .apple {
+  margin-top: 10px;
+  margin-bottom:10px;
+  border-radius: 15px;
   min-height: 400px;
-  background-color: #ffffff;
 }
 .contents {
+  border-radius: 15px;
   min-height: 400px;
-  background-color: #d4d2d2;
+  background-color: rgb(240, 240, 240);
 }
 .carousel__item {
   min-height: 320px;
@@ -126,4 +124,7 @@
 .page-up-button:hover {
   background-color: #999;
 }
-
+.dark-mode .contents{
+  background-color: rgb(240, 240, 240);
+  color: #fff;
+}
