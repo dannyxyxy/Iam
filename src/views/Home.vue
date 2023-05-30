@@ -82,12 +82,12 @@ export default {
           </router-link>
           <div class="box-summary">
             <div>
-              <h3>{{ item.boardTitle }}</h3>
-              <h5>{{ item.boardContents }}</h5>
+              <div class="board-title">{{ item.boardTitle }}</div>
+              <div class="board-contents">{{ item.boardContents }}</div>
             </div>
             <div class="circle"><img src="../assets/img/profile.jpg" /></div>
             <div class="username">
-              by <span style="font-weight: bold">{{ item.userName }}</span>
+              <span style="font-weight:lighter">by</span> <span style="font-weight: bold">{{ item.userName }}</span>
             </div>
             <div>
               <button class="like-btn" @click="likeCountTap(item)">
