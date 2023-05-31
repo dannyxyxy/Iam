@@ -83,6 +83,7 @@ export default {
   z-index: 1;
   opacity: 1;
 }
+
 .search-bar__input {
   width: 50px;
   border: none;
