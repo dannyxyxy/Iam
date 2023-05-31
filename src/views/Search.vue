@@ -2,12 +2,11 @@
 <div class="maintext">
   <div class="search">
     <input type="text" placeholder="검색어를 입력하세요">
-    <div class="search_img">
-      <button @click="search" style="background-color: transparent; border: none; padding: 0;">
-      <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">    
-    </button>
-
-    </div>
+      <div class="search_img">
+        <button @click="search" style="background-color: transparent; border: none; padding: 0;">
+          <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">    
+        </button>
+      </div>
  
   </div>
 
@@ -70,6 +69,23 @@ export default {
 .search {
   position: relative;
   width: 100%;
+}
+
+
+.search input {
+  width: 100%;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.search img {
+  position : absolute;
+  width: 17px;
+  top: 10px;
+  right: 12px;
+  margin: 0;
 }
 
 .search-bar {
