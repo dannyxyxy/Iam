@@ -1,13 +1,16 @@
 
 .container{
+  flex:0 0 calc(25% - 10px);
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   max-width: 100%;
+  margin: 0 auto;
 }
 .box{
-  flex:0 0 calc(25% - 10px);
+  width:100%;
   max-width:300px;
+  min-width:250px;
   height: 350px;
   border:1px solid rgb(240, 240, 240);
   border-radius: 15px; 
