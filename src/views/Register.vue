@@ -55,7 +55,7 @@ export default {
           <div class="image-container">
             <img src="../assets/img/welcome.png" class="modal_img" alt="" />
             <div class="text-overlay">
-              <div class="centered-text">환영합니다</div>
+              <div class="centered-text">Welcome!</div>
             </div>
           </div>
         </div>
