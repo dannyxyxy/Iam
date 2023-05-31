@@ -1,6 +1,5 @@
 
 .container{
-  flex:0 0 calc(25% - 10px);
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
