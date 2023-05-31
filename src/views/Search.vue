@@ -1,12 +1,13 @@
 <template>
 <div class="maintext">
+  <div class="search">
+    <input type="text" placeholder="검색어를 입력하세요">
+    <button @click="search" style="background-color: transparent; border: none; padding: 0;">
+      <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">    
+    </button>
+  </div>
+
   <div class="search-results">
-      <div class="search-bar">
-        <input type="text" v-model="searchQuery" placeholder="검색어를 입력하세요">
-        <button @click="search" style="background-color: transparent; border: none; padding: 0;">
-          <img src="..\assets\img\search_icon.png" alt="검색" style="display: block; width: 50%;">
-        </button>
-      </div>
       <h2>검색 결과</h2>
       <ul v-if="searchResults.length > 0">
         <li v-for="result in searchResults" :key="result.id" class="search-result">
@@ -62,11 +63,62 @@ export default {
 
 
 <style>
+.search {
+  position: relative;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+img {
+  position : absolute;
+  width: 17px;
+  top: 10px;
+  right: 12px;
+  margin: 0;
+}
+
+.search-bar {
+  width: 220px;
+  height: 27px;
+  border-radius: 5px;
+  border: solid 1px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  opacity: 1;
+}
+.search-bar__input {
+  width: 50px;
+  border: none;
+  text-align: center;
+  margin-left: 10px;
+  overflow: auto;
+  z-index: -1;
+  font-size: 15px;
+}
+
+.search-bar__input:focus {
+  outline: none;
+  width: 300px;
+  text-align: left;
+}
+
+.fa-search {
+  font-size: 15px;
+}
 
 .search-results input[type="text"] {
-  width: 1200px; /* 늘리고자 하는 크기에 맞게 값을 변경해주세요 */
+  width: 500px; /* 늘리고자 하는 크기에 맞게 값을 변경해주세요 */
   height:50px;
-  padding: 10px 20px;
+  padding: 10px 10px;
   font-size: 16px;
   border: 1px solid #000;
   border-radius: 5px;
