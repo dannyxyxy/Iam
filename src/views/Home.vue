@@ -9,7 +9,7 @@ export default {
     return {
       PostMain: "/PostMain",
       isDarkMode: false,
-      i: 6,
+      i: "",
       title: "Title",
       summary: "summary",
       user: "danny",

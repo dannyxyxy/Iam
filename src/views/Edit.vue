@@ -3,7 +3,7 @@ import Editor from "@toast-ui/editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { apiClient } from "../utils/axios.js";
 import commonUtil from "../utils/common-util.js";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { CONSTANTS } from "../utils/constants.js";
 import router from "../router/index.js";
 
@@ -56,32 +56,31 @@ export default {
     },
   },
   setup() {
-    const loginCheck = commonUtil.loginCheck();
-    const errAlert = async () => {
-      alert("로그인 후에 이용해주세요");
-      await router.push("/");
+    const getLoginInfo = async () => {
+      const loginCheck = commonUtil.loginCheck();
+      if (!loginCheck) {
+        alert("로그인 후에 이용해주세요");
+        await router.push("/");
+      }
     };
-    return {
-      errAlert,
-      loginCheck,
-    };
+    onMounted(getLoginInfo);
   },
 };
 </script>
 
 <template>
-<div class="maintext" :class="{ 'dark-mode': isDarkMode }">
-  <div class="editdiv" v-if="loginCheck ? true : errAlert()">
-    <input
-      type="text"
-      v-model="title"
-      placeholder="제목을 입력하세요."
-      class="title-input"
-    />
-    <div ref="editorRef" class="editor"></div>
-    <button class="savebutton" @click="saveContent">저장</button>
+  <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
+    <div class="editdiv">
+      <input
+        type="text"
+        v-model="title"
+        placeholder="제목을 입력하세요."
+        class="title-input"
+      />
+      <div ref="editorRef" class="editor"></div>
+      <button class="savebutton" @click="saveContent">저장</button>
+    </div>
   </div>
-</div>
 </template>
 
 <style scoped></style>
