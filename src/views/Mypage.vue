@@ -45,27 +45,32 @@ export default {
   },
   setup() {
     const loginCheck = commonUtil.loginCheck();
+    const errAlert = async () => {
+      alert("로그인 후에 이용해주세요");
+      await router.push("/");
+    };
     const userData = ref({
       userName: "",
       userIntro: "",
       userEmail: "",
     });
     const getUserData = async () => {
-      const data = await apiClient(
-        "user/getUserInfo",
-        JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO))
-      );
-      if (data.resultCode === 1) {
-        userData.value = data.data;
+      if (loginCheck) {
+        const data = await apiClient(
+          "user/getUserInfo",
+          JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO))
+        );
+        if (data.resultCode === 1) {
+          userData.value = data.data;
+        } else {
+          alert("정보를 불러올 수 없습니다. 관리자에게 문의하세요");
+          await router.push("/");
+        }
       } else {
-        alert("정보를 불러올 수 없습니다. 관리자에게 문의하세요");
-        await router.push("/");
+        await errAlert();
       }
     };
-    const errAlert = async () => {
-      alert("로그인 후에 이용해주세요");
-      await router.push("/");
-    };
+
     onMounted(getUserData);
     return {
       userData,
@@ -77,13 +82,9 @@ export default {
 </script>
 
 <template>
-  <div
-    class="maintext"
-    :class="{ 'dark-mode': isDarkMode }"
-    v-if="loginCheck ? true : errAlert()"
-    >
-    <div class="profile">
-      <div class="profile-container">
+  <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
+    <div>
+      <div class="profile">
         <div class="profile-picture">
           <!-- 프로필 사진 -->
           <img src="../assets/img/profile.jpg" alt="프로필 사진" />
@@ -111,9 +112,10 @@ export default {
         </div>
       </div>
     </div>
-    <div class="divider"></div>
-    <div class="mypost">
-      <h2>내 게시물 보기</h2>
+    <div class="divider">
+      <div class="mypost">
+        <h2>내 게시물 보기</h2>
+      </div>
       <div class="mypost-container"></div>
     </div>
   </div>
