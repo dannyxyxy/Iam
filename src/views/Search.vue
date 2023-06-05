@@ -7,7 +7,6 @@
           <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">    
         </button>
       </div>
- 
   </div>
 
   <div class="search-results">
@@ -170,6 +169,7 @@ ul {
   border-width: 0 10px 10px 0;
   border-color: transparent #ffffff transparent transparent;
 }
+
 
 h3 {
   font-size: 20px;
