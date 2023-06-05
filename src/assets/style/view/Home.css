@@ -5,19 +5,18 @@
   flex-direction: row;
 }
 .box{
-  flex: 0 0 calc(25% - 10px);
-  max-width: 300px;
-  width: 100%;
+  width: calc(90%/4);
+  min-width:270px;
   height: 350px;
   border:1px solid rgb(240, 240, 240);
   border-radius: 15px; 
-  margin:15px;
+  margin:14px;
   box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
 .box img{
-  width:300px;
+  width:100%;
   height: 200px;
   border-radius: 12px;
 }
