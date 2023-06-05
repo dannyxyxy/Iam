@@ -39,7 +39,7 @@ export default {
       likeCount: 0,
     });
     const getBoardData = async () => {
-      const data = await apiClient("board/getBoard", {});
+      const data = await apiClient("board/getBoardList", {});
       if (!boardData.resultCode === 1) {
         alert("게시물 정보를 불러올 수 없습니다.");
       } else {
@@ -87,7 +87,8 @@ export default {
             </div>
             <div class="circle"><img src="../assets/img/profile.jpg" /></div>
             <div class="username">
-              <span style="font-weight:lighter">by</span> <span style="font-weight: bold">{{ item.userName }}</span>
+              <span style="font-weight: lighter">by</span>
+              <span style="font-weight: bold">{{ item.userName }}</span>
             </div>
             <div>
               <button class="like-btn" @click="likeCountTap(item)">
