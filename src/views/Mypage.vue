@@ -45,10 +45,6 @@ export default {
   },
   setup() {
     const loginCheck = commonUtil.loginCheck();
-    const errAlert = async () => {
-      alert("로그인 후에 이용해주세요");
-      await router.push("/");
-    };
     const userData = ref({
       userName: "",
       userIntro: "",
@@ -67,15 +63,13 @@ export default {
           await router.push("/");
         }
       } else {
-        await errAlert();
+        alert("로그인 후에 이용해주세요");
+        await router.push("/");
       }
     };
-
     onMounted(getUserData);
     return {
       userData,
-      loginCheck,
-      errAlert,
     };
   },
 };
