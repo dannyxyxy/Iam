@@ -3,7 +3,7 @@ export default {
   data() {
     return {
       recommendedCrews: [
-        { id: 4, name: '크루 4', avatar: 'avatar4.png', description: '크루 4에 대한 설명입니다.', memberCount: 20, postCount: 50 },
+        { id: 4, name: '크루 4', avatar: 'hi.jpg', description: '크루 4에 대한 설명입니다.', memberCount: 20, postCount: 50 },
         { id: 5, name: '크루 5', avatar: 'avatar5.png', description: '크루 5에 대한 설명입니다.', memberCount: 15, postCount: 30 },
         { id: 6, name: '크루 6', avatar: 'avatar6.png', description: '크루 6에 대한 설명입니다.', memberCount: 12, postCount: 25 },
       ]
@@ -29,7 +29,9 @@ export default {
         <div class="crew-box-container">
           <div class="crew-box" v-for="crew in recommendedCrews" :key="crew.id">
             <div class="crew-image">
-              <img :src="crew.avatar" alt="" class="crew-avatar">
+             
+              <img src="../assets/img/hi.jpg" class="crew-avatar">
+            
             </div>
             <div class="crew-info">
               <h3>{{ crew.name }}</h3>
