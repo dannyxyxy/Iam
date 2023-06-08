@@ -1,7 +1,7 @@
 <template>
 <div class="maintext">
   <div class="search">
-    <input type="text" placeholder="검색어를 입력하세요">
+    <input type="text" placeholder="검색어를 입력하세요.">
       <div class="search_img">
         <button @click="search" style="background-color: transparent; border: none; padding: 0;">
           <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">    
@@ -62,31 +62,26 @@ export default {
 };
 </script>
 
-
-
 <style>
 .search {
   position: relative;
   width: 100%;
 }
-
-
 .search input {
   width: 100%;
   border: 1px solid #bbb;
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 14px;
+  border-radius: 10px;
+  padding:30px;
+  font-size: 20px;
+  
 }
-
 .search img {
   position : absolute;
-  width: 17px;
-  top: 10px;
-  right: 12px;
+  width: 30px;
+  top: 25px;
+  right: 20px;
   margin: 0;
 }
-
 .search-bar {
   width: 220px;
   height: 27px;
@@ -98,7 +93,6 @@ export default {
   z-index: 1;
   opacity: 1;
 }
-
 .search-bar__input {
   width: 50px;
   border: none;
@@ -108,44 +102,27 @@ export default {
   z-index: -1;
   font-size: 15px;
 }
-
 .search-bar__input:focus {
   outline: none;
   width: 300px;
   text-align: left;
 }
-
 .fa-search {
   font-size: 15px;
 }
-
 .search-results input[type="text"] {
   width: 500px; /* 늘리고자 하는 크기에 맞게 값을 변경해주세요 */
   height:50px;
   padding: 10px 10px;
   font-size: 16px;
   border: 1px solid #000;
-  border-radius: 5px;
+  border-radius: 20px;
   outline: none;
   box-shadow: none;
 }
-
-
 .search-results {
   margin: 20px;
 }
-
-h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
 .search-result {
   display: flex;
   align-items: center;
@@ -157,7 +134,6 @@ ul {
   background-color: #ffffff;
   position: relative;
 }
-
 .search-result:before {
   content: "";
   position: absolute;
@@ -169,25 +145,8 @@ ul {
   border-width: 0 10px 10px 0;
   border-color: transparent #ffffff transparent transparent;
 }
-
-
-h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #7b5cc0;
-}
-
-p {
-  font-size: 16px;
-  color: #555;
-}
-
-.icon {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background-image: url('https://example.com/icon.png');
-  background-size: cover;
-  margin-right: 5px;
+.dark-mode .serch {
+  background-color: rgb(30,30,30);
+  color:#ffffff;
 }
 </style>

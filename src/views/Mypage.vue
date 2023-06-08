@@ -110,7 +110,12 @@ export default {
       <div class="mypost">
         <h2>내 게시물 보기</h2>
       </div>
-      <div class="mypost-container"></div>
+    <div class="crew-post-container">
+      <div class="crew-box"></div>
+      <div class="crew-box"></div>
+      <div class="crew-box"></div>
+    <!-- 추가적인 박스 요소들 -->
+  </div>
     </div>
   </div>
 </template>
