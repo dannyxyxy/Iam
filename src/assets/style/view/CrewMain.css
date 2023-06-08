@@ -57,6 +57,7 @@
   justify-content: center; /* 가운데 정렬 */
   align-items: center;
   width: 100%;
+  margin-bottom: 15px;
 }
 .dot {
   margin: 0 5px; /* 멤버 수와 게시물 수 사이 간격 조정 */
@@ -69,7 +70,6 @@
   margin: 0;
 }
 .join-button {
-  margin-top: 10px;
   width:150px;
   padding: 5px 0px;
   background-color: #000;
@@ -77,6 +77,7 @@
   border: none;
   border-radius: 15px;
   cursor: pointer;
+  font-weight: bold;
 }
 .join-button:hover {
   background-color: rgb(240,240,240);
