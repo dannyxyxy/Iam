@@ -87,7 +87,7 @@ export default {
             </div>
             <div class="circle"><img src="../assets/img/profile.jpg" /></div>
             <div class="username">
-              <span style="font-weight: lighter">by</span>
+              <span style="font-weight: lighter">by </span>
               <span style="font-weight: bold">{{ item.userName }}</span>
             </div>
             <div>
