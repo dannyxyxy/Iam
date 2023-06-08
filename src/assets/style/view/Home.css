@@ -8,7 +8,6 @@
   width: calc(90%/4);
   min-width:270px;
   height: 350px;
-  border:1px solid rgb(240, 240, 240);
   border-radius: 15px; 
   margin:14px;
   box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
@@ -120,6 +119,9 @@
 }
 .dark-mode .btn{
   color:#fff;
+}
+.dark-mode .box{
+  background-color: rgb(30,30,30);
 }
 .dark-mode .btn.active::after{
   background-color: #fff;

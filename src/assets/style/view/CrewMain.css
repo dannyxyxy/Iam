@@ -19,7 +19,6 @@
   width: 350px;
   height: 350px;
   margin: 20px;
-  border:1px solid rgb(240, 240, 240);
   border-radius: 15px; 
   box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
   cursor: pointer;
@@ -33,7 +32,6 @@
   height: 200px;
   border-radius: 15px;
   margin-bottom: 10px;
-  background-color: rgb(240, 240, 240);
 }
 .crew-avatar {
   width: 100%;
@@ -82,4 +80,11 @@
 .join-button:hover {
   background-color: rgb(240,240,240);
   color:#000;
+}
+.dark-mode .crew-box{
+  background-color: rgb(30,30,30);
+  color:#fff;
+}
+.dark-mode .crew-info{
+  color:#fff;
 }
