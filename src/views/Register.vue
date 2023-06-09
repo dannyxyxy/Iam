@@ -53,16 +53,17 @@ export default {
       <div class="modal-content">
         <div class="modal-left">
           <div class="image-container">
-            <img src="../assets/img/welcome.png" class="modal_img" alt="" />
+            <div class="modal_img"></div>
             <div class="text-overlay">
-              <div class="centered-text">Welcome!</div>
+              <div class="centered-text">Welcome!
+              <span class="welcome-text">방문을 환영합니다!</span></div>
             </div>
           </div>
         </div>
 
         <div class="modal-right" id="register">
-          <h2>회원가입</h2>
-          <h4>이메일로 회원가입</h4>
+          <div class="login-title">회원가입</div>
+          <div class="login-subtitle">이메일로 회원가입</div>
 
           <form @submit.prevent>
             <input
