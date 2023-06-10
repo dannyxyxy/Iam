@@ -37,13 +37,14 @@ export default {
     async saveContent() {
       const title = this.title;
       const content = this.editor.getMarkdown();
+      const userLocalInfo = JSON.parse(
+        commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+      );
 
       const boardData = {
         boardTitle: title,
         boardContents: content,
-        userName: JSON.parse(
-          commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
-        ),
+        userIdx: userLocalInfo.userIdx,
       };
 
       const data = await apiClient("board/writeBoard", boardData);

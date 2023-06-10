@@ -10,9 +10,9 @@ export default {
       PostMain: "/PostMain",
       isDarkMode: false,
       i: "",
-      title: "Title",
-      summary: "summary",
-      user: "danny",
+      title: "-",
+      summary: "-",
+      user: "-",
       isTrendActive: true,
       selected: "trend",
     };
@@ -38,7 +38,7 @@ export default {
       userName: "",
       likeCount: 0,
     });
-    const getBoardData = async () => {
+    const getBoardList = async () => {
       const data = await apiClient("board/getBoardList", {});
       if (!boardData.resultCode === 1) {
         alert("게시물 정보를 불러올 수 없습니다.");
@@ -47,7 +47,9 @@ export default {
       }
     };
 
-    onMounted(getBoardData);
+    onMounted(() => {
+      getBoardList();
+    });
 
     return {
       boardData,

@@ -10,9 +10,10 @@ export default {
   data() {
     //데이터 변수값 저장
     return {
-      nickname: "danny",
-      introduction: "hi",
-      email: "danny97k@gmail.com",
+      PostMain: "/PostMain",
+      nickname: "-",
+      introduction: "-",
+      email: "-",
       isEmojiPickerOpen: false,
       isImagePickerOpen: false,
       isProfileEditorOpen: false,
@@ -50,12 +51,20 @@ export default {
       userIntro: "",
       userEmail: "",
     });
+    const boardData = ref({
+      writeTime: "",
+      boardTitle: "",
+      boardContents: "",
+      userName: "",
+      likeCount: 0,
+    });
+    const userInfo = JSON.parse(
+      commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+    );
     const getUserData = async () => {
       if (loginCheck) {
-        const data = await apiClient(
-          "user/getUserInfo",
-          JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO))
-        );
+        const data = await apiClient("user/getUserInfo", userInfo);
+        console.log(data);
         if (data.resultCode === 1) {
           userData.value = data.data;
         } else {
@@ -67,9 +76,24 @@ export default {
         await router.push("/");
       }
     };
-    onMounted(getUserData);
+    const getBoardList = async () => {
+      const data = await apiClient("user/getBoardList", userInfo);
+      if (data.resultCode === 1) {
+        boardData.value = data.data;
+      } else {
+        alert("게시물 정보를 불러올 수 없습니다.");
+        await router.push("/");
+      }
+    };
+
+    onMounted(() => {
+      getUserData();
+      getBoardList();
+    });
+
     return {
       userData,
+      boardData,
     };
   },
 };
@@ -110,12 +134,32 @@ export default {
       <div class="mypost">
         <h2>내 게시물 보기</h2>
       </div>
-    <div class="crew-post-container">
-      <div class="crew-box"></div>
-      <div class="crew-box"></div>
-      <div class="crew-box"></div>
-    <!-- 추가적인 박스 요소들 -->
-  </div>
+      <div class="mypost-container">
+        <div class="container">
+          <div class="box" v-for="item in boardData">
+            <router-link :to="PostMain">
+              <img src="../assets/img/hi.jpg" />
+            </router-link>
+            <div class="box-summary">
+              <div>
+                <div class="board-title">{{ item.boardTitle }}</div>
+                <div class="board-contents">{{ item.boardContents }}</div>
+              </div>
+              <div class="circle"><img src="../assets/img/profile.jpg" /></div>
+              <div class="username">
+                <span style="font-weight: lighter">by</span>
+                <span style="font-weight: bold">{{ item.userName }}</span>
+              </div>
+              <div>
+                <button class="like-btn" @click="likeCountTap(item)">
+                  <i class="fas fa-heart"></i
+                  ><img src="../assets/img/heart.png" />{{ item.likeCount }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
