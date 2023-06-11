@@ -105,7 +105,7 @@ export default {
       <div class="profile">
         <div class="profile-picture">
           <!-- 프로필 사진 -->
-          <img src="../assets/img/profile.jpg" alt="프로필 사진" />
+          <div class="profile-img"></div>
           <input
             type="file"
             ref="imageInput"

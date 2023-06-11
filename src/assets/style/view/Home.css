@@ -14,11 +14,12 @@
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
-.box img{
+.box-img{
   width:100%;
   height: 200px;
   object-fit: cover;
   border-radius: 12px;
+  background-color : rgb(240,240,240);
 }
 .box:hover{
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
@@ -47,12 +48,13 @@
   overflow: hidden;
   text-overflow:ellipsis;
 }
-.circle img{
+.circle{
   float:left;
   margin-top:35px;
   width:24px;
   height: 24px;
   border-radius: 50%;
+  background-color: rgb(240,240,240);
 }
 .username{
   margin-top: 37px;
@@ -80,23 +82,6 @@
   float:left;
   margin:auto;
   margin-right:2px;
-}
-.button-container {
-  width:71%;
-  height: 50px;
-  position: absolute;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  z-index: 1;
-}
-.button-container img{
-  width:18px;
-  height:18px;
-  margin-right: 5px;
-}
-.dark-mode .button-container img{
-  filter:invert(1);
 }
 .btn{
   padding:5px;
