@@ -1,13 +1,20 @@
 .editdiv {
-  margin-top:50px;
+  margin-top: 10px;
   align-items: center;
   }
 .title-input {
     padding:30px;
     font-size: 20px;
-    width: 95%;
+    width: 90%;
     margin-bottom: 10px;
     border-radius: 10px;
+}
+.savephoto-btn{
+  border:none;
+  width:100px;
+  padding:7px;
+  color:#fff;
+  font-weight: bold;
 }
 .savebutton {
     position: fixed;
@@ -29,6 +36,10 @@
     background-color: rgb(240,240,240);
     color:#000;
   }
+.savephoto-btn:hover {
+    background-color: rgb(240,240,240);
+    color:#000;
+}
 .dark-mode .editdiv, .dark-mode .title-input{
   background-color: rgb(30,30,30);
   color:#fff;

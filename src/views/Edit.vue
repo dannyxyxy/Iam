@@ -11,6 +11,7 @@ export default {
   data() {
     return {
       title: "",
+      selectedPhoto: null,
     };
   },
 
@@ -55,6 +56,16 @@ export default {
         alert("글이 저장되지 않았습니다.");
       }
     },
+      handleFileChange(event) {
+        const file = event.target.files[0];
+        this.selectedPhoto = URL.createObjectURL(file);
+      },
+      savePhoto() {
+        // 선택한 사진을 저장하는 로직을 구현하세요
+        // 예: 서버에 사진을 업로드하거나, 상태 관리를 통해 홈 페이지에서 사용할 수 있도록 전달
+        console.log(this.selectedPhoto);
+    },
+
   },
   setup() {
     const getLoginInfo = async () => {
@@ -71,15 +82,20 @@ export default {
 
 <template>
   <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
-    <div class="editdiv">
-      <input
+    <input
         type="text"
         v-model="title"
         placeholder="제목을 입력하세요."
         class="title-input"
       />
+    <div>
+        <label for="post-image"></label>포스트 대표사진을 업로드 해주세요.
+        <input type="file" @change="handleFileChange">
+        <button @click="savePhoto" class="savephoto-btn">사진 저장</button>
+    </div>
+    <div class="editdiv">
       <div ref="editorRef" class="editor"></div>
-      <button class="savebutton" @click="saveContent">저장</button>
+      <button class="savebutton" @click="saveContent">업로드</button>
     </div>
   </div>
 </template>
