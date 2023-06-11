@@ -65,7 +65,7 @@ export default {
         <div class="preview-img">
           <img :src="crewImagePreview" alt="크루 대표 사진" v-if="crewImagePreview" class="centered-image">
           <div class="centered-text">
-            {{ crewName }}
+            <h1>{{ crewName }}</h1>
           </div>
         </div>
         <div class="crew-text">
