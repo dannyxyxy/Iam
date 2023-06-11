@@ -128,3 +128,70 @@
   background-color: rgb(30,30,30);
   color: #fff;
 }
+.comments-section {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.comments-section h2 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.comments-section form {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+
+  
+}
+
+.comments-section input[type="text"] {
+  width: 98.7%;
+  min-height: 100px;
+  padding: 5px;
+  border-color: #e1e0e0;
+  border-radius: 5px;
+  font-size: large;
+  flex: 1;
+}
+
+.comments-section button[type="submit"] {
+  padding: 3px 8px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  min-height: 40px;
+  margin-left: auto;
+}
+.comments-section button[type="submit"]:hover {
+  background-color: #999;
+}
+
+.comments-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comments-section li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comments-section li p {
+  flex: 1;
+  margin-right: 5px;
+}
+
+.comments-section li button {
+  padding: 3px 8px;
+  font-size: 14px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #000000;
+  border-color: #fff;
+}
