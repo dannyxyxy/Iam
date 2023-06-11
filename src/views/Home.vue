@@ -61,33 +61,17 @@ export default {
 <template>
   <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
     <div>
-      <div class="button-container">
-        <button
-          class="btn"
-          :class="{ active: selected === 'trend' }"
-          @click="selected = 'trend'"
-        >
-          <img src="../assets/img/trend.png" />트렌드
-        </button>
-        <button
-          class="btn"
-          :class="{ active: selected === 'latest' }"
-          @click="selected = 'latest'"
-        >
-          <img src="../assets/img/latest.png" />최신순
-        </button>
-      </div>
       <div class="container">
         <div class="box" v-for="item in boardData">
           <router-link :to="PostMain">
-            <img src="../assets/img/hi.jpg" />
+            <div class="box-img"></div>
           </router-link>
           <div class="box-summary">
             <div>
               <div class="board-title">{{ item.boardTitle }}</div>
               <div class="board-contents">{{ item.boardContents }}</div>
             </div>
-            <div class="circle"><img src="../assets/img/profile.jpg" /></div>
+            <div class="circle"></div>
             <div class="username">
               <span style="font-weight: lighter">by </span>
               <span style="font-weight: bold">{{ item.userName }}</span>
