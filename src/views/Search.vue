@@ -64,6 +64,7 @@ export default {
 
 <style>
 .search {
+  margin-top: 50px;
   position: relative;
   width: 100%;
 }
