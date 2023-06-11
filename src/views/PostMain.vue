@@ -18,6 +18,8 @@ export default defineComponent({
       category2: "미국서부",
       category3: "YOLO",
       showPageUpButton: false,
+      comments: ["댓글 테스트입니다. 댓글 테스트입니다. 삭제버튼을 눌러보세요1","댓글 테스트입니다. 댓글 테스트입니다. 삭제버튼을 눌러보세요2"], // 댓글 데이터 배열 추가
+      newComment: "" // 새로운 댓글을 입력 받는 변수 추가
     };
   },
   mounted() {
@@ -33,6 +35,15 @@ export default defineComponent({
     //함수만드는곳 this. 꼭 붙힐것
     toggleMode() {
       this.isDarkMode = !this.isDarkMode;
+    },
+    submitComment() {
+      if (this.commentText) {
+        this.comments.push(this.commentText);
+        this.commentText = "";
+      }
+    },
+    deleteComment(index) {
+      this.comments.splice(index, 1);
     },
     handleScroll() {
       // 스크롤 위치 확인
@@ -103,6 +114,21 @@ export default defineComponent({
     </div>
     <div class="contents">
       {{ contents }}
+    </div>
+    <div class="comments-section">
+      <h2>댓글</h2>
+
+      <form @submit.prevent="addComment">
+        <input type="text" v-model="newComment" placeholder="댓글을 입력하세요">
+        <button type="submit">댓글 작성</button>
+      </form>
+
+      <ul>
+        <li v-for="(comment, index) in comments" :key="index">
+          {{ comment }}
+          <button @click="deleteComment(index)">삭제</button>
+        </li>
+      </ul>
     </div>
 
     <div class="page">
