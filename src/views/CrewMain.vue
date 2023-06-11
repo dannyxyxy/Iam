@@ -29,9 +29,7 @@ export default {
         <div class="crew-box-container">
           <div class="crew-box" v-for="crew in recommendedCrews" :key="crew.id">
             <div class="crew-image">
-             
-              <img src="../assets/img/hi.jpg" class="crew-avatar">
-            
+              <div class="crew-avatar"></div> 
             </div>
             <div class="crew-info">
               <h3>{{ crew.name }}</h3>
