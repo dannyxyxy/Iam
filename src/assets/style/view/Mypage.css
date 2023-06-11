@@ -1,11 +1,14 @@
 
 .profile{
-  top:100px;
+  padding-bottom:50px;
   width:70%;
   height:300px;
   background-color: #fff;
   position: fixed;
   z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .profile-container {
   margin-top: 10px;
@@ -19,16 +22,14 @@
 .profile-picture {
   width: 200px;
   height: 200px;
-  display: inline-block;
   border-radius: 50%; /* 프로필 사진을 원형으로 표현 */
   overflow: hidden; /* 넘치는 부분을 숨기기 위해 overflow 속성 사용 */
   margin-right: 20px;
   background-color: rgb(240,240,240);
 }
 .profile-info{
-  display: inline-block;
   width:200px;
-  height:200px;
+  height:100px;
 }
 .profile-picture img {
   width: 100%;

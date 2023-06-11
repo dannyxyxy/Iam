@@ -3,11 +3,13 @@
   align-items: center;
   }
 .title-input {
+  margin-top: 50px;
     padding:30px;
     font-size: 20px;
     width: 90%;
     margin-bottom: 10px;
     border-radius: 10px;
+    border: 1px solid #bbb;
 }
 .savephoto-btn{
   border:none;
