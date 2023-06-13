@@ -3,7 +3,7 @@ import Editor from "@toast-ui/editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { apiClient } from "../utils/axios.js";
 import commonUtil from "../utils/common-util.js";
-import { onMounted, ref } from "vue";
+import { onMounted } from "vue";
 import { CONSTANTS } from "../utils/constants.js";
 import router from "../router/index.js";
 
