@@ -147,6 +147,7 @@
   
 }
 
+
 .comments-section input[type="text"] {
   width: 98.7%;
   min-height: 100px;
@@ -188,10 +189,59 @@
 }
 
 .comments-section li button {
-  padding: 3px 8px;
+  padding: 5px 8px;
   font-size: 14px;
   color: #fff;
   font-weight: bold;
   background-color: #000000;
   border-color: #fff;
+  margin-left: auto;
+  border-radius: 15px;
+}
+.comments-section li button:hover {
+  background-color: #999;
+}
+
+.comment-buttons {
+  text-align: right;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 5px 10px;
+}
+
+.delete-button {
+  padding: 3px 8px;
+  font-size: 14px;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 9px;
+  color: #333;
+  cursor: pointer;
+}
+.edit-button{
+  padding: 3px 8px;
+  font-size: 14px;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 9px;
+  color: #333;
+  cursor: pointer;
+}
+
+.actions {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.e-button,
+.d-button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #000000;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: bold;
 }
