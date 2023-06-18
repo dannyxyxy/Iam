@@ -19,7 +19,9 @@ export default defineComponent({
       category3: "YOLO",
       showPageUpButton: false,
       comments: ["댓글 테스트입니다. 댓글 테스트입니다. 삭제버튼을 눌러보세요1","댓글 테스트입니다. 댓글 테스트입니다. 삭제버튼을 눌러보세요2"], // 댓글 데이터 배열 추가
-      newComment: "" // 새로운 댓글을 입력 받는 변수 추가
+      newComment: "", // 새로운 댓글을 입력 받는 변수 추가
+      editIndex: -1, // 수정 중인 댓글의 인덱스를 저장하는 변수
+      editedComment: "", // 수정 중인 댓글의 내용을 저장하는 변수
     };
   },
   mounted() {
@@ -44,6 +46,21 @@ export default defineComponent({
     },
     deleteComment(index) {
       this.comments.splice(index, 1);
+    },
+    editComment(index) {
+      this.editIndex = index; // 수정 버튼을 클릭한 댓글의 인덱스를 저장
+      this.editedComment = this.comments[index]; // 수정 중인 댓글의 내용을 가져옴
+    },
+    cancelEdit() {
+      this.editIndex = -1; // 수정 취소 시 editIndex 초기화
+      this.editedComment = ""; // 수정 취소 시 editedComment 초기화
+    },
+    saveEdit(index) {
+      if (this.editedComment.trim() !== "") {
+        this.comments[index] = this.editedComment; // 댓글 수정 적용
+        this.editIndex = -1; // 수정 완료 시 editIndex 초기화
+        this.editedComment = ""; // 수정 완료 시 editedComment 초기화
+      }
     },
     handleScroll() {
       // 스크롤 위치 확인
@@ -115,6 +132,10 @@ export default defineComponent({
     <div class="contents">
       {{ contents }}
     </div>
+    <div class="actions">
+      <button class="e-button" @click="editPost">글 수정</button>
+      <button class="d-button" @click="deletePost">글 삭제</button>
+    </div>
     <div class="comments-section">
       <h2>댓글</h2>
 
@@ -126,7 +147,10 @@ export default defineComponent({
       <ul>
         <li v-for="(comment, index) in comments" :key="index">
           {{ comment }}
-          <button @click="deleteComment(index)">삭제</button>
+          <div class="comment-buttons">
+            <button @click="editComment(index)" class="edit-button">수정</button>
+            <button @click="deleteComment(index)" class="delete-button">삭제</button>
+          </div>
         </li>
       </ul>
     </div>
