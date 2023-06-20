@@ -81,7 +81,7 @@ export default {
 </script>
 
 <template>
-  <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
+  <div class="maintext">
     <input
         type="text"
         v-model="title"

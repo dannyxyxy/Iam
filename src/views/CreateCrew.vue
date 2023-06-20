@@ -38,7 +38,7 @@ export default {
 </script>
 
 <template>
-  <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
+  <div class="maintext">
     <div class="create-crew">
       <h2>크루 만들기</h2>
     <div class="form-container">

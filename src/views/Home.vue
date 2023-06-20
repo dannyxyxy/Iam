@@ -69,7 +69,7 @@ export default {
 </script>
 
 <template>
-  <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
+  <div class="maintext">
     <div>
       <div class="container">
         <div class="box" v-for="item in boardData" :key="item._id">

@@ -91,12 +91,3 @@
   height: 2px;
   background-color: black; /* 밑줄의 색상을 지정 */
 }
-.dark-mode .btn {
-  color: #fff;
-}
-.dark-mode .box {
-  background-color: rgb(30, 30, 30);
-}
-.dark-mode .btn.active::after {
-  background-color: #fff;
-}

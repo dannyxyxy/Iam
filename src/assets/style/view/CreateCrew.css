@@ -125,18 +125,3 @@
   background-color: rgb(240,240,240);
   color:#000;
 }
-.dark-mode .create-crew{
-  background-color: #000;
-  color:#fff;
-}
-.dark-mode .description-space{
-  background-color: rgb(30, 30, 30);
-}
-.dark-mode .input-box{
-  background-color: rgb(30, 30, 30);
-  color:#fff;
-}
-.dark-mode .preview-img{
-  background-color: rgb(30, 30, 30);
-  color:#fff;
-}

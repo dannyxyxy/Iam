@@ -128,7 +128,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
+  <div class="maintext">
     <div class="title">
       <router-link :to="{ name: 'PostMain', query: { id: boardData._id } }">
         {{ boardData.boardTitle }}
