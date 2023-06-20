@@ -1,6 +1,7 @@
 <script setup>
 import topbar from "./components/topBar.vue";
 import sidebar from "./components/sideBar.vue";
+
 </script>
 
 <template>
