@@ -83,7 +83,6 @@ export default {
     return {
       userData,
       boardData,
-      profilePreview,
       profileImgUpload,
       CONSTANTS,
     };
