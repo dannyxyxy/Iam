@@ -11,38 +11,7 @@ export default {
     //데이터 변수값 저장
     return {
       PostMain: "/PostMain",
-      nickname: "-",
-      introduction: "-",
-      email: "-",
-      isEmojiPickerOpen: false,
-      isImagePickerOpen: false,
-      isProfileEditorOpen: false,
     };
-  },
-  methods: {
-    openEmojiPicker() {
-      this.isEmojiPickerOpen = true;
-      // TODO: Implement logic to open emoji picker and update the selected emoji
-    },
-    openImageUploader() {
-      this.$refs.imageInput.click();
-    },
-    handleImageUpload(event) {
-      const file = event.target.files[0];
-      if (file) {
-        // TODO: Implement logic to handle the uploaded image and update the profile image
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.profileImage = reader.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    },
-    openProfileEditor() {
-      this.isProfileEditorOpen = true;
-      // TODO: Implement logic to open the profile editor
-    },
-    // TODO: Implement method to update the profile information
   },
   setup() {
     const loginCheck = commonUtil.loginCheck();
@@ -50,6 +19,7 @@ export default {
       userName: "",
       userIntro: "",
       userEmail: "",
+      profileImg: "",
     });
     const boardData = ref({
       writeTime: "",
@@ -58,13 +28,14 @@ export default {
       userName: "",
       likeCount: 0,
     });
+    const profileFormData = new FormData();
     const userInfo = JSON.parse(
       commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
     );
     const getUserData = async () => {
       if (loginCheck) {
         const data = await apiClient("user/getUserInfo", userInfo);
-        console.log(data);
+
         if (data.resultCode === 1) {
           userData.value = data.data;
         } else {
@@ -76,6 +47,7 @@ export default {
         await router.push("/");
       }
     };
+
     const getBoardList = async () => {
       const data = await apiClient("user/getBoardList", userInfo);
       if (data.resultCode === 1) {
@@ -86,6 +58,23 @@ export default {
       }
     };
 
+    const profileImgUpload = (e) => {
+      profileFormData.set("userIdx", userInfo.userIdx);
+      profileFormData.set("file", e.target.files[0]);
+
+      apiClient("user/uploadProfile", profileFormData)
+        .then((r) => {
+          if (r.resultCode === 1) {
+            alert("프로필 사진 변경 완료!");
+            location.reload();
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+          alert("다시 시도해주세요.");
+        });
+    };
+
     onMounted(() => {
       getUserData();
       getBoardList();
@@ -94,6 +83,9 @@ export default {
     return {
       userData,
       boardData,
+      profilePreview,
+      profileImgUpload,
+      CONSTANTS,
     };
   },
 };
@@ -104,23 +96,12 @@ export default {
     <div>
       <div class="profile">
         <div class="profile-picture">
-          <!-- 프로필 사진 -->
-          <div class="profile-img"></div>
-          <input
-            type="file"
-            ref="imageInput"
-            style="display: none"
-            @change="handleImageUpload"
-          />
-          <div class="button-wrapper">
-            <button class="upload-button" @click="openImageUploader">
-              이미지 업로드
-            </button>
-            <button class="edit-button" @click="openProfileEditor">
-              개인정보 수정
-            </button>
+          <div class="profile-img">
+            <img :src="CONSTANTS.API_URL + userData.profileImg" alt="" />
           </div>
+          <input type="file" ref="imageInput" style="display: none" />
         </div>
+
         <div class="profile-info">
           <!-- 닉네임 -->
           <h1>{{ userData.userName }}</h1>
@@ -128,6 +109,21 @@ export default {
           <h3>{{ userData.userIntro }}</h3>
           <p>{{ userData.userEmail }}</p>
         </div>
+      </div>
+
+      <div class="button-wrapper">
+        <div class="upload-button">
+          <label>
+            이미지 업로드
+            <input
+              type="file"
+              accept="image/*"
+              multiple="multiple"
+              @change="profileImgUpload"
+            />
+          </label>
+        </div>
+        <button class="upload-button">개인정보 수정</button>
       </div>
     </div>
     <div class="divider">

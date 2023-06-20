@@ -27,7 +27,7 @@
           <p>{{ item.boardContents }}</p>
         </li>
       </ul>
-      <p v-else>검색 결과가 없습니다.</p>
+      <p v-if="!searchResults">검색 결과가 없습니다.</p>
     </div>
   </div>
 </template>

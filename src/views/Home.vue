@@ -1,9 +1,17 @@
 <script>
 import { apiClient } from "../utils/axios.js";
 import { onMounted, ref } from "vue";
+import { CONSTANTS } from "../utils/constants.js";
+import commonUtil from "../utils/common-util.js";
+import router from "../router/index.js";
 
 export default {
   name: "App",
+  computed: {
+    CONSTANTS() {
+      return CONSTANTS;
+    },
+  },
   data() {
     //데이터 변수값 저장
     return {
@@ -32,10 +40,12 @@ export default {
   },
   setup() {
     const boardData = ref({
+      id: 0,
       writeTime: "",
       boardTitle: "",
       boardContents: "",
       userName: "",
+      profileImg: "",
       likeCount: 0,
     });
     const getBoardList = async () => {
@@ -71,7 +81,9 @@ export default {
               <div class="board-title">{{ item.boardTitle }}</div>
               <div class="board-contents">{{ item.boardContents }}</div>
             </div>
-            <div class="circle"></div>
+            <div class="circle">
+              <img :src="CONSTANTS.API_URL + item.profileImg" alt="" />
+            </div>
             <div class="username">
               <span style="font-weight: lighter">by </span>
               <span style="font-weight: bold">{{ item.userName }}</span>

@@ -114,12 +114,6 @@ const logOutUser = () => {
   }
 };
 
-const getImgUrl = (fileName) => {
-  if (fileName && typeof fileName === "string") {
-    return CONSTANTS.FILE_SERVER + fileName;
-  }
-};
-
 const loginCheck = () => {
   return !!getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
 };
@@ -134,5 +128,4 @@ export default {
   loginCheck,
   logOutUser,
   removeLocalStorage,
-  getImgUrl,
 };

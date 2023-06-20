@@ -62,3 +62,19 @@ export const setHeader = (v) => {
     axiosInstance.defaults.headers.common["Authorization"] = v;
   }
 };
+
+export const getImg = async (url, data) => {
+  return await axiosInstance
+    .get(url, data)
+    .then((res) => {
+      if (res.status === 200) {
+        return res.data;
+      } else {
+        return undefined;
+      }
+    })
+    .catch((e) => {
+      // throw e
+      console.error(e);
+    });
+};
