@@ -45,8 +45,14 @@ export default {
     const hasSearchResults = ref(false);
 
     const search = async () => {
-      const d = await apiClient("board/search", data.value);
-      searchResults.value = d.data;
+      await apiClient("board/search", data.value)
+        .then((r) => {
+          console.log(r);
+          searchResults.value = r.data;
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     };
 
     return {
