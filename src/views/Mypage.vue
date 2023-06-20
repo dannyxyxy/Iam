@@ -144,14 +144,8 @@ export default {
                 <img :src="CONSTANTS.API_URL + userData.profileImg" />
               </div>
               <div class="username">
-                <span style="font-weight: lighter">by</span>
+                <span style="font-weight: lighter">by </span>
                 <span style="font-weight: bold">{{ item.userName }}</span>
-              </div>
-              <div>
-                <button class="like-btn" @click="likeCountTap(item)">
-                  <i class="fas fa-heart"></i
-                  ><img src="../assets/img/heart.png" />{{ item.likeCount }}
-                </button>
               </div>
             </div>
           </div>
