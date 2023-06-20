@@ -57,6 +57,12 @@ export const apiClient = async (url, data) => {
     });
 };
 
+export const get = async (url, params) => {
+  return await axiosInstance.get(url, { params });
+};
+
+
+
 export const setHeader = (v) => {
   if (axiosInstance && typeof v === "string") {
     axiosInstance.defaults.headers.common["Authorization"] = v;

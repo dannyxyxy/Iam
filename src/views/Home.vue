@@ -72,8 +72,8 @@ export default {
   <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
     <div>
       <div class="container">
-        <div class="box" v-for="item in boardData">
-          <router-link :to="PostMain">
+        <div class="box" v-for="item in boardData" :key="item._id">
+          <router-link :to="{ name: 'PostMain', query: { id: item._id } }">
             <div class="box-img"></div>
           </router-link>
           <div class="box-summary">

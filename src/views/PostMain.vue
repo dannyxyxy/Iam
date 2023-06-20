@@ -1,19 +1,21 @@
 <script>
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
+import { get } from "../utils/axios.js";
+import { onMounted, ref } from "vue";
 import { defineComponent } from "vue";
+
 export default defineComponent({
   name: "App",
   data() {
     //데이터 변수값 저장
     return {
       isDarkMode: false,
-      user: "danny",
-      title: "나를 성장시켜준 환상적인 미국 서부",
-      contents:
-        "",
+      user: "",
+      title: "",
+      contents: "",
       likeCount: 0,
-      day: 3,
+      day: "",      
       category1: "여행",
       category2: "미국서부",
       category3: "YOLO",
@@ -76,9 +78,44 @@ export default defineComponent({
       // 페이지 맨 위로 스크롤 이동
       window.scrollTo({
         top: 0,
-        behavior: "smooth", // 스무스한 스크롤 이동을 위해 behavior 속성을 추가
+        behavior: "smooth" // 스무스한 스크롤 이동을 위해 behavior 속성을 추가
       });
     },
+    getBoardDetail() {
+  const params = {
+    _id: this.$route.query.id,
+  };
+
+  get("board/getBoardDetail", params)
+    .then((data) => {
+      if (data && data.resultCode === 1) {
+        this.boardData = data.data;
+      } else {
+        alert("게시물 정보를 불러올 수 없습니다.");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
+    });
+},
+  },
+
+  setup() {
+    const boardData = ref({
+        writeTime: "",
+        boardTitle: "",
+        boardContents: "",
+        userName: "",
+        likeCount: 0,
+      });
+    onMounted(() => {
+      ("getBoardDetail"); // getBoardDetail 이벤트 발생시킴
+    });
+
+    return {
+      boardData,
+    };
   },
 
   components: {
@@ -93,21 +130,23 @@ export default defineComponent({
 <template>
   <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
     <div class="title">
-      {{ title }}
+      <router-link :to="{ name: 'PostMain', query: { id: boardData._id } }">
+        {{ boardData.boardTitle }}
+      </router-link>
     </div>
     <section id="info">
       <div class="meta-info">
         <p>
-          &nbsp; by <span class="bold">{{ user }}</span>
+          &nbsp; by <span class="bold">{{ boardData.userName }}</span>
         </p>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <p>{{ day }}일전</p>
+        <p>{{ boardData.writeTime}}작성</p>
       </div>
       <div>
         <button class="like-btn2" @click="likeCount++">
-          <i class="fas fa-heart"></i><img src="../assets/img/heart.png" />{{
-            likeCount
-          }}
+          <i class="fas fa-heart"></i>
+          <img src="../assets/img/heart.png" />
+          {{ boardData.likeCount}}
         </button>
       </div>
     </section>
@@ -116,7 +155,7 @@ export default defineComponent({
       <button>{{ category1 }}</button>
       <button>{{ category2 }}</button>
       <button>{{ category3 }}</button>
-    </div>
+    </div> 
     <div class="apple">
       <Carousel>
         <Slide v-for="slide in 10" :key="slide">
@@ -130,10 +169,9 @@ export default defineComponent({
       </Carousel>
     </div>
     <div class="contents">
-      {{ contents }}
+      {{ boardData.boardContents }}
     </div>
     <div class="actions">
-      <button class="e-button" @click="editPost">글 수정</button>
       <button class="d-button" @click="deletePost">글 삭제</button>
     </div>
     <div class="comments-section">
@@ -148,7 +186,6 @@ export default defineComponent({
         <li v-for="(comment, index) in comments" :key="index">
           {{ comment }}
           <div class="comment-buttons">
-            <button @click="editComment(index)" class="edit-button">수정</button>
             <button @click="deleteComment(index)" class="delete-button">삭제</button>
           </div>
         </li>
