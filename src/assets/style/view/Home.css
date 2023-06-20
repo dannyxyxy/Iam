@@ -46,13 +46,12 @@
 }
 .board-contents {
   margin-top: 5px;
-  height: 40px;
+  height: 20px;
   font-size: 15px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 20px;
 }
 .circle {
   float: left;
@@ -71,26 +70,6 @@
   float: left;
   font-weight: 700;
   font-size: 15px;
-}
-.like-btn {
-  float: right;
-  margin-top: 35px;
-  width: 60px;
-  height: 25px;
-  border: none;
-  background-color: #000;
-  color: #fff;
-  padding: 5px 15px;
-  border-radius: 15px;
-  cursor: pointer;
-  font-size: 12px;
-}
-.like-btn img {
-  width: 13px;
-  height: 13px;
-  float: left;
-  margin: auto;
-  margin-right: 2px;
 }
 .btn {
   padding: 5px;
@@ -111,13 +90,4 @@
   width: 100%;
   height: 2px;
   background-color: black; /* 밑줄의 색상을 지정 */
-}
-.dark-mode .btn {
-  color: #fff;
-}
-.dark-mode .box {
-  background-color: rgb(30, 30, 30);
-}
-.dark-mode .btn.active::after {
-  background-color: #fff;
 }

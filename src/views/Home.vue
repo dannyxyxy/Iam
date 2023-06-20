@@ -69,7 +69,7 @@ export default {
 </script>
 
 <template>
-  <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
+  <div class="maintext">
     <div>
       <div class="container">
         <div class="box" v-for="item in boardData" :key="item._id">
@@ -87,12 +87,6 @@ export default {
             <div class="username">
               <span style="font-weight: lighter">by </span>
               <span style="font-weight: bold">{{ item.userName }}</span>
-            </div>
-            <div>
-              <button class="like-btn" @click="likeCountTap(item)">
-                <i class="fas fa-heart"></i
-                ><img src="../assets/img/heart.png" />{{ item.likeCount }}
-              </button>
             </div>
           </div>
         </div>

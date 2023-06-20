@@ -10,20 +10,11 @@ export default {
     //데이터 변수값 저장
     return {
       user_email: "",
-      isDarkMode: false,
       showLoginModal: false,
     };
   },
   methods: {
     //함수만드는곳 this. 꼭 붙힐것
-    toggleMode() {
-      this.isDarkMode = !this.isDarkMode;
-      if (this.isDarkMode) {
-        document.body.classList.add("dark-mode");
-      } else {
-        document.body.classList.remove("dark-mode");
-      }
-    },
   },
   setup() {
     const loginCheck = ref(commonUtil.loginCheck());
@@ -41,24 +32,15 @@ export default {
 
 <template>
   <div class="top">
-    <div class="logo">
+    <router-link to="/" class="logo">
       <img src="../assets/img/components/topBar/logo.png" alt="" />
-    </div>
+    </router-link>
     <nav class="top-nav">
       <ul>
         <li>
           <router-link to="/CreateCrew" class="make-crew">
             <img src="../assets/img/components/topbar/makecrew.png" alt="" />
           </router-link>
-        </li>
-        <li>
-          <div class="darkmode-btn">
-            <img
-              src="../assets/img/components/topBar/darkmode.png"
-              @click="toggleMode"
-              alt=""
-            />
-          </div>
         </li>
         <li>
           <button

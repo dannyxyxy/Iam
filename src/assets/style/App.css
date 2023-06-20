@@ -84,18 +84,6 @@ body {
 .search {
   display: flex;
 }
-.darkmode-btn {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-.dark-mode {
-  background-color: #000;
-  color: #fff;
-}
 .login-btn {
   display: flex;
   border: none;
@@ -124,12 +112,4 @@ body {
 .maintext::-webkit-scrollbar{
   width:0;
   background:transparent;
-}
-.dark-mode .maintext {
-  height: calc(100vh - 100px);
-  background-color: #000;
-  color: #fff;
-}
-.dark-mode .logo, .dark-mode .login-btn, .dark-mode .make-crew, .dark-mode .darkmode-btn{
-  filter:invert(1);
 }

@@ -124,10 +124,6 @@
 .page-up-button:hover {
   background-color: #999;
 }
-.dark-mode .contents{
-  background-color: rgb(30,30,30);
-  color: #fff;
-}
 .comments-section {
   margin-top: 20px;
   margin-bottom: 10px;

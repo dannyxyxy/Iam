@@ -91,7 +91,7 @@ export default {
 </script>
 
 <template>
-  <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
+  <div class="maintext">
     <div>
       <div class="profile">
         <div class="profile-picture">

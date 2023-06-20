@@ -38,16 +38,6 @@ export default defineComponent({
         <img src="../assets/img/components/sideBar/mypage.png" />
         마이페이지
       </router-link>
-      <li>
-        <a href=""
-          ><img src="../assets/img/components/sideBar/setting.png" />세팅</a
-        >
-      </li>
-      <li>
-        <a href=""
-          ><img src="../assets/img/components/sideBar/more.png" />더보기</a
-        >
-      </li>
     </ul>
   </div>
 </template>

@@ -150,8 +150,4 @@ export default {
   border-width: 0 10px 10px 0;
   border-color: transparent #ffffff transparent transparent;
 }
-.dark-mode .serch {
-  background-color: rgb(30, 30, 30);
-  color: #ffffff;
-}
 </style>
