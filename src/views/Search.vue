@@ -23,8 +23,10 @@
       <h2>검색 결과</h2>
       <ul v-if="searchResults">
         <li v-for="item in searchResults" class="search-result">
-          <h3>{{ item.boardTitle }}</h3>
-          <p>{{ item.boardContents }}</p>
+          <ul>
+            <li><h3>{{ item.boardTitle }}</h3></li>
+            <li><p>{{ item.boardContents }}</p></li>
+          </ul>
         </li>
       </ul>
       <p v-if="!searchResults">검색 결과가 없습니다.</p>
