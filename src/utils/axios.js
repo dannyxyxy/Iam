@@ -5,7 +5,7 @@ import { CONSTANTS } from "./constants.js";
 const axiosInstance = axios.create({
   baseURL: CONSTANTS.API_URL,
   timeout: 1000 * 60 * 3,
-  headers: { "contents-type": "Json" },
+  // headers: { "contents-type": "Json" },
 });
 axiosInstance.interceptors.request.use(
   (config) => {

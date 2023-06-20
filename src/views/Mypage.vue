@@ -58,11 +58,11 @@ export default {
       }
     };
 
-    const profileImgUpload = (e) => {
+    const profileImgUpload = async (e) => {
       profileFormData.set("userIdx", userInfo.userIdx);
       profileFormData.set("file", e.target.files[0]);
 
-      apiClient("user/uploadProfile", profileFormData)
+      await apiClient("user/uploadProfile", profileFormData)
         .then((r) => {
           if (r.resultCode === 1) {
             alert("프로필 사진 변경 완료!");
@@ -140,7 +140,9 @@ export default {
                 <div class="board-title">{{ item.boardTitle }}</div>
                 <div class="board-contents">{{ item.boardContents }}</div>
               </div>
-              <div class="circle"><img src="../assets/img/profile.jpg" /></div>
+              <div class="circle">
+                <img :src="CONSTANTS.API_URL + userData.profileImg" />
+              </div>
               <div class="username">
                 <span style="font-weight: lighter">by</span>
                 <span style="font-weight: bold">{{ item.userName }}</span>
