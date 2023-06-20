@@ -41,9 +41,9 @@ export default {
 
 <template>
   <div class="top">
-    <div class="logo">
+    <router-link to="/" class="logo">
       <img src="../assets/img/components/topBar/logo.png" alt="" />
-    </div>
+    </router-link>
     <nav class="top-nav">
       <ul>
         <li>
