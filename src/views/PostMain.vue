@@ -128,7 +128,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="maintext">
+  <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
     <div class="title">
       <router-link :to="{ name: 'PostMain', query: { id: boardData._id } }">
         {{ boardData.boardTitle }}
@@ -150,34 +150,16 @@ export default defineComponent({
         </button>
       </div>
     </section>
-    <div class="button-container5">
-      <!-- 추후 카테고리로 라우팅하거나 a 태그로 링크 활용가능 -->
-      <button>{{ category1 }}</button>
-      <button>{{ category2 }}</button>
-      <button>{{ category3 }}</button>
-    </div> 
-    <div class="apple">
-      <Carousel>
-        <Slide v-for="slide in 10" :key="slide">
-          <div class="carousel__item">{{ slide }}</div>
-        </Slide>
-
-        <template #addons>
-          <Navigation />
-          <Pagination />
-        </template>
-      </Carousel>
-    </div>
     <div class="contents">
       {{ boardData.boardContents }}
     </div>
     <div class="actions">
+      <button class="d-button" @click="editPost">글 수정</button>
       <button class="d-button" @click="deletePost">글 삭제</button>
     </div>
     <div class="comments-section">
       <h2>댓글</h2>
-
-      <form @submit.prevent="addComment">
+      <form @submit.prevent="submitComment">
         <input type="text" v-model="newComment" placeholder="댓글을 입력하세요">
         <button type="submit">댓글 작성</button>
       </form>
@@ -186,7 +168,8 @@ export default defineComponent({
         <li v-for="(comment, index) in comments" :key="index">
           {{ comment }}
           <div class="comment-buttons">
-            <button @click="deleteComment(index)" class="delete-button">삭제</button>
+            <button @click="editComment(index)" class="edit-button">수정</button>
+            <button @click="deleteComment(index)" class="delete-button">삭제</button>    
           </div>
         </li>
       </ul>
