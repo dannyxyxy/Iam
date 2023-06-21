@@ -1,4 +1,7 @@
 <script>
+import { apiClient } from "../utils/axios.js";
+import commonUtil from "../utils/common-util.js";
+
 export default {
   data() {
     return {
@@ -16,7 +19,12 @@ export default {
       // 예시: 가입 API 호출 또는 가입 상태 변경 등의 작업을 수행합니다.
       console.log('크루 가입', crewId);
     }
-  }
+  },
+  setup() {
+    const JoinCrew = async () => {
+      alert("크루 가입이 완료되었습니다");
+    }
+  },
 }
 </script>
 
@@ -25,12 +33,12 @@ export default {
   <div class="group-page">
     <div class="content-container">
       <div class="recommended-crews">
-        <h2>추천 크루</h2>
+        <h2>전체 크루 목록</h2>
         <div class="crew-box-container">
           <div class="crew-box" v-for="crew in recommendedCrews" :key="crew.id">
-            <div class="crew-image">
-              <div class="crew-avatar"></div> 
-            </div>
+            <router-link :to="{ name: 'CrewMain', query: { id: item._id } }">
+            <div class="crew-avatar"></div>
+            </router-link>
             <div class="crew-info">
               <h3>{{ crew.name }}</h3>
               <p class="crew-description">{{ crew.description }}</p>
@@ -39,7 +47,7 @@ export default {
                 <div class="dot"></div>
                 <p class="stat-label">게시물 {{ crew.postCount }}개</p>
               </div>
-              <button class="join-button">크루 가입</button>
+              <button type="submit" class="CrewJoin-button" @click="JoinCrew">크루가입</button>
             </div>
           </div>
         </div>
@@ -48,3 +56,6 @@ export default {
   </div>
 </div>
 </template>
+<style>
+@import "../assets/style/view/CrewMain.css";
+</style>

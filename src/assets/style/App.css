@@ -4,6 +4,7 @@
 @import "./view/Edit.css";
 @import "./view/CrewMain.css";
 @import "./view/CreateCrew.css";
+@import "./view/CrewPost.css";
 @import "./view/Mypage.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 :root {

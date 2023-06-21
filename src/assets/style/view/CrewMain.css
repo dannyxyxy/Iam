@@ -16,7 +16,7 @@
   align-items: flex-start; /* 위쪽 정렬 */
 }
 .crew-box {
-  width: 350px;
+  width: 300px;
   height: 350px;
   margin: 20px;
   border-radius: 15px; 
@@ -61,7 +61,7 @@
   justify-content: center; /* 가운데 정렬 */
   align-items: center;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
 .dot {
   margin: 0 5px; /* 멤버 수와 게시물 수 사이 간격 조정 */
@@ -73,17 +73,19 @@
 .stat-label {
   margin: 0;
 }
-.join-button {
+.CrewJoin-button {
   width:150px;
-  padding: 5px 0px;
+  padding: 5px 10px;
+  margin: 0px;
   background-color: #000;
   color: #fff;
   border: none;
   border-radius: 15px;
   cursor: pointer;
   font-weight: bold;
+  box-sizing: border-box;
 }
-.join-button:hover {
+.CrewJoin-button:hover {
   background-color: rgb(240,240,240);
   color:#000;
 }
