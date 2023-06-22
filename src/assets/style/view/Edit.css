@@ -1,0 +1,47 @@
+.editdiv {
+  margin-top: 10px;
+  align-items: center;
+  }
+.title-input {
+  margin-top: 50px;
+    padding:10px;
+    font-size: 20px;
+    width: 98.1%;
+    margin-bottom: 10px;
+    border: 1px solid #cccaca;
+}
+.upload {
+  float: right;
+  padding: 60px 0px 0px 0px;
+}
+.savephoto-btn{
+  border:none;
+  width:100px;
+  padding:7px;
+  color:#fff;
+  font-weight: bold;
+}
+.savebutton {
+    margin-right: 10%;
+    margin-bottom:100px;
+    width: 80px;
+    bottom: 20px;
+    right:0;
+    border-radius: 30px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #161515;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: auto;
+}
+.savebutton:hover {
+    background-color: rgb(240,240,240);
+    color:#000;
+  }
+.savephoto-btn:hover {
+    background-color: rgb(240,240,240);
+    color:#000;
+}
