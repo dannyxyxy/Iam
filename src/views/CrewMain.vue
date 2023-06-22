@@ -12,47 +12,50 @@ export default {
       ]
     };
   },
-   methods: {
+  methods: {
     joinCrew(crewId) {
       // 가입 버튼 클릭 시 동작하는 메서드
       // crewId를 이용하여 가입 로직을 구현하세요.
       // 예시: 가입 API 호출 또는 가입 상태 변경 등의 작업을 수행합니다.
       console.log('크루 가입', crewId);
+      alert('크루 가입이 완료되었습니다');
     }
   },
-  setup() {
-    const JoinCrew = async () => {
-      alert("크루 가입이 완료되었습니다");
-    }
-  },
+
+  JoinCrew() {
+    alert('크루 가입이 완료되었습니다');
+  }
 }
 </script>
 
 <template>
-<div class="maintext">
-  <div class="group-page">
-    <div class="content-container">
-      <div class="recommended-crews">
-        <h2>전체 크루 목록</h2>
-        <div class="crew-box-container">
-          <div class="crew-box" v-for="crew in recommendedCrews" :key="crew.id">
-            <div class="crew-avatar"></div>
-            <div class="crew-info">
-              <h3>{{ crew.name }}</h3>
-              <p class="crew-description">{{ crew.description }}</p>
-              <div class="crew-stats">
-                <p class="stat-label">멤버 {{ crew.memberCount }}명</p>
-                <div class="dot"></div>
-                <p class="stat-label">게시물 {{ crew.postCount }}개</p>
+  <div class="maintext">
+    <div class="group-page">
+      <div class="content-container">
+        <div class="recommended-crews">
+          <h2>전체 크루 목록</h2>
+          <div class="crew-box-container">
+            <div class="crew-box" v-for="crew in recommendedCrews" :key="crew.id">
+              <router-link to="/CrewPost">
+                <div class="crew-avatar"></div>
+              </router-link>
+
+              <div class="crew-info">
+                <h3>{{ crew.name }}</h3>
+                <p class="crew-description">{{ crew.description }}</p>
+                <div class="crew-stats">
+                  <p class="stat-label">멤버 {{ crew.memberCount }}명</p>
+                  <div class="dot"></div>
+                  <p class="stat-label">게시물 {{ crew.postCount }}개</p>
+                </div>
+                <button type="submit" class="CrewJoin-button" @click="JoinCrew">크루가입</button>
               </div>
-              <button type="submit" class="CrewJoin-button" @click="JoinCrew">크루가입</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 <style>
 @import "../assets/style/view/CrewMain.css";
