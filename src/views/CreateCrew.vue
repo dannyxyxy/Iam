@@ -39,60 +39,32 @@ export default {
 
 <template>
   <div class="maintext">
-    <div class="create-crew">
-      <h2>크루 만들기</h2>
-    <div class="form-container">
+    <h2>크루 만들기</h2>
+    <div class="crew-preview">
+      <div class="preview-img">
+        <img :src="crewImagePreview" alt="크루 대표 사진" v-if="crewImagePreview" class="centered-image">
+        <div class="centered-text">
+          <h1>{{ crewName }}</h1>
+        </div>
+      </div>
+      <div class="crew-imageLoad">크루 표지사진을 업로드 해주세요.
+        <input type="file" id="crew-image" @change="handleImageUpload" class="upload-btn" />
+      </div>
+      
       <form>
-        <div class="form-crew">
-          <label class="crew-name" for="crew-name"></label>
-          <input type="text" id="crew-name" v-model="crewName" class="input-box" placeholder="크루 이름을 입력하세요."/>
-        </div>
-        <div class="form-crew">
-          <label for="crew-description"></label>
-          <textarea id="crew-description" v-model="crewDescription" class="input-box" placeholder="간단하게 크루를 소개해주세요."></textarea>
-        </div>
-        <div class="form-crew">
-          <label for="crew-image"></label>크루 표지사진을 업로드 해주세요.
-          <input type="file" id="crew-image" @change="handleImageUpload" class="upload-btn" />
-        </div>
-      </form>
-      <div class="preview-title"><h2>데스크톱 미리보기</h2></div>
-    </div>
-  </div>
-    <div class="line"></div>
-  <div class="preview-container">
-      <div class="crew-preview">
-        <div class="preview-img">
-          <img :src="crewImagePreview" alt="크루 대표 사진" v-if="crewImagePreview" class="centered-image">
-          <div class="centered-text">
-            <h1>{{ crewName }}</h1>
-          </div>
-        </div>
         <div class="crew-text">
           <div class="crew-name-container">
-            <div class="crew-name">
-            {{ crewName }}
-          </div>
-          <button class="join-button">크루 가입</button>
+            <input type="text" id="crew-name" v-model="crewName" class="input-box" placeholder="크루 이름을 입력하세요." />
           </div>
           <div class="description-space">
             <div class="crew-description">
-            {{ crewDescription }}
-          </div>
+              <textarea id="crew-description" v-model="crewDescription" class="input-box"
+                placeholder="간단하게 크루를 소개해주세요."></textarea>
+            </div>
           </div>
         </div>
-      </div>
-    <div class="crew-post-title">
-      <h2>크루 게시물 보기</h2>
+      </form>
     </div>
-    <div class="crew-post-container">
-      <div class="crew-box"></div>
-      <div class="crew-box"></div>
-      <div class="crew-box"></div>
-    <!-- 추가적인 박스 요소들 -->
-  </div>
-  </div>
-  
-  <button class="create-crew-btn" @click.prevent="createCrew">크루 만들기</button>
+    <button class="create-crew-btn" @click.prevent="createCrew">크루 만들기</button>
   </div>
 </template>

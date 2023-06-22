@@ -19,23 +19,18 @@
   padding: 15px;
   font-size: 15px;
   margin-bottom:5px;
-  border-radius: 10px;
+  border: none;
+  resize: none;
+  background-color: transparent;
 }
-.preview-title{
-  margin-top:20px;
-}
+
 .line{
   margin-top: 300px;
   flex-grow:1;
   height: 1px;
   background-color:rgb(240, 240, 240);
 }
-.preview-container {
-  margin-top: 10px;
-  width:100%;
-  height: 100vh;
-  z-index: 1;
-}
+
 .crew-preview{
   margin:auto;
   align-items: center;
@@ -56,10 +51,15 @@
   background-color: rgb(240, 240, 240);
   border-radius: 20px;
   text-align: center;
+  margin: 20px 0px 10px 0px ;
+}
+.crew-imageLoad{
+  text-align: right;
 }
 .centered-image{
   display: block;
   margin:0 auto;
+
 }
 .centered-text{
   position: absolute;
@@ -90,8 +90,10 @@
   height:100px;
   border-radius: 15px;
   background-color: rgb(240, 240, 240);
+  text-align: center;
 }
 .crew-description{
+  width: 100%;
   text-align: center;
   font-weight: bold;
 }
