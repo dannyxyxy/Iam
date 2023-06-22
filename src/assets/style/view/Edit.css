@@ -4,12 +4,15 @@
   }
 .title-input {
   margin-top: 50px;
-    padding:30px;
+    padding:10px;
     font-size: 20px;
-    width: 90%;
+    width: 98.1%;
     margin-bottom: 10px;
-    border-radius: 10px;
-    border: 1px solid #bbb;
+    border: 1px solid #cccaca;
+}
+.upload {
+  float: right;
+  padding: 60px 0px 0px 0px;
 }
 .savephoto-btn{
   border:none;
@@ -19,7 +22,6 @@
   font-weight: bold;
 }
 .savebutton {
-    position: fixed;
     margin-right: 10%;
     margin-bottom:100px;
     width: 80px;
@@ -33,6 +35,7 @@
     color: #ffffff;
     cursor: pointer;
     font-weight: bold;
+    margin-left: auto;
 }
 .savebutton:hover {
     background-color: rgb(240,240,240);
