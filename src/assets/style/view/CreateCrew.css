@@ -51,7 +51,7 @@
   background-color: rgb(240, 240, 240);
   border-radius: 20px;
   text-align: center;
-  margin: 20px 0px 10px 0px ;
+  margin: 20px 0px 20px 0px ;
 }
 .crew-imageLoad{
   text-align: right;
@@ -82,6 +82,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 10px;
 }
 .description-space{
   display: flex;
