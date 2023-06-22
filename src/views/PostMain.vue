@@ -37,6 +37,15 @@ export default defineComponent({
 
   methods: {
     //함수만드는곳 this. 꼭 붙힐것
+    copyLink() {
+      const dummyTextArea = document.createElement("textarea");
+      dummyTextArea.value = window.location.href;
+      document.body.appendChild(dummyTextArea);
+      dummyTextArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummyTextArea);
+      alert("링크가 복사되었습니다.");
+    },
     toggleMode() {
       this.isDarkMode = !this.isDarkMode;
     },
@@ -143,10 +152,7 @@ export default defineComponent({
         <p>{{ boardData.writeTime}}작성</p>
       </div>
       <div>
-        <button class="like-btn2" @click="likeCount++">
-          <i class="fas fa-heart"></i>
-          <img src="../assets/img/heart.png" />
-          {{ boardData.likeCount}}
+        <button class="copy-button" @click="copyLink">링크 복사
         </button>
       </div>
     </section>
