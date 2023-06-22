@@ -73,8 +73,9 @@
 .crew-name{
   width: 75%;
   height: auto;
-  font-size:20px;
+  
   font-weight: bolder;
+  text-align: left;
 }
 .crew-name-container{
   display: flex;
@@ -98,6 +99,7 @@
   font-weight: bold;
 }
 .crew-post-title{
+  font-size:20px;
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: left;

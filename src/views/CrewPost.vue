@@ -62,7 +62,7 @@ export default {
                 </div>
             </div>
             <div class="crew-post-title">
-                <h2>크루 대표글</h2>
+                크루 대표글
             </div>
             <div class="crew-post-container">
                 <div class="post-box">
@@ -119,7 +119,7 @@ export default {
                 </div>
             </div>
             <div class="crew-post-title">
-                <h2>크루 게시물 보기</h2>
+                크루 게시물 보기
             </div>
             <div class="crew-post-container">
                 <div class="post-box">
