@@ -8,6 +8,10 @@ import { CONSTANTS } from "../utils/constants.js";
 import router from "../router/index.js";
 
 export default {
+  components: {
+    editor: Editor
+  },
+  
   data() {
     return {
       title: "",
@@ -19,12 +23,12 @@ export default {
     const editor = new Editor({
       el: this.$refs.editorRef,
       initialEditType: "markdown",
-      previewStyle: "horizontal",
+      previewStyle: "vertical",
       height: "500px",
     });
 
     //  초기 텍스트 설정
-    editor.setMarkdown("여기에 글을 작성하세요.");
+    editor.setMarkdown("");
 
     this.editor = editor;
 
@@ -88,16 +92,15 @@ export default {
         placeholder="제목을 입력하세요."
         class="title-input"
       />
-    <div>
-        <label for="post-image"></label>포스트 대표사진을 업로드 해주세요.
-        <input type="file" @change="handleFileChange">
-        <button @click="savePhoto" class="savephoto-btn">사진 저장</button>
-    </div>
+    
     <div class="editdiv">
-      <div ref="editorRef" class="editor"></div>
+      <div ref="editorRef"></div>
+    </div>
+    <div class="upload">
       <button class="savebutton" @click="saveContent">업로드</button>
     </div>
   </div>
+  
 </template>
 
 <style scoped></style>
