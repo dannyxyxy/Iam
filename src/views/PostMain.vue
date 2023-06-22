@@ -9,6 +9,7 @@ export default defineComponent({
   name: "App",
 
   data() {
+    //데이터 변수값 저장
     return {
       isDarkMode: false,
       user: "",
@@ -20,23 +21,24 @@ export default defineComponent({
       category2: "미국서부",
       category3: "YOLO",
       showPageUpButton: false,
-      comments: ["댓글 테스트입니다. 댓글 테스트입니다. 삭제버튼을 눌러보세요1", "댓글 테스트입니다. 댓글 테스트입니다. 삭제버튼을 눌러보세요2"],
-      newComment: "",
-      editIndex: -1,
-      editedComment: "",
+      comments: ["댓글 테스트입니다. 댓글 테스트입니다. 삭제버튼을 눌러보세요1","댓글 테스트입니다. 댓글 테스트입니다. 삭제버튼을 눌러보세요2"], // 댓글 데이터 배열 추가
+      newComment: "", // 새로운 댓글을 입력 받는 변수 추가
+      editIndex: -1, // 수정 중인 댓글의 인덱스를 저장하는 변수
+      editedComment: "", // 수정 중인 댓글의 내용을 저장하는 변수
     };
   },
 
   mounted() {
+    // 스크롤 이벤트를 감지하는 리스너 등록
     window.addEventListener("scroll", this.handleScroll);
   },
 
   destroyed() {
+    // 컴포넌트가 소멸할 때 리스너 제거
     window.removeEventListener("scroll", this.handleScroll);
   },
 
   methods: {
-<<<<<<< Updated upstream
     //함수만드는곳 this. 꼭 붙힐것
     copyLink() {
       const dummyTextArea = document.createElement("textarea");
@@ -47,8 +49,6 @@ export default defineComponent({
       document.body.removeChild(dummyTextArea);
       alert("링크가 복사되었습니다.");
     },
-=======
->>>>>>> Stashed changes
     toggleMode() {
       this.isDarkMode = !this.isDarkMode;
     },
@@ -62,32 +62,35 @@ export default defineComponent({
       this.comments.splice(index, 1);
     },
     editComment(index) {
-      this.editIndex = index;
-      this.editedComment = this.comments[index];
+      this.editIndex = index; // 수정 버튼을 클릭한 댓글의 인덱스를 저장
+      this.editedComment = this.comments[index]; // 수정 중인 댓글의 내용을 가져옴
     },
     cancelEdit() {
-      this.editIndex = -1;
-      this.editedComment = "";
+      this.editIndex = -1; // 수정 취소 시 editIndex 초기화
+      this.editedComment = ""; // 수정 취소 시 editedComment 초기화
     },
     saveEdit(index) {
       if (this.editedComment.trim() !== "") {
-        this.comments[index] = this.editedComment;
-        this.editIndex = -1;
-        this.editedComment = "";
+        this.comments[index] = this.editedComment; // 댓글 수정 적용
+        this.editIndex = -1; // 수정 완료 시 editIndex 초기화
+        this.editedComment = ""; // 수정 완료 시 editedComment 초기화
       }
     },
     handleScroll() {
+      // 스크롤 위치 확인
       const scrollTop =
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
 
+      // 일정 스크롤 위치 이상이면 페이지 업 버튼을 보여줌, 그렇지 않으면 숨김
       this.showPageUpButton = scrollTop > 1;
     },
     scrollToTop() {
+      // 페이지 맨 위로 스크롤 이동
       window.scrollTo({
         top: 0,
-        behavior: "smooth",
+        behavior: "smooth" // 스무스한 스크롤 이동을 위해 behavior 속성을 추가
       });
     },
 
@@ -105,7 +108,6 @@ export default defineComponent({
             } else {
               alert("게시물 정보를 불러올 수 없습니다.");
             }
-            return _id
           })
           .catch((error) => {
             console.error(error);
