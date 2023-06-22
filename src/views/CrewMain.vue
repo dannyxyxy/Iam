@@ -1,6 +1,7 @@
 <script>
 import { apiClient } from "../utils/axios.js";
 import commonUtil from "../utils/common-util.js";
+import router from "../router/index.js";
 
 export default {
   data() {
@@ -13,6 +14,9 @@ export default {
     };
   },
   methods: {
+    JoinCrew() {
+      alert('크루 가입이 완료되었습니다');
+    },
     joinCrew(crewId) {
       // 가입 버튼 클릭 시 동작하는 메서드
       // crewId를 이용하여 가입 로직을 구현하세요.
