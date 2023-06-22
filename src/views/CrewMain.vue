@@ -36,9 +36,7 @@ export default {
         <h2>전체 크루 목록</h2>
         <div class="crew-box-container">
           <div class="crew-box" v-for="crew in recommendedCrews" :key="crew.id">
-            <router-link :to="{ name: 'CrewMain', query: { id: item._id } }">
             <div class="crew-avatar"></div>
-            </router-link>
             <div class="crew-info">
               <h3>{{ crew.name }}</h3>
               <p class="crew-description">{{ crew.description }}</p>
