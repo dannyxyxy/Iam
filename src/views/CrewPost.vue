@@ -39,50 +39,25 @@ export default {
 
 <template>
     <div class="maintext">
-        <div class="create-crew">
-            <h2>크루 만들기</h2>
-            <div class="form-container">
-                <form>
-                    <div class="form-crew">
-                        <label class="crew-name" for="crew-name"></label>
-                        <input type="text" id="crew-name" v-model="crewName" class="input-box"
-                            placeholder="크루 이름을 입력하세요." />
-                    </div>
-                    <div class="form-crew">
-                        <label for="crew-description"></label>
-                        <textarea id="crew-description" v-model="crewDescription" class="input-box"
-                            placeholder="간단하게 크루를 소개해주세요."></textarea>
-                    </div>
-                    <div class="form-crew">
-                        <label for="crew-image"></label>크루 표지사진을 업로드 해주세요.
-                        <input type="file" id="crew-image" @change="handleImageUpload" class="upload-btn" />
-                    </div>
-                </form>
-                <div class="preview-title">
-                    <h2>데스크톱 미리보기</h2>
+        <div class="crew-preview">
+            <div class="preview-img">
+                크루사진
+                <div class="centered-text">
+                    <h1>크루이름</h1>
                 </div>
             </div>
-        </div>
-        <div class="line"></div>
-        <div class="preview-container">
-            <div class="crew-preview">
-                <div class="preview-img">
-                    <img :src="crewImagePreview" alt="크루 대표 사진" v-if="crewImagePreview" class="centered-image">
-                    <div class="centered-text">
-                        <h1>{{ crewName }}</h1>
+            <div class="crew-text">
+                <div class="crew-name-container">
+                    <div class="crew-name">
+                        크루이름
                     </div>
+                    <div class="crewDay">day 3일전</div>
+                    <button class="join-button">크루 가입</button>
                 </div>
-                <div class="crew-text">
-                    <div class="crew-name-container">
-                        <div class="crew-name">
-                            {{ crewName }}
-                        </div>
-                        <button class="join-button">크루 가입</button>
-                    </div>
-                    <div class="description-space">
-                        <div class="crew-description">
-                            {{ crewDescription }}
-                        </div>
+
+                <div class="description-space">
+                    <div class="crew-description">
+                        크루 소개
                     </div>
                 </div>
             </div>
@@ -90,12 +65,56 @@ export default {
                 <h2>크루 게시물 보기</h2>
             </div>
             <div class="crew-post-container">
-                <div class="crew-box"></div>
-                <div class="crew-box"></div>
-                <div class="crew-box"></div>
-                <!-- 추가적인 박스 요소들 -->
+                <div class="post-box">
+                    <div class="postbox-img"></div>
+                    <div class="postbox-summary">
+                        <div>
+                            <div class="post-title">제목</div>
+                            <div class="post-contents">내용</div>
+                        </div>
+                        <div class="postcircle">
+                            
+                        </div>
+                        <div class="postusername">
+                            <span style="font-weight: lighter">by </span>
+                            <span style="font-weight: bold">이름</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-box">
+                    <div class="postbox-img"></div>
+                    <div class="postbox-summary">
+                        <div>
+                            <div class="post-title">제목</div>
+                            <div class="post-contents">내용</div>
+                        </div>
+                        <div class="postcircle">
+                            
+                        </div>
+                        <div class="postusername">
+                            <span style="font-weight: lighter">by </span>
+                            <span style="font-weight: bold">이름</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-box">
+                    <div class="postbox-img"></div>
+                    <div class="postbox-summary">
+                        <div>
+                            <div class="post-title">제목</div>
+                            <div class="post-contents">내용</div>
+                        </div>
+                        <div class="postcircle">
+                            
+                        </div>
+                        <div class="postusername">
+                            <span style="font-weight: lighter">by </span>
+                            <span style="font-weight: bold">이름</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <button class="create-crew-btn" @click.prevent="createCrew">크루 만들기</button>
-</div></template>
+    </div>
+</template>
