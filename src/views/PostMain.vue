@@ -7,6 +7,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "App",
+
   data() {
     //데이터 변수값 저장
     return {
@@ -15,7 +16,7 @@ export default defineComponent({
       title: "",
       contents: "",
       likeCount: 0,
-      day: "",      
+      day: "",
       category1: "여행",
       category2: "미국서부",
       category3: "YOLO",
@@ -26,10 +27,12 @@ export default defineComponent({
       editedComment: "", // 수정 중인 댓글의 내용을 저장하는 변수
     };
   },
+
   mounted() {
     // 스크롤 이벤트를 감지하는 리스너 등록
     window.addEventListener("scroll", this.handleScroll);
   },
+
   destroyed() {
     // 컴포넌트가 소멸할 때 리스너 제거
     window.removeEventListener("scroll", this.handleScroll);
@@ -90,28 +93,32 @@ export default defineComponent({
         behavior: "smooth" // 스무스한 스크롤 이동을 위해 behavior 속성을 추가
       });
     },
-    getBoardDetail() {
-  const params = {
-    _id: this.$route.query.id,
-  };
 
-  get("board/getBoardDetail", params)
-    .then((data) => {
-      if (data && data.resultCode === 1) {
-        this.boardData = data.data;
-      } else {
-        alert("게시물 정보를 불러올 수 없습니다.");
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
-    });
-},
+    getBoardDetail() {
+      const params = {
+      _id: this.$route.query.id,
+    };
+
+      get("board/getBoardDetail", params)
+          .then((data) => {
+
+
+            if (data.resultCode === 1) {
+              this.boardData = data.data;
+            } else {
+              alert("게시물 정보를 불러올 수 없습니다.");
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
+          });
   },
+},
 
   setup() {
     const boardData = ref({
+        id : 0,
         writeTime: "",
         boardTitle: "",
         boardContents: "",
@@ -136,10 +143,11 @@ export default defineComponent({
 });
 </script>
 
+
 <template>
   <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
     <div class="title">
-      <router-link :to="{ name: 'PostMain', query: { id: boardData._id } }">
+      <router-link :to="{ name: 'PostMain', query: { id: boardData.id } }">
         {{ boardData.boardTitle }}
       </router-link>
     </div>
