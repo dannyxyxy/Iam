@@ -39,7 +39,7 @@ export default {
 
 <template>
     <div class="maintext">
-        <div class="crew-preview">
+        
             <div class="preview-img">
                 크루사진
                 <div class="centered-text">
@@ -58,6 +58,63 @@ export default {
                 <div class="description-space">
                     <div class="crew-description">
                         크루 소개
+                    </div>
+                </div>
+            </div>
+            <div class="crew-post-title">
+                <h2>크루 대표글</h2>
+            </div>
+            <div class="crew-post-container">
+                <div class="post-box">
+                    <div class="postbox-img"></div>
+                    <div class="postbox-summary">
+                        <div>
+                            <img src="..\assets\img\star.png" class="star"/>
+                            <div class="post-title">제목</div>
+                            <div class="post-contents">내용</div>
+                        </div>
+                        <div class="postcircle">
+            
+                        </div>
+                        <div class="postusername">
+                            <span style="font-weight: lighter">by </span>
+                            <span style="font-weight: bold">이름</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="post-box">
+                    <div class="postbox-img"></div>
+                    <div class="postbox-summary">
+                        <div>
+                            <img src="..\assets\img\star.png" class="star"/>
+                            <div class="post-title">제목</div>
+                            <div class="post-contents">내용</div>
+                        </div>
+                        <div class="postcircle">
+                            
+                        </div>
+                        <div class="postusername">
+                            <span style="font-weight: lighter">by </span>
+                            <span style="font-weight: bold">이름</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-box">
+                    <div class="postbox-img"></div>
+                    <div class="postbox-summary">
+                        <div>
+                            <img src="..\assets\img\star.png" class="star"/>
+                            <div class="post-title">제목</div>
+                            <div class="post-contents">내용</div>
+                        </div>
+                        <div class="postcircle">
+                            
+                        </div>
+                        <div class="postusername">
+                            <span style="font-weight: lighter">by </span>
+                            <span style="font-weight: bold">이름</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -116,5 +173,5 @@ export default {
             </div>
         </div>
 
-    </div>
+
 </template>
