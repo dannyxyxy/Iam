@@ -76,17 +76,16 @@ export default {
           alert("다시 시도해주세요.");
         });
     };
-
-    {
-      startEditing() {
+    
+      const startEditing = () => {
         this.editing = true;
         this.newUsername = this.userName;
-      },
-      saveUsername() {
+      }
+      const saveUsername = () => {
         this.userName = this.newUsername;
         this.editing = false;
       }
-    };
+    
 
     onMounted(() => {
       getUserData();
