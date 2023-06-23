@@ -24,10 +24,6 @@ export default {
       console.log('크루 가입', crewId);
       alert('크루 가입이 완료되었습니다');
     }
-  },
-
-  JoinCrew() {
-    alert('크루 가입이 완료되었습니다');
   }
 }
 </script>
