@@ -93,27 +93,6 @@ export default defineComponent({
         behavior: "smooth" // 스무스한 스크롤 이동을 위해 behavior 속성을 추가
       });
     },
-
-    getBoardDetail() {
-      const params = {
-      _id: this.$route.query.id,
-    };
-
-      get("board/getBoardDetail", params)
-          .then((data) => {
-
-
-            if (data.resultCode === 1) {
-              this.boardData = data.data;
-            } else {
-              alert("게시물 정보를 불러올 수 없습니다.");
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-            alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
-          });
-  },
 },
 
   setup() {
@@ -125,8 +104,24 @@ export default defineComponent({
         userName: "",
         likeCount: 0,
       });
-    onMounted(() => {
-      ("getBoardDetail"); // getBoardDetail 이벤트 발생시킴
+
+      onMounted(() => {
+        const params = {
+        _id: this.$route.query.id,
+      };
+
+      get("board/getBoardDetail", params)
+        .then((data) => {
+          if (data.resultCode === 1) {
+            this.boardData.value = data.data;
+          } else {
+            alert("게시물 정보를 불러올 수 없습니다.");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
+        });
     });
 
     return {
