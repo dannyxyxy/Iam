@@ -21,7 +21,7 @@ export default {
       userEmail: "",
       profileImg: "",
       newUsername: "",
-      editing: false
+      editing: false,
     });
     const boardData = ref({
       writeTime: "",
@@ -76,16 +76,15 @@ export default {
           alert("다시 시도해주세요.");
         });
     };
-    
-      const startEditing = () => {
-        this.editing = true;
-        this.newUsername = this.userName;
-      }
-      const saveUsername = () => {
-        this.userName = this.newUsername;
-        this.editing = false;
-      }
-    
+
+    const startEditing = () => {
+      this.editing = true;
+      this.newUsername = this.userName;
+    };
+    const saveUsername = () => {
+      this.userName = this.newUsername;
+      this.editing = false;
+    };
 
     onMounted(() => {
       getUserData();
@@ -139,14 +138,17 @@ export default {
         <div>
           <div v-if="!editing">
             <span>{{ username }}</span>
-            <button class="upload-button" @click="startEditing">개인정보 수정</button>
+            <button class="upload-button" @click="startEditing">
+              개인정보 수정
+            </button>
           </div>
           <div v-else>
-            <input v-model="newUsername" type="text">
-            <button class="upload-complete-button" @click="saveUsername">완료</button>
+            <input v-model="newUsername" type="text" />
+            <button class="upload-complete-button" @click="saveUsername">
+              완료
+            </button>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -155,7 +157,8 @@ export default {
         <h2>내 크루</h2>
       </div>
       <div class="">
-        크루보기를 어떻게 만들어야할까요? 1.인스타 하이라이트 형식 2.게시물 페이지와 크루 페이지 버튼 만들어서 클릭하면 나오게
+        크루보기를 어떻게 만들어야할까요? 1.인스타 하이라이트 형식 2.게시물
+        페이지와 크루 페이지 버튼 만들어서 클릭하면 나오게
       </div>
     </div>
 
@@ -188,4 +191,3 @@ export default {
     </div>
   </div>
 </template>
-<style></style>

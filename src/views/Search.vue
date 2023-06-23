@@ -24,8 +24,12 @@
       <ul v-if="searchResults">
         <li v-for="item in searchResults" class="search-result">
           <ul>
-            <li><h3>{{ item.boardTitle }}</h3></li>
-            <li><p>{{ item.boardContents }}</p></li>
+            <li>
+              <h3>{{ item.boardTitle }}</h3>
+            </li>
+            <li>
+              <p>{{ item.boardContents }}</p>
+            </li>
           </ul>
         </li>
       </ul>

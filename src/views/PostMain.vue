@@ -21,7 +21,10 @@ export default defineComponent({
       category2: "미국서부",
       category3: "YOLO",
       showPageUpButton: false,
-      comments: ["댓글 테스트입니다. 댓글 테스트입니다. 삭제버튼을 눌러보세요1","댓글 테스트입니다. 댓글 테스트입니다. 삭제버튼을 눌러보세요2"], // 댓글 데이터 배열 추가
+      comments: [
+        "댓글 테스트입니다. 댓글 테스트입니다. 삭제버튼을 눌러보세요1",
+        "댓글 테스트입니다. 댓글 테스트입니다. 삭제버튼을 눌러보세요2",
+      ], // 댓글 데이터 배열 추가
       newComment: "", // 새로운 댓글을 입력 받는 변수 추가
       editIndex: -1, // 수정 중인 댓글의 인덱스를 저장하는 변수
       editedComment: "", // 수정 중인 댓글의 내용을 저장하는 변수
@@ -90,38 +93,38 @@ export default defineComponent({
       // 페이지 맨 위로 스크롤 이동
       window.scrollTo({
         top: 0,
-        behavior: "smooth" // 스무스한 스크롤 이동을 위해 behavior 속성을 추가
+        behavior: "smooth", // 스무스한 스크롤 이동을 위해 behavior 속성을 추가
       });
     },
-},
+  },
 
   setup() {
     const boardData = ref({
-        id : 0,
-        writeTime: "",
-        boardTitle: "",
-        boardContents: "",
-        userName: "",
-        likeCount: 0,
-      });
-
-      onMounted(() => {
-        const params = {
-        _id: this.$route.query.id,
-      };
-
-      get("board/getBoardDetail", params)
+      id: "",
+      writeTime: "",
+      boardTitle: "",
+      boardContents: "",
+      userName: "",
+      likeCount: 0,
+    });
+    const getBoardDetail = async () => {
+      await get("board/getBoardDetail", location.search)
         .then((data) => {
-          if (data.resultCode === 1) {
-            this.boardData.value = data.data;
+          if (data) {
+            console.log(data);
+            boardData.value = data.data;
           } else {
             alert("게시물 정보를 불러올 수 없습니다.");
           }
         })
         .catch((error) => {
-          console.error(error);
+          console.log(error);
           alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
         });
+    };
+
+    onMounted(() => {
+      getBoardDetail();
     });
 
     return {
@@ -138,13 +141,10 @@ export default defineComponent({
 });
 </script>
 
-
 <template>
   <div class="maintext" :class="{ 'dark-mode': isDarkMode }">
     <div class="title">
-      <router-link :to="{ name: 'PostMain', query: { id: boardData.id } }">
-        {{ boardData.boardTitle }}
-      </router-link>
+      {{ boardData.boardTitle }}
     </div>
     <section id="info">
       <div class="meta-info">
@@ -152,11 +152,10 @@ export default defineComponent({
           &nbsp; by <span class="bold">{{ boardData.userName }}</span>
         </p>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <p>{{ boardData.writeTime}}작성</p>
+        <p>{{ boardData.writeTime }}작성</p>
       </div>
       <div>
-        <button class="copy-button" @click="copyLink">링크 복사
-        </button>
+        <button class="copy-button" @click="copyLink">링크 복사</button>
       </div>
     </section>
     <div class="contents">
@@ -169,7 +168,11 @@ export default defineComponent({
     <div class="comments-section">
       <h2>댓글</h2>
       <form @submit.prevent="submitComment">
-        <input type="text" v-model="newComment" placeholder="댓글을 입력하세요">
+        <input
+          type="text"
+          v-model="newComment"
+          placeholder="댓글을 입력하세요"
+        />
         <button type="submit">댓글 작성</button>
       </form>
 
@@ -177,8 +180,12 @@ export default defineComponent({
         <li v-for="(comment, index) in comments" :key="index">
           {{ comment }}
           <div class="comment-buttons">
-            <button @click="editComment(index)" class="edit-button">수정</button>
-            <button @click="deleteComment(index)" class="delete-button">삭제</button>    
+            <button @click="editComment(index)" class="edit-button">
+              수정
+            </button>
+            <button @click="deleteComment(index)" class="delete-button">
+              삭제
+            </button>
           </div>
         </li>
       </ul>
