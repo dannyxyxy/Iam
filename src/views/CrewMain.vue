@@ -1,6 +1,5 @@
 <script>
-import { apiClient } from "../utils/axios.js";
-import commonUtil from "../utils/common-util.js";
+
 import router from "../router/index.js";
 
 export default {
@@ -10,7 +9,17 @@ export default {
         { id: 4, name: '크루 4', avatar: 'hi.jpg', description: '크루 4에 대한 설명입니다.', memberCount: 20, postCount: 50 },
         { id: 5, name: '크루 5', avatar: 'avatar5.png', description: '크루 5에 대한 설명입니다.', memberCount: 15, postCount: 30 },
         { id: 6, name: '크루 6', avatar: 'avatar6.png', description: '크루 6에 대한 설명입니다.', memberCount: 12, postCount: 25 },
-      ]
+        
+      ],
+      CrewPost: "/CrewPost",
+      isDarkMode: false,
+      i: "",
+      title: "-",
+      summary: "-",
+      user: "-",
+      isTrendActive: true,
+      selected: "trend",
+      imageLink: 'https://www.htmlcsscolor.com/preview/gallery/F0F0F0.png'
     };
   },
   methods: {
@@ -24,6 +33,10 @@ export default {
       console.log('크루 가입', crewId);
       alert('크루 가입이 완료되었습니다');
     }
+  },
+
+  JoinCrew() {
+    alert('크루 가입이 완료되었습니다');
   }
 }
 </script>
@@ -37,7 +50,7 @@ export default {
           <div class="crew-box-container">
             <div class="crew-box" v-for="crew in recommendedCrews" :key="crew.id">
               <router-link to="/CrewPost">
-                <div class="crew-avatar"></div>
+                <img :src='"imageLink"' class="crew-avatar" />
               </router-link>
 
               <div class="crew-info">
