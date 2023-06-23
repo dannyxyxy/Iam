@@ -13,13 +13,16 @@ export default {
       PostMain: "/PostMain",
     };
   },
+
   setup() {
     const loginCheck = commonUtil.loginCheck();
     const userData = ref({
       userName: "",
-      userIntro: "",
       userEmail: "",
       profileImg: "",
+      
+      newUsername: "",
+      editing: false
     });
     const boardData = ref({
       writeTime: "",
@@ -75,6 +78,17 @@ export default {
         });
     };
 
+    {
+      startEditing() {
+        this.editing = true;
+        this.newUsername = this.userName;
+      },
+      saveUsername() {
+        this.userName = this.newUsername;
+        this.editing = false;
+      }
+    };
+
     onMounted(() => {
       getUserData();
       getBoardList();
@@ -104,8 +118,9 @@ export default {
         <div class="profile-info">
           <!-- 닉네임 -->
           <h1>{{ userData.userName }}</h1>
-          <!-- 자기소개글 -->
+          <!-- 자기소개글
           <h3>{{ userData.userIntro }}</h3>
+           -->
           <p>{{ userData.userEmail }}</p>
         </div>
       </div>
@@ -122,7 +137,18 @@ export default {
             />
           </label>
         </div>
-        <button class="upload-button">개인정보 수정</button>
+        <!-- <button class="upload-button">개인정보 수정</button> -->
+        <div>
+          <div v-if="!editing">
+            <span>{{ username }}</span>
+            <button class="upload-button" @click="startEditing">개인정보 수정</button>
+          </div>
+          <div v-else>
+            <input v-model="newUsername" type="text">
+            <button class="upload-complete-button" @click="saveUsername">완료</button>
+          </div>
+        </div>
+
       </div>
     </div>
     <div class="divider">
