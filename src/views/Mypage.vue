@@ -77,14 +77,16 @@ export default {
         });
     };
 
-    const startEditing = () => {
-      this.editing = true;
-      this.newUsername = this.userName;
-    };
-    const saveUsername = () => {
-      this.userName = this.newUsername;
-      this.editing = false;
-    };
+  
+      const startEditing = () => {
+        this.editing = true;
+        this.newUsername = this.userName;
+      }
+      const saveUsername = () => {
+        this.userName = this.newUsername;
+        this.editing = false;
+      }
+
 
     onMounted(() => {
       getUserData();
