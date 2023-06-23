@@ -57,6 +57,17 @@
 .upload-button input {
   display: none;
 }
+.upload-complete-button {
+  display: flex;
+  margin-left: 2rem;
+  padding: 6px 12px;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;  
+}
 .edit-button {
   padding: 6px 12px;
   background-color: #000;
