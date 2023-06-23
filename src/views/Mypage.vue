@@ -20,7 +20,6 @@ export default {
       userName: "",
       userEmail: "",
       profileImg: "",
-      
       newUsername: "",
       editing: false
     });
@@ -151,6 +150,16 @@ export default {
 
       </div>
     </div>
+
+    <div class="my-Crew">
+      <div class="crewpost">
+        <h2>내 크루</h2>
+      </div>
+      <div class="">
+        크루보기를 어떻게 만들어야할까요? 1.인스타 하이라이트 형식 2.게시물 페이지와 크루 페이지 버튼 만들어서 클릭하면 나오게
+      </div>
+    </div>
+
     <div class="divider">
       <div class="mypost">
         <h2>내 게시물 보기</h2>
