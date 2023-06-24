@@ -162,8 +162,10 @@ export default defineComponent({
       {{ boardData.boardContents }}
     </div>
     <div class="actions">
-      <button class="d-button" @click="editPost">글 수정</button>
-      <button class="d-button" @click="deletePost">글 삭제</button>
+      <div class="actions_button">
+        <button class="d-button" @click="editPost">글 수정</button>
+        <button class="d-button" @click="deletePost">글 삭제</button>
+      </div>
     </div>
     <div class="comments-section">
       <h2>댓글</h2>
@@ -177,17 +179,19 @@ export default defineComponent({
       </form>
 
       <ul>
-        <li v-for="(comment, index) in comments" :key="index">
-          {{ comment }}
-          <div class="comment-buttons">
-            <button @click="editComment(index)" class="edit-button">
-              수정
-            </button>
-            <button @click="deleteComment(index)" class="delete-button">
-              삭제
-            </button>
-          </div>
-        </li>
+        <div class = "comment_box">
+          <li v-for="(comment, index) in comments" :key="index">
+            {{ comment }}
+            <div class="comment-buttons">
+              <button @click="editComment(index)" class="edit-button">
+                수정
+              </button>
+              <button @click="deleteComment(index)" class="delete-button">
+                삭제
+              </button>
+            </div>
+          </li>
+        </div>
       </ul>
     </div>
 
@@ -202,3 +206,18 @@ export default defineComponent({
     </div>
   </div>
 </template>
+
+<style>
+.comment-buttons {
+  float: left;
+}
+
+.edit-button {
+  margin: 10px;
+}
+
+.comment_box {
+  padding: 10px;
+}
+
+</style>
