@@ -73,12 +73,12 @@ export default {
   },
   setup() {
     onMounted(async () => {
-        const loginCheck = commonUtil.loginCheck();
-        if (!loginCheck) {
-            alert("로그인 후에 이용해주세요");
-            await router.push("/");
-        }
-    };);
+      const loginCheck = commonUtil.loginCheck();
+      if (!loginCheck) {
+        alert("로그인 후에 이용해주세요");
+        await router.push("/");
+      }
+    });
   },
 };
 </script>
