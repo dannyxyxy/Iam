@@ -109,7 +109,7 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-.join-button {
+.Crew-button {
     width:110px;
     background-color: #000;
     color: #fff;
@@ -118,7 +118,7 @@
     cursor: pointer;
     font-weight: bold;
   }
-  .join-button:hover {
+  .Crew-button:hover {
     background-color: rgb(240,240,240);
     color:#000;
   }
