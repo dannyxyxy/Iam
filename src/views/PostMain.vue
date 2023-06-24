@@ -1,9 +1,15 @@
 <script>
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-import { get } from "../utils/axios.js";
+import { get, apiClient  } from "../utils/axios.js";
 import { onMounted, ref } from "vue";
 import { defineComponent } from "vue";
+import commonUtil from "../utils/common-util.js";
+import { CONSTANTS } from "../utils/constants.js";
+
+import router from "../router/index.js";
+
+
 
 export default defineComponent({
   name: "App",
@@ -55,11 +61,28 @@ export default defineComponent({
     toggleMode() {
       this.isDarkMode = !this.isDarkMode;
     },
-    submitComment() {
-      if (this.commentText) {
-        this.comments.push(this.commentText);
-        this.commentText = "";
-      }
+    
+    async submitComment() {
+      const content = this.newComment;
+
+      const userLocalInfo = JSON.parse(
+        commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+      );
+      console.log(content, userLocalInfo );
+
+      const commentData = {
+        commentContents: content,
+        userIdx: userLocalInfo.userIdx,
+      };
+
+        const data = await apiClient("board/writeComment", commentData);
+        if (data.resultCode === 1) {
+          alert("글 작성 완료!");
+          await router.push("/");
+        } else {
+          alert("글이 저장되지 않았습니다.");
+        }
+      
     },
     deleteComment(index) {
       this.comments.splice(index, 1);
@@ -123,12 +146,31 @@ export default defineComponent({
         });
     };
 
+    const getCommentList = async () => {
+
+      await get("board/getBoardDetail", location.search)
+        .then((data) => {
+          if (data) {
+            console.log(data);
+            boardData.value = data.data;
+          } else {
+            alert("게시물 정보를 불러올 수 없습니다.");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
+        });
+    };
+
     onMounted(() => {
       getBoardDetail();
+      getCommentList();
     });
 
     return {
       boardData,
+
     };
   },
 
@@ -167,6 +209,8 @@ export default defineComponent({
         <button class="d-button" @click="deletePost">글 삭제</button>
       </div>
     </div>
+
+
     <div class="comments-section">
       <h2>댓글</h2>
       <form @submit.prevent="submitComment">
@@ -179,19 +223,27 @@ export default defineComponent({
       </form>
 
       <ul>
-        <div class = "comment_box">
-          <li v-for="(comment, index) in comments" :key="index">
-            {{ comment }}
-            <div class="comment-buttons">
-              <button @click="editComment(index)" class="edit-button">
-                수정
-              </button>
-              <button @click="deleteComment(index)" class="delete-button">
-                삭제
-              </button>
+        <li v-for="(commentData, index) in comments" :key="index">
+          <section id="info">
+            <div class="meta-info">
+              <p>
+                &nbsp; by <span class="bold">{{ commentData.userName }}</span>
+              </p>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <p>{{ commentData.writeTime }}</p>
             </div>
-          </li>
-        </div>
+         </section>
+          {{ commentData.commentContents }}
+          <div class="comment-buttons">
+            <button @click="editComment(index)" class="edit-button">
+              수정
+            </button>
+            <button @click="deleteComment(index)" class="delete-button">
+              삭제
+            </button>
+            
+          </div>
+        </li>
       </ul>
     </div>
 
