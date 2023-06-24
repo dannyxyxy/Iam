@@ -11,54 +11,60 @@
       <div class="search_img">
         <button
           @click="search"
-          style="background-color: transparent; border: none; padding: 0"
-        >
-          <img
-            src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
-          />
+          style="background-color: transparent; border: none; padding: 0">
+          <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"/>
         </button>
       </div>
     </div>
-  </div>
 
     <div class="search-results">
-
       <h2 > 검색 결과</h2>
-      <ul v-if="searchResults">
-        <li v-for="item in searchResults" class="search-result">
-          <ul>
-            
-            <div class = "box">
-              <router-link :to="{ name: 'PostMain', query: { id: item._id } }">
-                <div class="box-img"></div>
-              </router-link>
+        <ul v-if="searchResults">
+          <li v-for="item in searchResults" class="search-result">
+              
+              <div class = "box">
+                <router-link :to="{ name: 'PostMain', query: { id: item._id } }">
+                  <div class="box-img"></div>
+                </router-link>
 
-              <div class="box-summary">
-                  <li><div class="board-title">
-                    <h3>{{ item.boardTitle }}</h3> </div></li>
-                  <li><div class="board-contents">
-                    <p>{{ item.boardContents }}</p> </div></li>
-                
-                <div class="username">
-                  <span style="font-weight: lighter">by </span>
-                  <span style="font-weight: bold">{{ item.userName }}</span>
+                <div class="box-summary">
+                    <li><div class="board-title">
+                      <h3>{{ item.boardTitle }}</h3> </div></li>
+                    <li><div class="board-contents">
+                      <p>{{ item.boardContents }}</p> </div></li>
+                    <div class="circle">
+                      <img :src="CONSTANTS.API_URL + item.profileImg" alt="" />
+                    </div>
+                    <div class="username">
+                      <span style="font-weight: lighter">by </span>
+                      <span style="font-weight: bold">{{ item.userName }}</span>
+                    </div>
                 </div>
+
               </div>
-            </div>
-          </ul>
-        </li>
-      </ul>
-      <p v-if="!searchResults">검색 결과가 없습니다.</p>
+          </li>
+        </ul>
+        <p v-if="!searchResults">검색 결과가 없습니다.</p>
     </div>
+  </div>
   </div>
 </template>
 
 <script>
+import { CONSTANTS } from "../utils/constants.js";
 import { ref } from "vue";
 import { apiClient } from "../utils/axios.js";
 import router from "../router/index.js";
 
+
 export default {
+  name: 'Search',
+  computed: {
+    CONSTANTS() {
+      return CONSTANTS;
+    },
+  },
+
   setup() {
     const data = ref({
       searchQuery: "",
@@ -75,7 +81,7 @@ export default {
         .catch((e) => {
           console.log(e);
         });
-    };
+    }; 
 
     return {
       data,
@@ -84,9 +90,8 @@ export default {
       search,
     };
   },
+  
 };
-
-
 
 </script>
 
@@ -112,11 +117,6 @@ export default {
   margin: 0;
 }
 
-
-ul {
-    list-style:none;
-}
- 
 li {
     float: left;
     margin-right: 20pxs;
