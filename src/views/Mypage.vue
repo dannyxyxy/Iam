@@ -11,9 +11,9 @@ export default {
     //데이터 변수값 저장
     return {
       PostMain: "/PostMain",
+      uploadCompleteButton: false,
     };
   },
-
   setup() {
     const loginCheck = commonUtil.loginCheck();
     const userData = ref({
@@ -21,14 +21,13 @@ export default {
       userEmail: "",
       profileImg: "",
       newUsername: "",
-      editing: false
+      editing: false,
     });
     const boardData = ref({
       writeTime: "",
       boardTitle: "",
       boardContents: "",
       userName: "",
-      likeCount: 0,
     });
     const profileFormData = new FormData();
     const userInfo = JSON.parse(
@@ -77,14 +76,14 @@ export default {
         });
     };
 
-    {
+    const editing = async () => {
       startEditing() {
-        this.editing = true;
-        this.newUsername = this.userName;
-      },
+        editing = true;
+        newUsername = userName;
+      }
       saveUsername() {
-        this.userName = this.newUsername;
-        this.editing = false;
+        userName = newUsername;
+        editing = false;
       }
     };
 
@@ -137,6 +136,7 @@ export default {
           </label>
         </div>
         <!-- <button class="upload-button">개인정보 수정</button> -->
+  
         <div>
           <div v-if="!editing">
             <span>{{ username }}</span>
@@ -144,7 +144,7 @@ export default {
           </div>
           <div v-else>
             <input v-model="newUsername" type="text">
-            <button class="upload-complete-button" @click="saveUsername">완료</button>
+            <button class="uploadCompleteButton" @click="saveUsername">완료</button>
           </div>
         </div>
 
