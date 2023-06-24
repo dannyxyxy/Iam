@@ -62,9 +62,9 @@ export default {
                     크루이름
                 </div>
                 <div class="crewDay">day 3일전</div>
-                <!--<button type="submit" class="CrewJoin-button" @click="JoinCrew">크루가입</button>-->
+                <!--<button type="submit" class="Crew-button" @click="JoinCrew">크루가입</button>-->
                 <router-link to="/CrewEdit">
-                    <button class="CrewJoin-button">글작성</button>
+                    <button class="Crew-button">글작성</button>
                 </router-link>
             </div>
 
