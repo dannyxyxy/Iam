@@ -34,7 +34,14 @@ export default {
     });
     const getCrewList = async () => {
       await apiClient("crew/getCrewList")
-        
+        .then((r) => {
+          boardData.value = r.data;
+          for (let item in r.data) {
+            r.data[item].color = `hsl(${
+              parseInt(Math.random() * 24, 10) * 15
+            }, 16%, 75%)`;
+          }
+        })
         .catch((e) => {
           alert("크루 정보를 불러올 수 없습니다.");
           console.log(e);
