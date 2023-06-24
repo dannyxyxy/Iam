@@ -7,6 +7,7 @@
         placeholder="검색어를 입력하세요."
         @input="data.searchQuery = $event.target.value"
         @submit.prevent
+        @keydown.enter.prevent="search"
       />
       <div class="search_img">
         <button
@@ -19,7 +20,7 @@
 
     <div class="search-results">
       <h2 > 검색 결과</h2>
-        <ul v-if="searchResults">
+        <ul v-if="searchResults.length > 0">
           <li v-for="item in searchResults" class="search-result">
               
               <div class = "box">
@@ -44,8 +45,9 @@
               </div>
           </li>
         </ul>
-        <p v-if="!searchResults">검색 결과가 없습니다.</p>
-    </div>
+        <div v-show="searchResults.length === 0 && data.searchQuery.trim() !== ''">
+          검색 결과가 없습니다.</div>
+        </div>
   </div>
   </div>
 </template>
@@ -65,6 +67,7 @@ export default {
     },
   },
 
+
   setup() {
     const data = ref({
       searchQuery: "",
@@ -77,9 +80,13 @@ export default {
         .then((r) => {
           console.log(r);
           searchResults.value = r.data;
+          if (searchResults.value.length === 0) {
+            window.alert("검색 결과가 없습니다.");
+          }
         })
         .catch((e) => {
           console.log(e);
+          console.log("검색 결과가 없습니다.");
         });
     }; 
 
@@ -89,8 +96,7 @@ export default {
       hasSearchResults,
       search,
     };
-  },
-  
+  }, 
 };
 
 </script>
