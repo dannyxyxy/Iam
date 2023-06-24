@@ -120,6 +120,6 @@ export default {
 
 li {
   float: left;
-  margin-right: 20pxs;
+  margin-right: 20px;
 }
 </style>

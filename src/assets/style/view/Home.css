@@ -62,8 +62,13 @@
   border-radius: 50%;
   background-color: rgb(240, 240, 240);
 }
+
 .circle img {
   height: 100%;
+}
+.exchangeImg {
+  height: 100%;
+  border-radius: inherit;
 }
 .username {
   margin-top: 37px;
