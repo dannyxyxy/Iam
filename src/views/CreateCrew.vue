@@ -9,6 +9,7 @@ import router from "../router/index.js";
 export default {
   data() {
     return {
+      CrewPost: "/CrewPost",
       crewName: '',
       crewDescription: '',
       crewImage: null,
@@ -33,13 +34,6 @@ export default {
         this.crewImagePreview = '';
       }
     },
-    createCrew() {
-      // 크루 생성 처리 로직
-      console.log('크루 이름:', this.crewName);
-      console.log('크루 소개:', this.crewDescription);
-      console.log('크루 대표 사진:', this.crewImage);
-      // 크루 생성 API 호출 등 추가 작업 수행
-    }
   },
   setup() {
     onMounted(async () => {
@@ -60,9 +54,9 @@ export default {
     };
     const CreateCrew = async () => {
       if (
+        
         crewInfo.crewName &&
-        crewInfo.crewIntro &&
-        crewInfo.ownerName
+        crewInfo.crewIntro
       ) {
         const MakeCrew = await apiClient("crew/MakeCrew", crewInfo);
         if (MakeCrew.resultCode === 1) {
@@ -76,7 +70,7 @@ export default {
     }
 };
 return {
-  crewInfo ,
+  crewInfo,
   CreateCrew,
 };
   },
@@ -90,14 +84,14 @@ return {
       <div class="preview-img">
         <img :src="crewImagePreview" alt="크루 대표 사진" v-if="crewImagePreview" class="centered-image">
         <div class="centered-text">
-          <h1>크루이름</h1>
+          <h1>{{ crewName }}</h1>
         </div>
       </div>
+      <form @submit.prevent>
       <div class="crew-imageLoad">크루 표지사진을 업로드 해주세요.
-        <input type="file" id="crew-image" @change="handleImageUpload" class="upload-btn" />
+        <input type="file" id="crew-image" @change="handleImageUpload" class="upload-btn" @input="crewInfo.profileImg = $event.target.value"
+              required/>
       </div>
-
-      <form>
         <div class="crew-text">
           <div class="crew-name-container">
             <input type="text" id="crew-name" v-model="crewName" class="input-box" placeholder="크루 이름을 입력하세요." @input="crewInfo.crewName = $event.target.value"
@@ -105,14 +99,17 @@ return {
           </div>
           <div class="description-space">
             <div class="crew-description">
-              <textarea id="crew-description" v-model="crewDescription" class="input-box"
+              <input type="text" id="crew-description" v-model="crewDescription" class="input-box"
                 placeholder="간단하게 크루를 소개해주세요." @input="crewInfo.crewIntro = $event.target.value"
-              required></textarea>
+              required>
             </div>
           </div>
         </div>
+        <router-link to="/CrewPost">
+    <button class="create-crew-btn" type="submit" @click.prevent="createCrew">크루 만들기</button>
+  </router-link>
       </form>
     </div>
-    <button class="create-crew-btn" @click.prevent="createCrew">크루 만들기</button>
+   
   </div>
 </template>
