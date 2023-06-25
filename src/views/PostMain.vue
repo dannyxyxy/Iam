@@ -59,6 +59,21 @@ export default defineComponent({
     toggleMode() {
       this.isDarkMode = !this.isDarkMode;
     },
+    async deletePost() {
+      const userLocalInfo = JSON.parse(
+        commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+      );
+      const data = await apiClient("board/deleteBoard", {
+        userIdx: userLocalInfo.userIdx,
+        postId: location.search,
+      });
+      if (data.resultCode === 1) {
+        alert("글을 삭제했습니다.");
+        await router.push("/");
+      } else {
+        alert("삭제 권한이 없습니다.");
+      }
+    },
 
     async submitComment() {
       const content = this.newComment;
@@ -71,10 +86,10 @@ export default defineComponent({
         postId: location.search,
       });
       if (data.resultCode === 1) {
-        alert("글 작성 완료!");
-        await router.push("/");
+        alert("댓글 작성 완료!");
+        await router.go(0);
       } else {
-        alert("글이 저장되지 않았습니다.");
+        alert("댓글이 저장되지 않았습니다.");
       }
     },
     deleteComment(index) {
