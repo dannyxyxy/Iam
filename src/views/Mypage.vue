@@ -19,7 +19,7 @@ export default {
       userName: "",
       userEmail: "",
       profileImg: "",
-
+      userPassword: "",
       editing: false,
     });
     const boardData = ref({
@@ -74,21 +74,21 @@ export default {
         });
     };
 
-  
-      const startEditing = () => {
-        userData.value.editing = true;
-      }
-      const saveUsername = async () => {
-        await apiClient("user/profileUpdate", userData).then(r => {
+    const startEditing = () => {
+      userData.value.editing = true;
+    };
+    const saveUsername = async () => {
+      await apiClient("user/updateProfile", userData.value)
+        .then((r) => {
           userData.value.editing = false;
           alert("업데이트 성공!");
-          location.reload()
-        }).catch(e => {
+          location.reload();
+        })
+        .catch((e) => {
           console.log(e);
           alert("업데이트 실패!");
-        })
-      }
-
+        });
+    };
 
     onMounted(() => {
       getUserData();
@@ -100,7 +100,7 @@ export default {
       boardData,
       profileImgUpload,
       CONSTANTS,
-      
+
       startEditing,
       saveUsername,
       uploadCompleteButton: false,
@@ -143,15 +143,18 @@ export default {
           </label>
         </div>
         <!-- <button class="upload-button">개인정보 수정</button> -->
-  
+
         <div>
           <div v-if="!userData.editing">
-            <span>{{ userName }}</span>
-            <button class="upload-button" @click="startEditing">개인정보 수정</button>
+            <button class="upload-button" @click="startEditing">
+              개인정보 수정
+            </button>
           </div>
           <div v-else>
-            <input v-model="userData.userName" type="text">
-            <button class="uploadCompleteButton" @click="saveUsername">수정 완료</button>
+            <input v-model="userData.userName" type="text" />
+            <button class="uploadCompleteButton" @click="saveUsername">
+              수정 완료
+            </button>
           </div>
         </div>
       </div>
@@ -167,7 +170,11 @@ export default {
         <div v-for="group in groups" :key="group.id" class="photo-group">
           <h2>{{ group.name }}</h2>
           <div class="photo-container">
-            <div v-for="photo in group.photos" :key="photo.id" class="photo-item">
+            <div
+              v-for="photo in group.photos"
+              :key="photo.id"
+              class="photo-item"
+            >
               <div class="rounded-photo">
                 <img :src="photo.url" alt="사진" />
               </div>
@@ -176,7 +183,6 @@ export default {
           </div>
         </div>
       </div>
-
     </div>
 
     <div class="divider">
