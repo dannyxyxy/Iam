@@ -79,11 +79,6 @@ export default {
               <div class="crew-info">
                 <h3>{{ item.crewName }}</h3>
                 <p class="crew-description">{{ item.crewIntro }}</p>
-                <div class="crew-stats">
-                  <p class="stat-label">멤버 명</p>
-                  <div class="dot"></div>
-                  <p class="stat-label">게시물 개</p>
-                </div>
                 <button type="submit" class="CrewJoin-button" @click="JoinCrew">크루가입</button>
               </div>
             </div>

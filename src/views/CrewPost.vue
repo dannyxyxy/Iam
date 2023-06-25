@@ -1,14 +1,77 @@
 <script>
-export default {
+import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
+import "vue3-carousel/dist/carousel.css";
+import { get, apiClient } from "../utils/axios.js";
+import { onMounted, ref } from "vue";
+import { defineComponent } from "vue";
+import commonUtil from "../utils/common-util.js";
+import { CONSTANTS } from "../utils/constants.js";
+
+import router from "../router/index.js";
+export default defineComponent({
+    name: "App",
     data() {
         return {
             recommendedCrews: [
-        { id: 4, title: '반려동물사랑', description: '강아지고양이고슴도치', name: '강호동' },
-        { id: 5, title: '치킨', description: '치킨은 안 질리지', name: '닭최고' },
-        { id: 6, title: '서브웨이', description: '서브웨이 조합 추천', name: '햄최몇' },
-      ]
+                { id: 4, title: '반려동물사랑', description: '강아지고양이고슴도치', name: '강호동' },
+                { id: 5, title: '치킨', description: '치킨은 안 질리지', name: '닭최고' },
+                { id: 6, title: '서브웨이', description: '서브웨이 조합 추천', name: '햄최몇' },
+            ]
         };
     },
+    setup() {
+        const boardData = ref({
+      id: 0,
+      crewId : "",
+      profileImg : "",
+      crewName : "",
+      crewIntro : "",
+      ownerName : "",
+      crewMember: 0,
+    });
+    const getBoardDetail = async () => {
+      await get("board/getCrewDetail", location.search)
+        .then((data) => {
+          if (data) {
+            console.log(data);
+            boardData.value = data.data;
+          } else {
+            alert("게시물 정보를 불러올 수 없습니다.");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
+        });
+    };
+
+    const getCommentList = async () => {
+
+      await get("board/getCrewDetail", location.search)
+        .then((data) => {
+          if (data) {
+            console.log(data);
+            boardData.value = data.data;
+          } else {
+            alert("게시물 정보를 불러올 수 없습니다.");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
+        });
+    };
+
+    onMounted(() => {
+      getCrewDetail();
+      getCommentList();
+    });
+
+    return {
+      boardData,
+
+    };
+  },
     methods: {
         handleImageUpload(event) {
             // 크루 대표 사진 업로드 처리 로직
@@ -45,22 +108,21 @@ export default {
             alert('크루 가입이 완료되었습니다');
         }
     }
-};
+
+});
 </script>
 
 <template>
     <div class="maintext">
-
-        <div class="preview-img">
-            크루사진
+            <div class="preview-img" :style="`background-color: ${boardData.color}`" />
             <div class="centered-text">
-                <h1>크루이름</h1>
+                {{ boardData.crewName }}
             </div>
         </div>
         <div class="crew-text">
             <div class="crew-name-container">
                 <div class="crew-name">
-                    크루이름
+                    {{ boardData.crewName }}
                 </div>
                 <div class="crewDay">day 3일전</div>
                 <!--<button type="submit" class="Crew-button" @click="JoinCrew">크루가입</button>-->
@@ -71,30 +133,7 @@ export default {
 
             <div class="description-space">
                 <div class="crew-description">
-                    크루 소개
-                </div>
-            </div>
-        </div>
-        <div class="crew-post-title">
-            크루 대표글
-        </div>
-        <div class="crew-post-container">
-            <div class="post-box" v-for="crewpost in recommendedCrews" :key="crewpost.id">
-                <div class="postbox-img"></div>
-                <div class="postbox-summary">
-                    <div>
-                        <img src="..\assets\img\star.png" class="star" />
-                        <div class="post-title">{{ crewpost.title }}</div>
-                        <div class="post-contents">{{ crewpost.description }}</div>
-                    </div>
-                    <div class="postcircle">
-
-                    </div>
-                    <div class="postusername">
-                        <span style="font-weight: lighter">by </span>
-                        <span style="font-weight: bold">{{ crewpost.name }}</span>
-                    </div>
-
+                    {{ boardData.crewIntro }}
                 </div>
             </div>
         </div>
@@ -103,7 +142,7 @@ export default {
         </div>
         <div class="crew-post-container">
             <div class="post-box" v-for="crewpost in recommendedCrews" :key="crewpost.id">
-                <div class="postbox-img"></div>
+                <div class="postbox-img" :style="`background-color: ${boardData.color}`" />
                 <div class="postbox-summary">
                     <div>
                         <div class="post-title">{{ crewpost.title }}</div>
@@ -120,5 +159,4 @@ export default {
                 </div>
             </div>
         </div>
-    </div>
 </template>
