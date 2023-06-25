@@ -15,7 +15,6 @@ export default {
     };
   },
   setup() {
-    const loginCheck = commonUtil.loginCheck();
     const userData = ref({
       userName: "",
       userEmail: "",
@@ -29,28 +28,27 @@ export default {
       boardContents: "",
       userName: "",
     });
-    const profileFormData = new FormData();
-    const userInfo = JSON.parse(
-      commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
-    );
     const getUserData = async () => {
-      if (loginCheck) {
-        const data = await apiClient("user/getUserInfo", userInfo);
-
-        if (data.resultCode === 1) {
-          userData.value = data.data;
-        } else {
-          alert("정보를 불러올 수 없습니다. 관리자에게 문의하세요");
-          await router.push("/");
-        }
-      } else {
-        alert("로그인 후에 이용해주세요");
-        await router.push("/");
+      if (commonUtil.loginCheck()) {
+        await apiClient(
+          "user/getUserInfo",
+          JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO))
+        )
+          .then((r) => {
+            userData.value = r.data;
+          })
+          .catch((e) => {
+            alert("로그인 후에 이용해주세요");
+            router.push("/");
+          });
       }
     };
 
     const getBoardList = async () => {
-      const data = await apiClient("user/getBoardList", userInfo);
+      const data = await apiClient(
+        "user/getBoardList",
+        JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO))
+      );
       if (data.resultCode === 1) {
         boardData.value = data.data;
       } else {
@@ -58,7 +56,7 @@ export default {
         await router.push("/");
       }
     };
-
+    const profileFormData = new FormData();
     const profileImgUpload = async (e) => {
       profileFormData.set("userIdx", userInfo.userIdx);
       profileFormData.set("file", e.target.files[0]);
@@ -76,14 +74,16 @@ export default {
         });
     };
 
-      const startEditing = async() => {
-        editing = true;
-        newUsername = userName;
+  
+      const startEditing = () => {
+        this.editing = true;
+        this.newUsername = this.userName;
       }
-      const saveUsername = async() => {
-        userName = newUsername;
-        editing = false;
+      const saveUsername = () => {
+        this.userName = this.newUsername;
+        this.editing = false;
       }
+
 
     onMounted(() => {
       getUserData();

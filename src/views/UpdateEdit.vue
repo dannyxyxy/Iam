@@ -9,9 +9,9 @@ import router from "../router/index.js";
 
 export default {
   components: {
-    editor: Editor,
+    editor: Editor
   },
-
+  
   data() {
     return {
       title: "",
@@ -39,46 +39,47 @@ export default {
     });
   },
   methods: {
-    async saveContents() {
+    async saveContent() {
       const title = this.title;
-      const contents = this.editor.getMarkdown();
-      if (title) {
-        if (contents) {
-          await apiClient("board/writeBoard", {
-            boardTitle: title,
-            boardContents: contents,
-            userIdx: JSON.parse(
-              commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
-            ).userIdx,
-          })
-            .then((r) => {
-              alert("글 작성 완료!");
-              router.push("/");
-            })
-            .catch((e) => {
-              alert("글이 저장되지 않았습니다.");
-            });
-        } else alert("내용을 입력해주세요");
-      } else alert("제목을 입력해주세요");
+      const content = this.editor.getMarkdown();
+      const userLocalInfo = JSON.parse(
+        commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+      );
+
+      const boardData = {
+        boardTitle: title,
+        boardContents: content,
+        userIdx: userLocalInfo.userIdx,
+      };
+
+      const data = await apiClient("board/writeBoard", boardData);
+      if (data.resultCode === 1) {
+        alert("글 작성 완료!");
+        await router.push("/");
+      } else {
+        alert("글이 저장되지 않았습니다.");
+      }
     },
-    handleFileChange(event) {
-      const file = event.target.files[0];
-      this.selectedPhoto = URL.createObjectURL(file);
+      handleFileChange(event) {
+        const file = event.target.files[0];
+        this.selectedPhoto = URL.createObjectURL(file);
+      },
+      savePhoto() {
+        // 선택한 사진을 저장하는 로직을 구현하세요
+        // 예: 서버에 사진을 업로드하거나, 상태 관리를 통해 홈 페이지에서 사용할 수 있도록 전달
+        console.log(this.selectedPhoto);
     },
-    savePhoto() {
-      // 선택한 사진을 저장하는 로직을 구현하세요
-      // 예: 서버에 사진을 업로드하거나, 상태 관리를 통해 홈 페이지에서 사용할 수 있도록 전달
-      console.log(this.selectedPhoto);
-    },
+
   },
   setup() {
-    onMounted(async () => {
+    const getLoginInfo = async () => {
       const loginCheck = commonUtil.loginCheck();
       if (!loginCheck) {
         alert("로그인 후에 이용해주세요");
         await router.push("/");
       }
-    });
+    };
+    onMounted(getLoginInfo);
   },
 };
 </script>
@@ -86,16 +87,20 @@ export default {
 <template>
   <div class="maintext">
     <input
-      type="text"
-      v-model="title"
-      class="title-input-box"
-      placeholder="제목"
-    />
+        type="text"
+        v-model="title"
+        placeholder="제목을 입력하세요."
+        class="title-input"
+      />
+    
     <div class="editdiv">
       <div ref="editorRef"></div>
     </div>
     <div class="upload">
-      <button class="savebutton" @click="saveContents">업로드</button>
+      <button class="savebutton" @click="saveContent">업로드</button>
     </div>
   </div>
+  
 </template>
+
+<style scoped></style>

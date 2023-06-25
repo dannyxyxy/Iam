@@ -1,44 +1,67 @@
 <script>
-
+import { apiClient } from "../utils/axios.js";
+import { onMounted, ref } from "vue";
+import { CONSTANTS } from "../utils/constants.js";
 import router from "../router/index.js";
 
+
 export default {
+  name: "App",
+  computed: {
+    CONSTANTS() {
+      return CONSTANTS;
+    },
+  },
   data() {
     return {
-      recommendedCrews: [
-        { id: 4, name: '크루 4', avatar: 'hi.jpg', description: '크루 4에 대한 설명입니다.', memberCount: 20, postCount: 50 },
-        { id: 5, name: '크루 5', avatar: 'avatar5.png', description: '크루 5에 대한 설명입니다.', memberCount: 15, postCount: 30 },
-        { id: 6, name: '크루 6', avatar: 'avatar6.png', description: '크루 6에 대한 설명입니다.', memberCount: 12, postCount: 25 },
-        
-      ],
       CrewPost: "/CrewPost",
-      isDarkMode: false,
-      i: "",
       title: "-",
       summary: "-",
       user: "-",
       isTrendActive: true,
       selected: "trend",
-      imageLink: 'https://www.htmlcsscolor.com/preview/gallery/F0F0F0.png'
+    };
+  },
+  setup() {
+    const boardData = ref({
+      id: 0,
+      crewId : "",
+      profileImg : "",
+      crewName : "",
+      crewIntro : "",
+      ownerName : "",
+      crewMember: 0,
+    });
+    const getCrewList = async () => {
+      await apiClient("crew/getCrewList")
+        .then((r) => {
+          boardData.value = r.data;
+          for (let item in r.data) {
+            r.data[item].color = `hsl(${
+              parseInt(Math.random() * 24, 10) * 15
+            }, 16%, 75%)`;
+          }
+        })
+        .catch((e) => {
+          alert("크루 정보를 불러올 수 없습니다.");
+          console.log(e);
+        });
+    };
+
+    onMounted(() => {
+      getCrewList();
+    });
+
+    return {
+      boardData,
     };
   },
   methods: {
-    JoinCrew() {
-      alert('크루 가입이 완료되었습니다');
-    },
-    joinCrew(crewId) {
-      // 가입 버튼 클릭 시 동작하는 메서드
-      // crewId를 이용하여 가입 로직을 구현하세요.
-      // 예시: 가입 API 호출 또는 가입 상태 변경 등의 작업을 수행합니다.
-      console.log('크루 가입', crewId);
-      alert('크루 가입이 완료되었습니다');
+    JoinCrew(crewId) {
+            alert('크루 가입이 완료되었습니다');
     }
   },
-
-  JoinCrew() {
-    alert('크루 가입이 완료되었습니다');
-  }
-}
+};
 </script>
 
 <template>
@@ -48,18 +71,18 @@ export default {
         <div class="recommended-crews">
           <h2>전체 크루 목록</h2>
           <div class="crew-box-container">
-            <div class="crew-box" v-for="crew in recommendedCrews" :key="crew.id">
-              <router-link to="/CrewPost">
-                <img :src='"imageLink"' class="crew-avatar" />
+            <div class="crew-box" v-for="item in boardData" :key="item._crewId">
+              <router-link :to="{ name: 'CrewPost', query: { id: item._crewId } }">
+                <div class="crew-avatar" :style="`background-color: ${item.color}`" />
               </router-link>
 
               <div class="crew-info">
-                <h3>{{ crew.name }}</h3>
-                <p class="crew-description">{{ crew.description }}</p>
+                <h3>{{ item.crewName }}</h3>
+                <p class="crew-description">{{ item.crewIntro }}</p>
                 <div class="crew-stats">
-                  <p class="stat-label">멤버 {{ crew.memberCount }}명</p>
+                  <p class="stat-label">멤버 명</p>
                   <div class="dot"></div>
-                  <p class="stat-label">게시물 {{ crew.postCount }}개</p>
+                  <p class="stat-label">게시물 개</p>
                 </div>
                 <button type="submit" class="CrewJoin-button" @click="JoinCrew">크루가입</button>
               </div>

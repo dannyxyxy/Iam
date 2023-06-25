@@ -1,6 +1,5 @@
 <script>
 import { apiClient } from "../utils/axios.js";
-import commonUtil from "../utils/common-util.js";
 
 export default {
   name: "register",
@@ -55,8 +54,9 @@ export default {
           <div class="image-container">
             <div class="modal_img"></div>
             <div class="text-overlay">
-              <div class="center-text">Welcome!
-              <span class="welcome-text">방문을 환영합니다!</span></div>
+              <div class="center-text">
+                Welcome! <span class="welcome-text">방문을 환영합니다!</span>
+              </div>
             </div>
           </div>
         </div>

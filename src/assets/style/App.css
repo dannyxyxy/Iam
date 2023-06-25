@@ -98,20 +98,20 @@ body {
   font-size: 15px;
 }
 .login-btn:hover {
-  background-color: rgb(240,240,240);
-  color:#000;
+  background-color: rgb(240, 240, 240);
+  color: #000;
 }
 .maintext {
   position: fixed;
-  top:0;
+  top: 0;
   margin-top: 100px;
-  width:70%;
+  width: 70%;
   height: calc(100vh - 100px);
-  overflow-y:auto;
+  overflow-y: auto;
   margin-left: 10%;
   margin-right: 10%;
 }
-.maintext::-webkit-scrollbar{
-  width:0;
-  background:transparent;
+.maintext::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
 }
