@@ -11,9 +11,9 @@ export default {
     //데이터 변수값 저장
     return {
       PostMain: "/PostMain",
+      uploadCompleteButton: false,
     };
   },
-
   setup() {
     const userData = ref({
       userName: "",
@@ -27,7 +27,6 @@ export default {
       boardTitle: "",
       boardContents: "",
       userName: "",
-      likeCount: 0,
     });
     const getUserData = async () => {
       if (commonUtil.loginCheck()) {
@@ -75,14 +74,16 @@ export default {
         });
     };
 
-    const startEditing = () => {
-      this.editing = true;
-      this.newUsername = this.userName;
-    };
-    const saveUsername = () => {
-      this.userName = this.newUsername;
-      this.editing = false;
-    };
+  
+      const startEditing = () => {
+        this.editing = true;
+        this.newUsername = this.userName;
+      }
+      const saveUsername = () => {
+        this.userName = this.newUsername;
+        this.editing = false;
+      }
+
 
     onMounted(() => {
       getUserData();
@@ -133,6 +134,7 @@ export default {
           </label>
         </div>
         <!-- <button class="upload-button">개인정보 수정</button> -->
+  
         <div>
           <div v-if="!editing">
             <span>{{ username }}</span>
@@ -141,10 +143,8 @@ export default {
             </button>
           </div>
           <div v-else>
-            <input v-model="newUsername" type="text" />
-            <button class="upload-complete-button" @click="saveUsername">
-              완료
-            </button>
+            <input v-model="newUsername" type="text">
+            <button class="uploadCompleteButton" @click="saveUsername">완료</button>
           </div>
         </div>
       </div>
@@ -166,7 +166,7 @@ export default {
       </div>
       <div class="mypost-container">
         <div class="container">
-          <div class="box" v-for="item in boardData">
+          <div class="box" v-for="(item, index) in boardData" :key="index">
             <router-link :to="PostMain">
               <img src="../assets/img/hi.jpg" />
             </router-link>
