@@ -70,6 +70,8 @@ export default defineComponent({
       if (data.resultCode === 1) {
         alert("글을 삭제했습니다.");
         await router.push("/");
+      } else if (data.resultCode === 0 && data.error === "게시물 삭제 오류") {
+        alert("본인의 글만 삭제할 수 있습니다.");
       } else {
         alert("삭제 권한이 없습니다.");
       }
