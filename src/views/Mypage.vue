@@ -146,7 +146,6 @@ export default {
 
         <div>
           <div v-if="!userData.editing">
-            <span>{{ userName }}</span>
             <button class="name-upload-button" @click="startEditing">개인정보 수정</button>
           </div>
           <div v-else>
