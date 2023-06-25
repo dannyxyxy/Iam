@@ -47,15 +47,15 @@ export default {
       );
 
       const boardData = {
-        boardTitle: title,
-        boardContents: content,
+        crewTitle: title,
+        crewContents: content,
         userIdx: userLocalInfo.userIdx,
       };
 
-      const data = await apiClient("board/writeBoard", boardData);
+      const data = await apiClient("crew/writecrewBoard", boardData);
       if (data.resultCode === 1) {
         alert("글 작성 완료!");
-        await router.push("/");
+        await router.push("/CrewPost");
       } else {
         alert("글이 저장되지 않았습니다.");
       }

@@ -20,7 +20,7 @@ export default defineComponent({
         };
     },
     setup() {
-        const boardData = ref({
+        const crewData = ref({
             id: 0,
             crewId: "",
             profileImg: "",
@@ -29,12 +29,20 @@ export default defineComponent({
             ownerName: "",
             crewMember: 0,
         });
+        const boardData = ref({
+            id: 0,
+            writeTime: "",
+            CrewId: "",
+            crewTitle: "",
+            crewContents: "",
+            profileImg: "",
+        });
         const getcrewBoardDetail = async () => {
             await get("crew/getcrewBoardDetail", location.search)
                 .then((data) => {
                     if (data) {
                         console.log(data);
-                        boardData.value = data.data;
+                        crewData.value = data.data;
                     } else {
                         alert("게시물 정보를 불러올 수 없습니다.");
                     }
@@ -51,7 +59,7 @@ export default defineComponent({
                 .then((data) => {
                     if (data) {
                         console.log(data);
-                        boardData.value = data.data;
+                        crewData.value = data.data;
                     } else {
                         alert("게시물 정보를 불러올 수 없습니다.");
                     }
@@ -61,7 +69,20 @@ export default defineComponent({
                     alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
                 });
         };
-
+        const getcrewBoardList = async () => {
+            await apiClient("crew/ getcrewBoardList")
+                .then((r) => {
+                    boardData.value = r.data;
+                    for (let item in r.data) {
+                        r.data[item].color = `hsl(${parseInt(Math.random() * 24, 10) * 15
+                            }, 16%, 75%)`;
+                    }
+                })
+                .catch((e) => {
+                    alert("크루 정보를 불러올 수 없습니다.");
+                    console.log(e);
+                });
+        };
         onMounted(() => {
             getcrewBoardDetail();
             getCommentList();
@@ -69,7 +90,7 @@ export default defineComponent({
 
         return {
             boardData,
-
+            crewData,
         };
     },
     methods: {
@@ -116,78 +137,46 @@ export default defineComponent({
 <template>
     <div class="maintext">
 
-        <div class="preview-img" :style="`background-color: ${boardData.color}`" />
-                <div class="centered-text">
-                    {{ boardData.crewName }}
-                </div>
+        <div class="preview-img" :style="`background-color: ${crewData.color}`" />
+        <div class="centered-text">
+            {{ crewData.crewName }}
+        </div>
         <div class="crew-text">
             <div class="crew-name-container">
                 <div class="crew-name">
-                    {{ boardData.crewName }}
+                    {{ crewData.crewName }}
                 </div>
                 <div class="crewDay">day 3일전</div>
                 <!--<button type="submit" class="Crew-button" @click="JoinCrew">크루가입</button>-->
                 <router-link to="/CrewEdit">
-                        <button class="Crew-button">글작성</button>
-                    </router-link>
+                    <button class="Crew-button">글작성</button>
+                </router-link>
             </div>
 
             <div class="description-space">
-                    <div class="crew-description">
-                        {{ boardData.crewIntro }}
-                    </div>
+                <div class="crew-description">
+                    {{ crewData.crewIntro }}
                 </div>
+            </div>
         </div>
-        
+
         <div class="crew-post-title">
             크루 게시물 보기
         </div>
         <div class="crew-post-container">
             <div class="post-box">
-                <div class="postbox-img"></div>
+                <div class="postbox-img">{{ crewData.profileImg }}</div>
                 <div class="postbox-summary">
                     <div>
-                        <div class="post-title">제목</div>
-                        <div class="post-contents">내용</div>
+                        <div class="post-title">{{ crewData.crewTitle }}</div>
+                        <div class="post-contents">{{ crewData.crewContents }}</div>
                     </div>
                     <div class="postcircle">
 
                     </div>
                     <div class="postusername">
                         <span style="font-weight: lighter">by </span>
-                        <span style="font-weight: bold">이름</span>
-                    </div>
-                </div>
-            </div>
-            <div class="post-box">
-                <div class="postbox-img"></div>
-                <div class="postbox-summary">
-                    <div>
-                        <div class="post-title">제목</div>
-                        <div class="post-contents">내용</div>
-                    </div>
-                    <div class="postcircle">
-
-                    </div>
-                    <div class="postusername">
-                        <span style="font-weight: lighter">by </span>
-                        <span style="font-weight: bold">이름</span>
-                    </div>
-                </div>
-            </div>
-            <div class="post-box">
-                <div class="postbox-img"></div>
-                <div class="postbox-summary">
-                    <div>
-                        <div class="post-title">제목</div>
-                        <div class="post-contents">내용</div>
-                    </div>
-                    <div class="postcircle">
-
-                    </div>
-                    <div class="postusername">
-                        <span style="font-weight: lighter">by </span>
-                        <span style="font-weight: bold">이름</span>
+                        <span style="font-weight: bold">{{ crewData.CrewId }}</span>
                     </div>
                 </div>
             </div>

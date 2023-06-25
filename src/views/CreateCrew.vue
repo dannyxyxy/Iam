@@ -54,7 +54,6 @@ export default {
     };
     const CreateCrew = async () => {
       if (
-        
         crewInfo.crewName &&
         crewInfo.crewIntro
       ) {
@@ -68,6 +67,12 @@ export default {
     } else {
       alert("빈 칸 없이 모두 입력 해주세요.");
     }
+    this.$router.push('/CrewPost');
+    // 크루 생성 처리 로직
+    console.log('크루 이름:', this.crewName);
+      console.log('크루 소개:', this.crewDescription);
+      console.log('크루 대표 사진:', this.crewImage);
+      // 크루 생성 API 호출 등 추가 작업 수행
 };
 return {
   crewInfo,
@@ -105,9 +110,7 @@ return {
             </div>
           </div>
         </div>
-        <router-link to="/CrewPost">
     <button class="create-crew-btn" type="submit" @click.prevent="createCrew">크루 만들기</button>
-  </router-link>
       </form>
     </div>
    
