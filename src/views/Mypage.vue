@@ -58,7 +58,7 @@ export default {
     };
     const profileFormData = new FormData();
     const profileImgUpload = async (e) => {
-      profileFormData.set("userIdx", userInfo.userIdx);
+      profileFormData.set("userIdx", userData.userIdx);
       profileFormData.set("file", e.target.files[0]);
 
       await apiClient("user/uploadProfile", profileFormData)

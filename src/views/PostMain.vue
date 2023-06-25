@@ -127,7 +127,6 @@ export default defineComponent({
       await get("board/getBoardDetail", location.search)
         .then((data) => {
           if (data) {
-            console.log(data);
             boardData.value = data.data;
           } else {
             alert("게시물 정보를 불러올 수 없습니다.");
@@ -152,7 +151,6 @@ export default defineComponent({
         .then((data) => {
           if (data) {
             commentData.value = data.data;
-            console.log(commentData.value);
           } else {
             alert("댓글 정보를 불러올 수 없습니다.");
           }
