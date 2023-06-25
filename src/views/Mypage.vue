@@ -9,17 +9,17 @@ export default {
   name: "App",
   data() {
     //데이터 변수값 저장
+
     return {
       PostMain: "/PostMain",
     };
   },
-
   setup() {
     const userData = ref({
       userName: "",
       userEmail: "",
       profileImg: "",
-      newUsername: "",
+      userPassword: "",
       editing: false,
     });
     const boardData = ref({
@@ -27,7 +27,6 @@ export default {
       boardTitle: "",
       boardContents: "",
       userName: "",
-      likeCount: 0,
     });
     const getUserData = async () => {
       if (commonUtil.loginCheck()) {
@@ -76,12 +75,19 @@ export default {
     };
 
     const startEditing = () => {
-      this.editing = true;
-      this.newUsername = this.userName;
+      userData.value.editing = true;
     };
-    const saveUsername = () => {
-      this.userName = this.newUsername;
-      this.editing = false;
+    const saveUsername = async () => {
+      await apiClient("user/updateProfile", userData.value)
+        .then((r) => {
+          userData.value.editing = false;
+          alert("업데이트 성공!");
+          location.reload();
+        })
+        .catch((e) => {
+          console.log(e);
+          alert("업데이트 실패!");
+        });
     };
 
     onMounted(() => {
@@ -94,6 +100,10 @@ export default {
       boardData,
       profileImgUpload,
       CONSTANTS,
+
+      startEditing,
+      saveUsername,
+      uploadCompleteButton: false,
     };
   },
 };
@@ -133,17 +143,17 @@ export default {
           </label>
         </div>
         <!-- <button class="upload-button">개인정보 수정</button> -->
+
         <div>
-          <div v-if="!editing">
-            <span>{{ username }}</span>
+          <div v-if="!userData.editing">
             <button class="upload-button" @click="startEditing">
               개인정보 수정
             </button>
           </div>
           <div v-else>
-            <input v-model="newUsername" type="text" />
-            <button class="upload-complete-button" @click="saveUsername">
-              완료
+            <input v-model="userData.userName" type="text" />
+            <button class="uploadCompleteButton" @click="saveUsername">
+              수정 완료
             </button>
           </div>
         </div>
@@ -154,9 +164,24 @@ export default {
       <div class="crewpost">
         <h2>내 크루</h2>
       </div>
-      <div class="">
-        크루보기를 어떻게 만들어야할까요? 1.인스타 하이라이트 형식 2.게시물
-        페이지와 크루 페이지 버튼 만들어서 클릭하면 나오게
+
+      <!-- 여기가 크루. 크루 사진주소랑 크루 이름주소 필요해요 -->
+      <div class="photo-gallery">
+        <div v-for="group in groups" :key="group.id" class="photo-group">
+          <h2>{{ group.name }}</h2>
+          <div class="photo-container">
+            <div
+              v-for="photo in group.photos"
+              :key="photo.id"
+              class="photo-item"
+            >
+              <div class="rounded-photo">
+                <img :src="photo.url" alt="사진" />
+              </div>
+              <p class="photo-name">{{ photo.name }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -166,7 +191,7 @@ export default {
       </div>
       <div class="mypost-container">
         <div class="container">
-          <div class="box" v-for="item in boardData">
+          <div class="box" v-for="(item, index) in boardData" :key="index">
             <router-link :to="PostMain">
               <img src="../assets/img/hi.jpg" />
             </router-link>
