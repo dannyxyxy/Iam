@@ -205,9 +205,7 @@ export default defineComponent({
     </div>
     <div class="actions">
       <div class="actions_button">
-        <router-link :to="{ name: 'PostMain', query: { id: item._id } }">
         <button class="d-button" @click="editPost">글 수정</button>
-        </router-link>
         <button class="d-button" @click="deletePost">글 삭제</button>
       </div>
     </div>
