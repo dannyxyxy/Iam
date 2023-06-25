@@ -139,19 +139,27 @@ export default defineComponent({
         });
     };
 
+    const commentData = ref({
+      id: "",
+      writeTime: "",
+      commentContents: "",
+      userName: "",
+      likeCount: 0,
+    });
+
     const getCommentList = async () => {
-      await get("board/getBoardDetail", location.search)
+      await get("board/getCommentList", location.search)
         .then((data) => {
           if (data) {
-            console.log(data);
-            boardData.value = data.data;
+            commentData.value = data.data;
+            console.log(commentData.value);
           } else {
-            alert("게시물 정보를 불러올 수 없습니다.");
+            alert("댓글 정보를 불러올 수 없습니다.");
           }
         })
         .catch((error) => {
           console.log(error);
-          alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
+          alert("댓글 정보를 불러오는 중에 오류가 발생했습니다.");
         });
     };
 
@@ -162,6 +170,7 @@ export default defineComponent({
 
     return {
       boardData,
+      commentData,
     };
   },
 
@@ -213,17 +222,17 @@ export default defineComponent({
       </form>
 
       <ul>
-        <li v-for="(commentData, index) in comments" :key="index">
+        <li v-for="(comment, index) in commentData" :key="index">
           <section id="info">
             <div class="meta-info">
               <p>
-                &nbsp; by <span class="bold">{{ commentData.userName }}</span>
+                &nbsp; by <span class="bold">{{ comment.userName }}</span>
               </p>
               &nbsp;&nbsp;&nbsp;&nbsp;
-              <p>{{ commentData.writeTime }}</p>
+              <p>{{ comment.writeTime }}</p>
             </div>
           </section>
-          {{ commentData.commentContents }}
+          {{ comment.commentContents }}
           <div class="comment-buttons">
             <button @click="editComment(index)" class="edit-button">
               수정
