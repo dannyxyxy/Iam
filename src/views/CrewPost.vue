@@ -21,57 +21,57 @@ export default defineComponent({
     },
     setup() {
         const boardData = ref({
-      id: 0,
-      crewId : "",
-      profileImg : "",
-      crewName : "",
-      crewIntro : "",
-      ownerName : "",
-      crewMember: 0,
-    });
-    const getBoardDetail = async () => {
-      await get("board/getCrewDetail", location.search)
-        .then((data) => {
-          if (data) {
-            console.log(data);
-            boardData.value = data.data;
-          } else {
-            alert("게시물 정보를 불러올 수 없습니다.");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
+            id: 0,
+            crewId: "",
+            profileImg: "",
+            crewName: "",
+            crewIntro: "",
+            ownerName: "",
+            crewMember: 0,
         });
-    };
+        const getcrewBoardDetail = async () => {
+            await get("crew/getcrewBoardDetail", location.search)
+                .then((data) => {
+                    if (data) {
+                        console.log(data);
+                        boardData.value = data.data;
+                    } else {
+                        alert("게시물 정보를 불러올 수 없습니다.");
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                    alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
+                });
+        };
 
-    const getCommentList = async () => {
+        const getCommentList = async () => {
 
-      await get("board/getCrewDetail", location.search)
-        .then((data) => {
-          if (data) {
-            console.log(data);
-            boardData.value = data.data;
-          } else {
-            alert("게시물 정보를 불러올 수 없습니다.");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
+            await get("crew/getcrewBoardDetail", location.search)
+                .then((data) => {
+                    if (data) {
+                        console.log(data);
+                        boardData.value = data.data;
+                    } else {
+                        alert("게시물 정보를 불러올 수 없습니다.");
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                    alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
+                });
+        };
+
+        onMounted(() => {
+            getcrewBoardDetail();
+            getCommentList();
         });
-    };
 
-    onMounted(() => {
-      getCrewDetail();
-      getCommentList();
-    });
+        return {
+            boardData,
 
-    return {
-      boardData,
-
-    };
-  },
+        };
+    },
     methods: {
         handleImageUpload(event) {
             // 크루 대표 사진 업로드 처리 로직
@@ -112,13 +112,14 @@ export default defineComponent({
 });
 </script>
 
+
 <template>
     <div class="maintext">
-            <div class="preview-img" :style="`background-color: ${boardData.color}`" />
-            <div class="centered-text">
-                {{ boardData.crewName }}
-            </div>
-        </div>
+
+        <div class="preview-img" :style="`background-color: ${boardData.color}`" />
+                <div class="centered-text">
+                    {{ boardData.crewName }}
+                </div>
         <div class="crew-text">
             <div class="crew-name-container">
                 <div class="crew-name">
@@ -127,36 +128,69 @@ export default defineComponent({
                 <div class="crewDay">day 3일전</div>
                 <!--<button type="submit" class="Crew-button" @click="JoinCrew">크루가입</button>-->
                 <router-link to="/CrewEdit">
-                    <button class="Crew-button">글작성</button>
-                </router-link>
+                        <button class="Crew-button">글작성</button>
+                    </router-link>
             </div>
 
             <div class="description-space">
-                <div class="crew-description">
-                    {{ boardData.crewIntro }}
+                    <div class="crew-description">
+                        {{ boardData.crewIntro }}
+                    </div>
                 </div>
-            </div>
         </div>
+        
         <div class="crew-post-title">
             크루 게시물 보기
         </div>
         <div class="crew-post-container">
-            <div class="post-box" v-for="crewpost in recommendedCrews" :key="crewpost.id">
-                <div class="postbox-img" :style="`background-color: ${boardData.color}`" />
+            <div class="post-box">
+                <div class="postbox-img"></div>
                 <div class="postbox-summary">
                     <div>
-                        <div class="post-title">{{ crewpost.title }}</div>
-                        <div class="post-contents">{{ crewpost.description }}</div>
+                        <div class="post-title">제목</div>
+                        <div class="post-contents">내용</div>
                     </div>
                     <div class="postcircle">
 
                     </div>
                     <div class="postusername">
                         <span style="font-weight: lighter">by </span>
-                        <span style="font-weight: bold">{{ crewpost.name }}</span>
+                        <span style="font-weight: bold">이름</span>
                     </div>
+                </div>
+            </div>
+            <div class="post-box">
+                <div class="postbox-img"></div>
+                <div class="postbox-summary">
+                    <div>
+                        <div class="post-title">제목</div>
+                        <div class="post-contents">내용</div>
+                    </div>
+                    <div class="postcircle">
 
+                    </div>
+                    <div class="postusername">
+                        <span style="font-weight: lighter">by </span>
+                        <span style="font-weight: bold">이름</span>
+                    </div>
+                </div>
+            </div>
+            <div class="post-box">
+                <div class="postbox-img"></div>
+                <div class="postbox-summary">
+                    <div>
+                        <div class="post-title">제목</div>
+                        <div class="post-contents">내용</div>
+                    </div>
+                    <div class="postcircle">
+
+                    </div>
+                    <div class="postusername">
+                        <span style="font-weight: lighter">by </span>
+                        <span style="font-weight: bold">이름</span>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 </template>
