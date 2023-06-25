@@ -94,8 +94,23 @@ export default defineComponent({
         alert("댓글이 저장되지 않았습니다.");
       }
     },
-    deleteComment(index) {
-      this.comments.splice(index, 1);
+    async deleteComment() {
+      const userLocalInfo = JSON.parse(
+        commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+      );
+      const data = await apiClient("board/deleteComment", {
+        userIdx: userLocalInfo.userIdx,
+        postId: location.search,
+      });
+      if (data.resultCode === 1) {
+        alert("댓글을 삭제했습니다.");
+        await router.go(0);
+      } else if (data.resultCode === 0 && data.error === "게시물 삭제 오류") {
+        alert("본인의 글만 삭제할 수 있습니다.");
+      } else {
+        alert("삭제 권한이 없습니다.");
+      }
+      
     },
     editComment(index) {
       this.editIndex = index; // 수정 버튼을 클릭한 댓글의 인덱스를 저장
