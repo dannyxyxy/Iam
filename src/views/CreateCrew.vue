@@ -1,4 +1,11 @@
 <script>
+import "@toast-ui/editor/dist/toastui-editor.css";
+import { apiClient } from "../utils/axios.js";
+import commonUtil from "../utils/common-util.js";
+import { onMounted } from "vue";
+import { CONSTANTS } from "../utils/constants.js";
+import router from "../router/index.js";
+
 export default {
   data() {
     return {
@@ -33,7 +40,46 @@ export default {
       console.log('크루 대표 사진:', this.crewImage);
       // 크루 생성 API 호출 등 추가 작업 수행
     }
-  }
+  },
+  setup() {
+    onMounted(async () => {
+      const loginCheck = commonUtil.loginCheck();
+      if (!loginCheck) {
+        alert("로그인 후에 이용해주세요");
+        await router.push("/");
+      }
+    });
+    const crewInfo = {
+      id: 0,
+      crewId: "",
+      profileImg: "",
+      crewName: "",
+      crewIntro: "",
+      ownerName: "",
+      crewMember: 0,
+    };
+    const CreateCrew = async () => {
+      if (
+        crewInfo.crewName &&
+        crewInfo.crewIntro &&
+        crewInfo.ownerName
+      ) {
+        const MakeCrew = await apiClient("crew/MakeCrew", crewInfo);
+        if (MakeCrew.resultCode === 1) {
+          alert("크루 생성 성공!");
+          location.reload();
+        } else {
+          alert("크루생성 실패!");
+        }
+    } else {
+      alert("빈 칸 없이 모두 입력 해주세요.");
+    }
+};
+return {
+  crewInfo ,
+  CreateCrew,
+};
+  },
 };
 </script>
 
@@ -44,22 +90,24 @@ export default {
       <div class="preview-img">
         <img :src="crewImagePreview" alt="크루 대표 사진" v-if="crewImagePreview" class="centered-image">
         <div class="centered-text">
-          <h1>{{ crewName }}</h1>
+          <h1>크루이름</h1>
         </div>
       </div>
       <div class="crew-imageLoad">크루 표지사진을 업로드 해주세요.
         <input type="file" id="crew-image" @change="handleImageUpload" class="upload-btn" />
       </div>
-      
+
       <form>
         <div class="crew-text">
           <div class="crew-name-container">
-            <input type="text" id="crew-name" v-model="crewName" class="input-box" placeholder="크루 이름을 입력하세요." />
+            <input type="text" id="crew-name" v-model="crewName" class="input-box" placeholder="크루 이름을 입력하세요." @input="crewInfo.crewName = $event.target.value"
+              required/>
           </div>
           <div class="description-space">
             <div class="crew-description">
               <textarea id="crew-description" v-model="crewDescription" class="input-box"
-                placeholder="간단하게 크루를 소개해주세요."></textarea>
+                placeholder="간단하게 크루를 소개해주세요." @input="crewInfo.crewIntro = $event.target.value"
+              required></textarea>
             </div>
           </div>
         </div>
