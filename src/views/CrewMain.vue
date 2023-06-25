@@ -3,7 +3,7 @@ import { apiClient } from "../utils/axios.js";
 import { onMounted, ref } from "vue";
 import { CONSTANTS } from "../utils/constants.js";
 import router from "../router/index.js";
-
+import commonUtil from "../utils/common-util.js";
 
 export default {
   name: "App",
@@ -25,11 +25,11 @@ export default {
   setup() {
     const boardData = ref({
       id: 0,
-      crewId : "",
-      profileImg : "",
-      crewName : "",
-      crewIntro : "",
-      ownerName : "",
+      crewId: "",
+      profileImg: "",
+      crewName: "",
+      crewIntro: "",
+      ownerName: "",
       crewMember: 0,
     });
     const getCrewList = async () => {
@@ -47,6 +47,23 @@ export default {
           console.log(e);
         });
     };
+    const joinCrew = async (e) => {
+      const userLocalInfo = JSON.parse(
+        commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+      );
+      await apiClient("crew/JoinCrew", {
+        userIdx: userLocalInfo.userIdx,
+        crewIdx: e,
+      })
+        .then((r) => {
+          alert("크루 가입 성공!");
+          location.reload();
+        })
+        .catch((e) => {
+          alert("크루 가입 실패! 관리자에게 문의하세요.");
+          location.reload();
+        });
+    };
 
     onMounted(() => {
       getCrewList();
@@ -54,12 +71,13 @@ export default {
 
     return {
       boardData,
+      joinCrew,
     };
   },
   methods: {
     JoinCrew(crewId) {
-            alert('크루 가입이 완료되었습니다');
-    }
+      alert("크루 가입이 완료되었습니다");
+    },
   },
 };
 </script>
@@ -72,8 +90,13 @@ export default {
           <h2>전체 크루 목록</h2>
           <div class="crew-box-container">
             <div class="crew-box" v-for="item in boardData" :key="item._crewId">
-              <router-link :to="{ name: 'CrewPost', query: { id: item._crewId } }">
-                <div class="crew-avatar" :style="`background-color: ${item.color}`" />
+              <router-link
+                :to="{ name: 'CrewPost', query: { id: item._crewId } }"
+              >
+                <div
+                  class="crew-avatar"
+                  :style="`background-color: ${item.color}`"
+                />
               </router-link>
 
               <div class="crew-info">
@@ -84,7 +107,13 @@ export default {
                   <div class="dot"></div>
                   <p class="stat-label">게시물 개</p>
                 </div>
-                <button type="submit" class="CrewJoin-button" @click="JoinCrew">크루가입</button>
+                <button
+                  type="submit"
+                  class="CrewJoin-button"
+                  @click="joinCrew(item._id)"
+                >
+                  크루가입
+                </button>
               </div>
             </div>
           </div>

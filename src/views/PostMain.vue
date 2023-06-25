@@ -1,15 +1,13 @@
 <script>
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-import { get, apiClient  } from "../utils/axios.js";
+import { get, apiClient } from "../utils/axios.js";
 import { onMounted, ref } from "vue";
 import { defineComponent } from "vue";
 import commonUtil from "../utils/common-util.js";
 import { CONSTANTS } from "../utils/constants.js";
 
 import router from "../router/index.js";
-
-
 
 export default defineComponent({
   name: "App",
@@ -61,28 +59,23 @@ export default defineComponent({
     toggleMode() {
       this.isDarkMode = !this.isDarkMode;
     },
-    
+
     async submitComment() {
       const content = this.newComment;
-
       const userLocalInfo = JSON.parse(
         commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
       );
-      console.log(content, userLocalInfo );
-
-      const commentData = {
+      const data = await apiClient("board/writeComment", {
         commentContents: content,
         userIdx: userLocalInfo.userIdx,
-      };
-
-        const data = await apiClient("board/writeComment", commentData);
-        if (data.resultCode === 1) {
-          alert("글 작성 완료!");
-          await router.push("/");
-        } else {
-          alert("글이 저장되지 않았습니다.");
-        }
-      
+        postId: location.search,
+      });
+      if (data.resultCode === 1) {
+        alert("글 작성 완료!");
+        await router.push("/");
+      } else {
+        alert("글이 저장되지 않았습니다.");
+      }
     },
     deleteComment(index) {
       this.comments.splice(index, 1);
@@ -147,7 +140,6 @@ export default defineComponent({
     };
 
     const getCommentList = async () => {
-
       await get("board/getBoardDetail", location.search)
         .then((data) => {
           if (data) {
@@ -170,7 +162,6 @@ export default defineComponent({
 
     return {
       boardData,
-
     };
   },
 
@@ -210,7 +201,6 @@ export default defineComponent({
       </div>
     </div>
 
-
     <div class="comments-section">
       <h2>댓글</h2>
       <form @submit.prevent="submitComment">
@@ -232,7 +222,7 @@ export default defineComponent({
               &nbsp;&nbsp;&nbsp;&nbsp;
               <p>{{ commentData.writeTime }}</p>
             </div>
-         </section>
+          </section>
           {{ commentData.commentContents }}
           <div class="comment-buttons">
             <button @click="editComment(index)" class="edit-button">
@@ -241,7 +231,6 @@ export default defineComponent({
             <button @click="deleteComment(index)" class="delete-button">
               삭제
             </button>
-            
           </div>
         </li>
       </ul>
@@ -271,5 +260,4 @@ export default defineComponent({
 .comment_box {
   padding: 10px;
 }
-
 </style>
