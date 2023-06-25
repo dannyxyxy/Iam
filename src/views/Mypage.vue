@@ -20,7 +20,6 @@ export default {
       userEmail: "",
       profileImg: "",
 
-      newUsername: "",
       editing: false,
     });
     const boardData = ref({
@@ -77,12 +76,17 @@ export default {
 
   
       const startEditing = () => {
-        editing.value = true;
-        newUsername.value = userName.value;
+        userData.value.editing = true;
       }
-      const saveUsername = () => {
-        userName.value = newUsername.value;
-        editing.value = false;
+      const saveUsername = async () => {
+        await apiClient("user/profileUpdate", userData).then(r => {
+          userData.value.editing = false;
+          alert("업데이트 성공!");
+          location.reload()
+        }).catch(e => {
+          console.log(e);
+          alert("업데이트 실패!");
+        })
       }
 
 
@@ -141,12 +145,12 @@ export default {
         <!-- <button class="upload-button">개인정보 수정</button> -->
   
         <div>
-          <div v-if="!editing">
+          <div v-if="!userData.editing">
             <span>{{ userName }}</span>
             <button class="upload-button" @click="startEditing">개인정보 수정</button>
           </div>
           <div v-else>
-            <input v-model="newUsername" type="text">
+            <input v-model="userData.userName" type="text">
             <button class="uploadCompleteButton" @click="saveUsername">수정 완료</button>
           </div>
         </div>
