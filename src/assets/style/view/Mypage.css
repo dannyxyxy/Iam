@@ -100,3 +100,38 @@ label:hover {
   background-color: rgb(240, 240, 240);
   color: #000;
 }
+
+
+
+.photo-gallery {
+  display: flex;
+  overflow-x: scroll;
+}
+.photo-group {
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+.photo-container {
+  display: flex;
+}
+.photo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+}
+.rounded-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.rounded-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photo-name {
+  margin-top: 5px;
+  text-align: center;
+}

@@ -9,9 +9,9 @@ export default {
   name: "App",
   data() {
     //데이터 변수값 저장
+
     return {
       PostMain: "/PostMain",
-      uploadCompleteButton: false,
     };
   },
   setup() {
@@ -19,6 +19,7 @@ export default {
       userName: "",
       userEmail: "",
       profileImg: "",
+
       newUsername: "",
       editing: false,
     });
@@ -76,12 +77,12 @@ export default {
 
   
       const startEditing = () => {
-        this.editing = true;
-        this.newUsername = this.userName;
+        editing.value = true;
+        newUsername.value = userName.value;
       }
       const saveUsername = () => {
-        this.userName = this.newUsername;
-        this.editing = false;
+        userName.value = newUsername.value;
+        editing.value = false;
       }
 
 
@@ -95,6 +96,10 @@ export default {
       boardData,
       profileImgUpload,
       CONSTANTS,
+      
+      startEditing,
+      saveUsername,
+      uploadCompleteButton: false,
     };
   },
 };
@@ -137,14 +142,12 @@ export default {
   
         <div>
           <div v-if="!editing">
-            <span>{{ username }}</span>
-            <button class="upload-button" @click="startEditing">
-              개인정보 수정
-            </button>
+            <span>{{ userName }}</span>
+            <button class="upload-button" @click="startEditing">개인정보 수정</button>
           </div>
           <div v-else>
             <input v-model="newUsername" type="text">
-            <button class="uploadCompleteButton" @click="saveUsername">완료</button>
+            <button class="uploadCompleteButton" @click="saveUsername">수정 완료</button>
           </div>
         </div>
       </div>
@@ -154,10 +157,22 @@ export default {
       <div class="crewpost">
         <h2>내 크루</h2>
       </div>
-      <div class="">
-        크루보기를 어떻게 만들어야할까요? 1.인스타 하이라이트 형식 2.게시물
-        페이지와 크루 페이지 버튼 만들어서 클릭하면 나오게
+
+      <!-- 여기가 크루. 크루 사진주소랑 크루 이름주소 필요해요 -->
+      <div class="photo-gallery">
+        <div v-for="group in groups" :key="group.id" class="photo-group">
+          <h2>{{ group.name }}</h2>
+          <div class="photo-container">
+            <div v-for="photo in group.photos" :key="photo.id" class="photo-item">
+              <div class="rounded-photo">
+                <img :src="photo.url" alt="사진" />
+              </div>
+              <p class="photo-name">{{ photo.name }}</p>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
 
     <div class="divider">
