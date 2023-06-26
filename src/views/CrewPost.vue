@@ -77,7 +77,7 @@ export default defineComponent({
                 });
         };
         const getcrewBoardList = async () => {
-            await apiClient("crew/ getcrewBoardList")
+            await apiClient("crew/getcrewBoardList")
                 .then((r) => {
                     boardData.value = r.data;
                     for (let item in r.data) {
