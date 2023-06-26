@@ -51,29 +51,12 @@ export default defineComponent({
                         console.log(data);
                         crewData.value = data.data;
                     } else {
-                        alert("게시물 정보를 불러올 수 없습니다.");
+                        alert("크루 정보를 불러올 수 없습니다.");
                     }
                 })
                 .catch((error) => {
                     console.log(error);
-                    alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
-                });
-        };
-
-        const getCommentList = async () => {
-
-            await get("crew/getcrewBoardDetail", location.search)
-                .then((data) => {
-                    if (data) {
-                        console.log(data);
-                        crewData.value = data.data;
-                    } else {
-                        alert("게시물 정보를 불러올 수 없습니다.");
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                    alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
+                    alert("크루 정보를 불러오는 중에 오류가 발생했습니다.");
                 });
         };
         const getcrewBoardList = async () => {
@@ -86,13 +69,13 @@ export default defineComponent({
                     }
                 })
                 .catch((e) => {
-                    alert("크루 정보를 불러올 수 없습니다.");
+                    alert("게시물 정보를 불러올 수 없습니다.");
                     console.log(e);
                 });
         };
         onMounted(() => {
             getcrewBoardDetail();
-            getCommentList();
+            getcrewBoardList();
         });
 
         return {
