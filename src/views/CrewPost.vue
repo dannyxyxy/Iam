@@ -117,7 +117,13 @@ export default defineComponent({
             // 예시: 가입 API 호출 또는 가입 상태 변경 등의 작업을 수행합니다.
             console.log('크루 가입', crewId);
             alert('크루 가입이 완료되었습니다');
-        }
+        },
+        navigateToNewPage() {
+      const value = 'Your value from the previous page';
+
+      // Save the value to local storage or session storage
+      localStorage.setItem('previousPageValue', value); // or sessionStorage.setItem('previousPageValue', value)
+    }
     }
 
 });
@@ -141,7 +147,7 @@ export default defineComponent({
                 <router-link
                 :to="{ name: 'CrewEdit', query: { id: boardData._id } }"
               >
-                    <button class="Crew-button">글작성</button>
+                    <button class="Crew-button" @click="navigateToNewPage">글작성</button>
                 </router-link>
             </div>
 

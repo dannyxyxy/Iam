@@ -9,13 +9,14 @@ import router from "../router/index.js";
 
 export default {
   components: {
-    editor: Editor
+    editor: Editor,
   },
 
   data() {
     return {
       title: "",
       selectedPhoto: null,
+      previousPageValue: '',
     };
   },
 
@@ -40,29 +41,24 @@ export default {
   },
   methods: {
     async saveContents() {
-      const title = this.crewtitle;
+      const title = this.title;
       const contents = this.editor.getMarkdown();
-      const userLocalInfo = JSON.parse(
-        commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO).userEmail
-      );
-      const crew = this.crewName;
-
-      if (crewtitle) {
-        if (crewcontents) {
+      if (title) {
+        if (contents) {
           await apiClient("crew/writecrewBoard", {
             crewTitle: title,
             crewContents: contents,
             userEmail: JSON.parse(
               commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
             ).userEmail,
-            crewName: crew,
+            crewName: this.previousPageValue,
           })
             .then((r) => {
-              alert("크루 생성 완료!");
-              router.push("/CrewMain");
+              alert("글 작성 완료!");
+              router.push("/CrewPost");
             })
             .catch((e) => {
-              alert("크루가 저장되지 않았습니다.");
+              alert("글이 저장되지 않았습니다.");
             });
         } else alert("내용을 입력해주세요");
       } else alert("제목을 입력해주세요");
@@ -76,26 +72,33 @@ export default {
       // 예: 서버에 사진을 업로드하거나, 상태 관리를 통해 홈 페이지에서 사용할 수 있도록 전달
       console.log(this.selectedPhoto);
     },
-
   },
   setup() {
-    const getLoginInfo = async () => {
+    onMounted(async () => {
       const loginCheck = commonUtil.loginCheck();
       if (!loginCheck) {
         alert("로그인 후에 이용해주세요");
         await router.push("/");
       }
-    };
-    onMounted(getLoginInfo);
+    });
   },
+  computed: {
+    previousPageValue() {
+      // Retrieve the value from local storage or session storage
+      return localStorage.getItem('previousPageValue'); // or sessionStorage.getItem('previousPageValue')
+    }
+  }
 };
 </script>
 
 <template>
   <div class="maintext">
-    <input type="text" v-model="title" placeholder="제목을 입력하세요." class="title-input" />
-
-
+    <input
+      type="text"
+      v-model="title"
+      class="title-input-box"
+      placeholder="제목"
+    />
     <div class="editdiv">
       <div ref="editorRef"></div>
     </div>
@@ -104,5 +107,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style scoped></style>
