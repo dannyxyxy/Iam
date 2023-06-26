@@ -8,65 +8,53 @@ import router from "../router/index.js";
 export default {
   name: "App",
   data() {
-    //데이터 변수값 저장
-
     return {
       PostMain: "/PostMain",
     };
   },
   setup() {
-    const userData = ref({
-      userName: "",
-      userEmail: "",
-      profileImg: "",
-      userPassword: "",
-      editing: false,
-    });
-    const boardData = ref({
-      writeTime: "",
-      boardTitle: "",
-      boardContents: "",
-      userName: "",
-    });
+    const editing = ref(false);
+    const userData = ref({});
+    const boardData = ref({});
+    const userLocalInfo = JSON.parse(
+      commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+    );
     const getUserData = async () => {
       if (commonUtil.loginCheck()) {
-        await apiClient(
-          "user/getUserInfo",
-          JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO))
-        )
+        await apiClient("user/getUserInfo", userLocalInfo)
           .then((r) => {
             userData.value = r.data;
           })
           .catch((e) => {
-            alert("로그인 후에 이용해주세요");
-            router.push("/");
+            console.log(e);
           });
+      } else {
+        alert("로그인 후에 이용해주세요");
+        await router.push("/");
       }
     };
 
     const getBoardList = async () => {
-      const data = await apiClient(
-        "user/getBoardList",
-        JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO))
-      );
-      if (data.resultCode === 1) {
-        boardData.value = data.data;
-      } else {
-        alert("게시물 정보를 불러올 수 없습니다.");
-        await router.push("/");
-      }
+      await apiClient("user/getBoardList", userLocalInfo)
+        .then((r) => {
+          boardData.value = r.data;
+          console.log(r);
+        })
+        .catch((e) => {
+          console.log(e);
+          alert("게시물 정보를 불러올 수 없습니다.");
+          router.push("/");
+        });
     };
     const profileFormData = new FormData();
     const profileImgUpload = async (e) => {
-      profileFormData.set("userIdx", userData.userIdx);
+      profileFormData.set("userIdx", userLocalInfo.userIdx);
       profileFormData.set("file", e.target.files[0]);
 
       await apiClient("user/uploadProfile", profileFormData)
         .then((r) => {
-          if (r.resultCode === 1) {
-            alert("프로필 사진 변경 완료!");
-            location.reload();
-          }
+          alert("프로필 사진 변경 완료!");
+          location.reload();
         })
         .catch((e) => {
           console.log(e);
@@ -75,7 +63,7 @@ export default {
     };
 
     const startEditing = () => {
-      userData.value.editing = true;
+      editing.value = true;
     };
     const saveUsername = async () => {
       await apiClient("user/updateProfile", userData.value)
@@ -100,7 +88,7 @@ export default {
       boardData,
       profileImgUpload,
       CONSTANTS,
-
+      editing,
       startEditing,
       saveUsername,
       uploadCompleteButton: false,
@@ -145,12 +133,16 @@ export default {
         <!-- <button class="upload-button">개인정보 수정</button> -->
 
         <div>
-          <div v-if="!userData.editing">
-            <button class="name-upload-button" @click="startEditing">개인정보 수정</button>
+          <div v-if="!editing">
+            <button class="name-upload-button" @click="startEditing">
+              개인정보 수정
+            </button>
           </div>
           <div v-else>
-            <input v-model="userData.userName" class="uploadName" type="text">
-            <button class="uploadCompleteButton" @click="saveUsername">수정 완료</button>
+            <input v-model="userData.userName" class="uploadName" type="text" />
+            <button class="uploadCompleteButton" @click="saveUsername">
+              수정 완료
+            </button>
           </div>
         </div>
       </div>
