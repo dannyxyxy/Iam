@@ -54,7 +54,24 @@ export default {
         this.isEditable = true;
       }
     },
+  },
+
+  async saveModifiedContent() {
+  const title = this.title;
+  const content = this.editor.getMarkdown();
+
+  // 수정된 글의 데이터를 서버로 전송하는 API 요청 등의 로직을 수행
+  const response = await apiClient("board/modifyBoard", { title, content });
+
+  if (response.resultCode === 1) {
+    // 수정이 성공적으로 완료된 경우
+    alert("글 수정 완료!");
+    await router.push("/");
+  } else {
+    // 수정이 실패한 경우
+    alert("글이 저장되지 않았습니다.");
   }
+},
 };
 </script>
 
