@@ -81,20 +81,19 @@ export default defineComponent({
       const userLocalInfo = JSON.parse(
         commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
       );
-      const data = await apiClient("board/deleteBoard", {
+      const queryParams = { id: location.search }; 
+      const data = await apiClient("board/goToUpdateEdit", {
         userIdx: userLocalInfo.userIdx,
-        postId: location.search,
+        postId: queryParams.id,
       });
       if (data.resultCode === 1) {
-        alert("글 수정가능");
-        await router.push("/UpdateEdit");
+        await router.push({ name: "UpdateEdit", query: queryParams }); 
       } else if (data.resultCode === 0 && data.error === "게시물 수정 오류") {
         alert("본인의 글만 수정할 수 있습니다.");
       } else {
         alert("수정 권한이 없습니다.");
       }
     },
-
 
     async submitComment() {
       const content = this.newComment;
@@ -255,7 +254,7 @@ export default defineComponent({
     <div class="actions">
       <div class="actions_button">
         <button class="d-button" @click="goToUpdateEdit">글 수정</button>
-        <button class="d-button" @click="">글 삭제</button>
+        <button class="d-button" @click="deletePost">글 삭제</button>
       </div>
     </div>
 
