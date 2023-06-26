@@ -6,8 +6,8 @@ import { onMounted, ref } from "vue";
 import { defineComponent } from "vue";
 import commonUtil from "../utils/common-util.js";
 import { CONSTANTS } from "../utils/constants.js";
-
 import router from "../router/index.js";
+import UpdateEdit from "./UpdateEdit.vue";
 
 export default defineComponent({
   name: "App",
@@ -76,6 +76,25 @@ export default defineComponent({
         alert("삭제 권한이 없습니다.");
       }
     },
+
+    async goToUpdateEdit() {
+      const userLocalInfo = JSON.parse(
+        commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+      );
+      const data = await apiClient("board/deleteBoard", {
+        userIdx: userLocalInfo.userIdx,
+        postId: location.search,
+      });
+      if (data.resultCode === 1) {
+        alert("글 수정가능");
+        await router.push("/UpdateEdit");
+      } else if (data.resultCode === 0 && data.error === "게시물 수정 오류") {
+        alert("본인의 글만 수정할 수 있습니다.");
+      } else {
+        alert("수정 권한이 없습니다.");
+      }
+    },
+
 
     async submitComment() {
       const content = this.newComment;
@@ -235,8 +254,8 @@ export default defineComponent({
     </div>
     <div class="actions">
       <div class="actions_button">
-        <button class="d-button" @click="editPost">글 수정</button>
-        <button class="d-button" @click="deletePost">글 삭제</button>
+        <button class="d-button" @click="goToUpdateEdit">글 수정</button>
+        <button class="d-button" @click="">글 삭제</button>
       </div>
     </div>
 
