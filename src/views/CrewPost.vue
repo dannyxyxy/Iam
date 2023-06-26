@@ -21,6 +21,7 @@ export default defineComponent({
             writeTime: "",
             crewTitle: "",
             crewContents: "",
+            CrewEdit: "/CrewEdit",
         };
     },
     setup() {
@@ -137,7 +138,9 @@ export default defineComponent({
                 </div>
                 <div class="crewDay">day 3일전</div>
                 <!--<button type="submit" class="Crew-button" @click="JoinCrew">크루가입</button>-->
-                <router-link to="/CrewEdit">
+                <router-link
+                :to="{ name: 'CrewEdit', query: { id: boardData._id } }"
+              >
                     <button class="Crew-button">글작성</button>
                 </router-link>
             </div>

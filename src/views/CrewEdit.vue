@@ -11,7 +11,7 @@ export default {
   components: {
     editor: Editor
   },
-  
+
   data() {
     return {
       title: "",
@@ -39,37 +39,42 @@ export default {
     });
   },
   methods: {
-    async saveContent() {
-      const title = this.title;
-      const content = this.editor.getMarkdown();
+    async saveContents() {
+      const title = this.crewtitle;
+      const contents = this.editor.getMarkdown();
       const userLocalInfo = JSON.parse(
-        commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+        commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO).userEmail
       );
       const crew = this.crewName;
 
-      const boardData = {
-        crewTitle: title,
-        crewContents: content,
-        userEmail: userLocalInfo.userEmail,
-        crewName: crew,
-      };
-
-      const data = await apiClient("crew/writecrewBoard", boardData);
-      if (data && data.resultCode === 1) {
-        alert("글 작성 완료!");
-        await router.push("/CrewPost");
-      } else {
-        alert("글이 저장되지 않았습니다.");
-      }
+      if (crewtitle) {
+        if (crewcontents) {
+          await apiClient("crew/writecrewBoard", {
+            crewTitle: title,
+            crewContents: contents,
+            userEmail: JSON.parse(
+              commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+            ).userEmail,
+            crewName: crew,
+          })
+            .then((r) => {
+              alert("크루 생성 완료!");
+              router.push("/CrewMain");
+            })
+            .catch((e) => {
+              alert("크루가 저장되지 않았습니다.");
+            });
+        } else alert("내용을 입력해주세요");
+      } else alert("제목을 입력해주세요");
     },
-      handleFileChange(event) {
-        const file = event.target.files[0];
-        this.selectedPhoto = URL.createObjectURL(file);
-      },
-      savePhoto() {
-        // 선택한 사진을 저장하는 로직을 구현하세요
-        // 예: 서버에 사진을 업로드하거나, 상태 관리를 통해 홈 페이지에서 사용할 수 있도록 전달
-        console.log(this.selectedPhoto);
+    handleFileChange(event) {
+      const file = event.target.files[0];
+      this.selectedPhoto = URL.createObjectURL(file);
+    },
+    savePhoto() {
+      // 선택한 사진을 저장하는 로직을 구현하세요
+      // 예: 서버에 사진을 업로드하거나, 상태 관리를 통해 홈 페이지에서 사용할 수 있도록 전달
+      console.log(this.selectedPhoto);
     },
 
   },
@@ -88,19 +93,14 @@ export default {
 
 <template>
   <div class="maintext">
-    <input
-        type="text"
-        v-model="title"
-        placeholder="제목을 입력하세요."
-        class="title-input"
-      />
-      
-    
+    <input type="text" v-model="title" placeholder="제목을 입력하세요." class="title-input" />
+
+
     <div class="editdiv">
       <div ref="editorRef"></div>
     </div>
     <div class="upload">
-      <button class="savebutton" @click="saveContent">업로드</button>
+      <button class="savebutton" @click="saveContents">업로드</button>
     </div>
   </div>
 </template>
