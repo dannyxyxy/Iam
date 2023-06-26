@@ -27,7 +27,7 @@ export default defineComponent({
         };
     },
     setup() {
-        const crewData = ref({
+        const boardData = ref({
             id: 0,
             crewId: "",
             profileImg: "",
@@ -36,20 +36,12 @@ export default defineComponent({
             ownerName: "",
             crewMember: 0,
         });
-        const boardData = ref({
-            id: 0,
-            writeTime: "",
-            CrewId: "",
-            crewTitle: "",
-            crewContents: "",
-            profileImg: "",
-        });
         const getcrewBoardDetail = async () => {
             await get("crew/getcrewBoardDetail", location.search)
                 .then((data) => {
                     if (data) {
                         console.log(data);
-                        crewData.value = data.data;
+                        boardData.value = data.data;
                     } else {
                         alert("크루 정보를 불러올 수 없습니다.");
                     }
@@ -59,18 +51,28 @@ export default defineComponent({
                     alert("크루 정보를 불러오는 중에 오류가 발생했습니다.");
                 });
         };
+        const crewData = ref({
+            id: 0,
+            writeTime: "",
+            CrewId: "",
+            crewTitle: "",
+            crewContents: "",
+            profileImg: "",
+        });
+        
         const getcrewBoardList = async () => {
-            await apiClient("crew/getcrewBoardList")
-                .then((r) => {
-                    boardData.value = r.data;
-                    for (let item in r.data) {
-                        r.data[item].color = `hsl(${parseInt(Math.random() * 24, 10) * 15
-                            }, 16%, 75%)`;
+            await get("crew/getcrewBoardList", location.search)
+                .then((data) => {
+                    if (data) {                        
+                        crewData.value = data.data;
+                        console.log(data);
+                    } else {
+                        alert("게시물 정보를 불러올 수 없습니다.");
                     }
                 })
-                .catch((e) => {
-                    alert("게시물 정보를 불러올 수 없습니다.");
-                    console.log(e);
+                .catch((error) => {
+                    console.log(error);
+                    alert("게시물 정보를 불러오는 중에 오류가 발생했습니다.");
                 });
         };
         onMounted(() => {
@@ -127,14 +129,14 @@ export default defineComponent({
 <template>
     <div class="maintext">
 
-        <div class="preview-img" :style="`background-color: ${crewData.color}`" />
+        <div class="preview-img" /> 
         <div class="centered-text">
-            {{ crewData.crewName }}
+            {{ boardData.crewName }}
         </div>
         <div class="crew-text">
             <div class="crew-name-container">
                 <div class="crew-name">
-                    {{ crewData.crewName }}
+                    {{ boardData.crewName }}
                 </div>
                 <div class="crewDay">day 3일전</div>
                 <!--<button type="submit" class="Crew-button" @click="JoinCrew">크루가입</button>-->
@@ -145,7 +147,7 @@ export default defineComponent({
 
             <div class="description-space">
                 <div class="crew-description">
-                    {{ crewData.crewIntro }}
+                    {{ boardData.crewIntro }}
                 </div>
             </div>
         </div>
