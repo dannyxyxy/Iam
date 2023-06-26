@@ -38,40 +38,50 @@ export default {
       const content = editor.getMarkdown();
       console.log("Editor content:", content);
     });
-    
-    //수정 가능한 상태인지 확인
-    this.checkEditable();
-
   },
   methods: {
-    async checkEditable() {
-      const userLocalInfo = JSON.parse(
-        commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
-      );
-
-      // 원본 글 작성자와 수정자가 동일한 경우 수정 가능한 상태로 설정
-      if (userLocalInfo.userIdx === this.originalAuthorIdx) {
-        this.isEditable = true;
-      }
+  async saveContent() {
+  const title = this.title;
+  const contents = this.editor.getMarkdown();
+  if (title) {
+        if (contents) {
+          await apiClient("board/updateBoard", {
+            postId: location.search,
+            boardTitle: title,
+            boardContents: contents,
+            userIdx: JSON.parse(
+              commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+            ).userIdx,
+          })
+            .then((r) => {
+              alert("글 수정 완료!");
+              router.push("/");
+            })
+            .catch((e) => {
+              alert("글이 수정되지 않았습니다.");
+            });
+        } else alert("내용을 입력해주세요");
+      } else alert("제목을 입력해주세요");
+    },
+    handleFileChange(event) {
+      const file = event.target.files[0];
+      this.selectedPhoto = URL.createObjectURL(file);
+    },
+    savePhoto() {
+      // 선택한 사진을 저장하는 로직을 구현하세요
+      // 예: 서버에 사진을 업로드하거나, 상태 관리를 통해 홈 페이지에서 사용할 수 있도록 전달
+      console.log(this.selectedPhoto);
     },
   },
-
-  async saveModifiedContent() {
-  const title = this.title;
-  const content = this.editor.getMarkdown();
-
-  // 수정된 글의 데이터를 서버로 전송하는 API 요청 등의 로직을 수행
-  const response = await apiClient("board/modifyBoard", { title, content });
-
-  if (response.resultCode === 1) {
-    // 수정이 성공적으로 완료된 경우
-    alert("글 수정 완료!");
-    await router.push("/");
-  } else {
-    // 수정이 실패한 경우
-    alert("글이 저장되지 않았습니다.");
-  }
-},
+  setup() {
+    onMounted(async () => {
+      const loginCheck = commonUtil.loginCheck();
+      if (!loginCheck) {
+        alert("로그인 후에 이용해주세요");
+        await router.push("/");
+      }
+    });
+  },
 };
 </script>
 
