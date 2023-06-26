@@ -10,7 +10,7 @@ export default {
       return CONSTANTS;
     },
   },
-  
+
   data() {
     return {
       PostMain: "/PostMain",
@@ -23,15 +23,8 @@ export default {
     };
   },
   setup() {
-    const boardData = ref({
-      id: 0,
-      writeTime: "",
-      boardTitle: "",
-      boardContents: "",
-      userName: "",
-      profileImg: "",
-      likeCount: 0,
-    });
+    const boardData = ref({});
+
     const getBoardList = async () => {
       await apiClient("board/getBoardList")
         .then((r) => {
