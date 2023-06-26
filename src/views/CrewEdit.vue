@@ -45,15 +45,17 @@ export default {
       const userLocalInfo = JSON.parse(
         commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
       );
+      const crew = this.crewName;
 
       const boardData = {
         crewTitle: title,
         crewContents: content,
-        userIdx: userLocalInfo.userIdx,
+        userEmail: userLocalInfo.userEmail,
+        crewName: crew,
       };
 
       const data = await apiClient("crew/writecrewBoard", boardData);
-      if (data.resultCode === 1) {
+      if (data && data.resultCode === 1) {
         alert("글 작성 완료!");
         await router.push("/CrewPost");
       } else {
@@ -92,6 +94,7 @@ export default {
         placeholder="제목을 입력하세요."
         class="title-input"
       />
+      
     
     <div class="editdiv">
       <div ref="editorRef"></div>
@@ -100,7 +103,6 @@ export default {
       <button class="savebutton" @click="saveContent">업로드</button>
     </div>
   </div>
-  
 </template>
 
 <style scoped></style>
