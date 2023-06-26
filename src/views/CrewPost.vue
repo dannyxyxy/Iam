@@ -12,18 +12,15 @@ export default defineComponent({
     name: "App",
     data() {
         return {
-            recommendedCrews: [
-                { id: 4, title: '반려동물사랑', description: '강아지고양이고슴도치', name: '강호동' },
-                { id: 5, title: '치킨', description: '치킨은 안 질리지', name: '닭최고' },
-                { id: 6, title: '서브웨이', description: '서브웨이 조합 추천', name: '햄최몇' },
-            ],
             id: 0,
             crewId: "",
             profileImg: "",
             crewName: "",
             crewIntro: "",
             ownerName: "",
-            crewMember: 0,
+            writeTime: "",
+            crewTitle: "",
+            crewContents: "",
         };
     },
     setup() {
