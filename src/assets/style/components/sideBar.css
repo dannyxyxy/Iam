@@ -1,0 +1,15 @@
+.menu {
+  top: 0;
+  left: 0;
+  position: fixed;
+  padding-top: 100px;
+  width: 10%;
+  height: 100%;
+  line-height: 50px;
+  font-weight: 500;
+  background-color: rgb(240, 240, 240);
+}
+.menu a img {
+  margin: auto;
+  display: block;
+}

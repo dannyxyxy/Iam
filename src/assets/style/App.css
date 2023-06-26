@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+@import "./components/sideBar.css";
+
 @import "./view/Home.css";
 @import "./view/PostMain.css";
 @import "./view/Login.css";
@@ -7,7 +11,7 @@
 @import "./view/CrewPost.css";
 @import "./view/CrewEdit.css";
 @import "./view/Mypage.css";
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
 :root {
   all: initial;
   color: #000;
@@ -36,24 +40,7 @@ body {
   margin-left: 10%;
   color: #000;
 }
-.menu {
-  top: 0;
-  left: 0;
-  position: fixed;
-  padding-top: 100px;
-  width: 10%;
-  height: 100%;
-  line-height: 50px;
-  font-weight: 500;
-  background-color: rgb(240, 240, 240);
-}
-.menu li:last-child {
-  margin-top: 300px;
-}
-.menu a img {
-  margin: auto;
-  display: block;
-}
+
 .top {
   top: 0;
   position: fixed;
