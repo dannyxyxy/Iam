@@ -6,8 +6,8 @@ import { onMounted, ref } from "vue";
 import { defineComponent } from "vue";
 import commonUtil from "../utils/common-util.js";
 import { CONSTANTS } from "../utils/constants.js";
-
 import router from "../router/index.js";
+import UpdateEdit from "./UpdateEdit.vue";
 
 export default defineComponent({
   name: "App",
@@ -59,6 +59,12 @@ export default defineComponent({
     toggleMode() {
       this.isDarkMode = !this.isDarkMode;
     },
+
+    methods: {
+    goToUpdateEdit() {
+      this.$router.push({ name: 'UpdateEdit' })
+    }
+  },
 
     async submitComment() {
       const content = this.newComment;
@@ -203,7 +209,7 @@ export default defineComponent({
     </div>
     <div class="actions">
       <div class="actions_button">
-        <button class="d-button" @click="editPost">글 수정</button>
+        <button class="d-button" @click="goToUpdateEdit">글 수정</button>
         <button class="d-button" @click="deletePost">글 삭제</button>
       </div>
     </div>

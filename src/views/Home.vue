@@ -10,6 +10,7 @@ export default {
       return CONSTANTS;
     },
   },
+  
   data() {
     return {
       PostMain: "/PostMain",

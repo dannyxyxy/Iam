@@ -9,13 +9,14 @@ import router from "../router/index.js";
 
 export default {
   components: {
-    editor: Editor
+    editor: Editor,
   },
   
   data() {
     return {
       title: "",
       selectedPhoto: null,
+      isEditable: false,
     };
   },
 
@@ -37,50 +38,23 @@ export default {
       const content = editor.getMarkdown();
       console.log("Editor content:", content);
     });
+    
+    //수정 가능한 상태인지 확인
+    this.checkEditable();
+
   },
   methods: {
-    async saveContent() {
-      const title = this.title;
-      const content = this.editor.getMarkdown();
+    async checkEditable() {
       const userLocalInfo = JSON.parse(
         commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
       );
 
-      const boardData = {
-        boardTitle: title,
-        boardContents: content,
-        userIdx: userLocalInfo.userIdx,
-      };
-
-      const data = await apiClient("board/writeBoard", boardData);
-      if (data.resultCode === 1) {
-        alert("글 작성 완료!");
-        await router.push("/");
-      } else {
-        alert("글이 저장되지 않았습니다.");
+      // 원본 글 작성자와 수정자가 동일한 경우 수정 가능한 상태로 설정
+      if (userLocalInfo.userIdx === this.originalAuthorIdx) {
+        this.isEditable = true;
       }
     },
-      handleFileChange(event) {
-        const file = event.target.files[0];
-        this.selectedPhoto = URL.createObjectURL(file);
-      },
-      savePhoto() {
-        // 선택한 사진을 저장하는 로직을 구현하세요
-        // 예: 서버에 사진을 업로드하거나, 상태 관리를 통해 홈 페이지에서 사용할 수 있도록 전달
-        console.log(this.selectedPhoto);
-    },
-
-  },
-  setup() {
-    const getLoginInfo = async () => {
-      const loginCheck = commonUtil.loginCheck();
-      if (!loginCheck) {
-        alert("로그인 후에 이용해주세요");
-        await router.push("/");
-      }
-    };
-    onMounted(getLoginInfo);
-  },
+  }
 };
 </script>
 
