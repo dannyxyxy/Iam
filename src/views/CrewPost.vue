@@ -43,8 +43,10 @@ export default defineComponent({
             await get("crew/getCrewBoardList", location.search)
                 .then((data) => {
                     if (data) {
-                        crewData.value = data.data;
-                        console.log(data);
+                        if (data.crewName == boardData.crewName) {
+                            crewData.value = data.data;
+                            console.log(data);
+                        }
                     } else {
                         alert("게시물 정보를 불러올 수 없습니다.");
                     }
@@ -104,9 +106,9 @@ export default defineComponent({
         <div class="crew-text">
             <div class="crew-name-container">
                 <div class="crew-name">
-                    {{ boardData._events }}
+                    {{ boardData.crewName }}
                 </div>
-                <div class="crewDay">day 3일전</div>
+                <div class="crewDay">day 2일전</div>
                 <!--<button type="submit" class="Crew-button" @click="JoinCrew">크루가입</button>-->
                 <router-link to="/CrewEdit">
                     <button class="Crew-button">글작성</button>
@@ -115,7 +117,7 @@ export default defineComponent({
 
             <div class="description-space">
                 <div class="crew-description">
-                    {{ boardData._eventsCount }}
+                    {{ boardData._crewIntro }}
                 </div>
             </div>
         </div>
@@ -140,7 +142,11 @@ export default defineComponent({
                     <div class="postusername" v-for="data in crewData" :key="data._id">
                         <p>{{ data.userEmail }}</p>
                     </div>
+                    <div class="post-day" v-for="data in crewData" :key="data._id">
+                        <p>{{ data.writeTime }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div></template>
+</template>
