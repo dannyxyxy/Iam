@@ -63,7 +63,7 @@ export default {
       } else {
         alert("빈 칸 없이 모두 입력 해주세요.");
       }
-      router.push("/CrewPost");
+      router.push("/CrewMain");
     };
     return {
       crewInfo,
