@@ -125,18 +125,17 @@ export default defineComponent({
         </div>
         <div class="crew-post-container">
             <div class="post-box">
-                <div class="postbox-img">{{ crewData.profileImg }}</div>
+                <div class="postbox-img"><p>{{ crewData.profileImg }}</p></div>
                 <div class="postbox-summary">
                     <div>
-                        <div class="post-title">{{ crewData.crewTitle }}</div>
-                        <div class="post-contents">{{ crewData.crewContents }}</div>
+                        <div class="post-title"><p>{{ crewData.crewTitle }}</p></div>
+                        <div class="post-contents"><p>{{ crewData.crewContents }}</p></div>
                     </div>
                     <div class="postcircle">
 
                     </div>
                     <div class="postusername">
-                        <span style="font-weight: lighter">by </span>
-                        <span style="font-weight: bold">{{ crewData.CrewId }}</span>
+                        <p>by {{ crewData.userEmail }}</p>
                     </div>
                 </div>
             </div>
