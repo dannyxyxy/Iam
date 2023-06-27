@@ -43,15 +43,13 @@ export default {
           @click="showLoginModal = true"
         >
           로그인
-          <loginModal
-            v-if="showLoginModal === true"
-            @closeLoginModal="showLoginModal = false"
-          />
         </button>
-        <button v-if="loginCheck" class="login-btn" @click="signOut()">
-          로그아웃
-        </button>
+        <button v-else class="login-btn" @click="signOut()">로그아웃</button>
       </nav>
     </div>
   </div>
+  <loginModal
+    v-if="showLoginModal === true"
+    @closeLoginModal="showLoginModal = false"
+  />
 </template>
