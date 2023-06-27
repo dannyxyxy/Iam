@@ -38,11 +38,11 @@ export default defineComponent({
                 });
         };
         const crewData = ref({});
-        
+
         const getcrewBoardList = async () => {
             await get("crew/getCrewBoardList", location.search)
                 .then((data) => {
-                    if (data) {                        
+                    if (data) {
                         crewData.value = data.data;
                         console.log(data);
                     } else {
@@ -97,14 +97,14 @@ export default defineComponent({
 
 <template>
     <div class="crewpost-container">
-        <div class="preview-img" /> 
+        <!--<div class="preview-img" />
         <div class="centered-text">
-            {{ boardData.crewName }}
-        </div>
+            {{ boardData._events }}
+        </div>-->
         <div class="crew-text">
             <div class="crew-name-container">
                 <div class="crew-name">
-                    {{ boardData.crewName }}
+                    {{ boardData._events }}
                 </div>
                 <div class="crewDay">day 3일전</div>
                 <!--<button type="submit" class="Crew-button" @click="JoinCrew">크루가입</button>-->
@@ -115,7 +115,7 @@ export default defineComponent({
 
             <div class="description-space">
                 <div class="crew-description">
-                    {{ boardData.crewIntro }}
+                    {{ boardData._eventsCount }}
                 </div>
             </div>
         </div>
@@ -125,19 +125,22 @@ export default defineComponent({
         </div>
         <div class="crew-post-container">
             <div class="post-box">
-                <div class="postbox-img" v-for="data in crewData" :key="data._id"><p>{{ data.profileImg }}</p></div>
+                <div class="postbox-img" v-for="data in crewData" :key="data._id">
+                    <p>{{ data.profileImg }}</p>
+                </div>
                 <div class="postbox-summary">
                     <div>
-                        <div class="post-title" v-for="data in crewData" :key="data._id"><p>{{ data.crewTitle }}</p></div>
-                        <div class="post-contents" v-for="data in crewData" :key="data._id"><p>{{ data.crewContents }}</p></div>
+                        <div class="post-title" v-for="data in crewData" :key="data._id">
+                            <p>{{ data.crewTitle }}</p>
+                        </div>
+                        <div class="post-contents" v-for="data in crewData" :key="data._id">
+                            <p>{{ data.crewContents }}</p>
+                        </div>
                     </div>
-                    <div class="postcircle">
-
+                    <div class="postusername" v-for="data in crewData" :key="data._id">
+                        <p>{{ data.userEmail }}</p>
                     </div>
-                    <div class="postusername" v-for="data in crewData" :key="data._id"><p>{{ data.userEmail }}</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
-</template>
+</div></template>
