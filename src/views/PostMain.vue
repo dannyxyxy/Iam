@@ -119,21 +119,6 @@ export default defineComponent({
         alert("삭제 권한이 없습니다.");
       }
     },
-    editComment(index) {
-      this.editIndex = index; // 수정 버튼을 클릭한 댓글의 인덱스를 저장
-      this.editedComment = this.comments[index]; // 수정 중인 댓글의 내용을 가져옴
-    },
-    cancelEdit() {
-      this.editIndex = -1; // 수정 취소 시 editIndex 초기화
-      this.editedComment = ""; // 수정 취소 시 editedComment 초기화
-    },
-    saveEdit(index) {
-      if (this.editedComment.trim() !== "") {
-        this.comments[index] = this.editedComment; // 댓글 수정 적용
-        this.editIndex = -1; // 수정 완료 시 editIndex 초기화
-        this.editedComment = ""; // 수정 완료 시 editedComment 초기화
-      }
-    },
     handleScroll() {
       // 스크롤 위치 확인
       const scrollTop =
@@ -287,9 +272,6 @@ export default defineComponent({
         <div class="actions" id="comment">
           <p>{{ comment.writeTime }}</p>
           <div>
-            <button @click="editComment(index)" class="action-button">
-              수정
-            </button>
             <button @click="deleteComment(index)" class="action-button">
               삭제
             </button>

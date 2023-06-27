@@ -66,11 +66,15 @@ export default {
       this.selectedPhoto = URL.createObjectURL(file);
     },
     savePhoto() {
-      // 선택한 사진을 저장하는 로직을 구현하세요
-      // 예: 서버에 사진을 업로드하거나, 상태 관리를 통해 홈 페이지에서 사용할 수 있도록 전달
-      console.log(this.selectedPhoto);
-    },
-  },
+      if (this.selectedPhoto) {
+    const markdownImage = `![](${this.selectedPhoto})`;
+    const currentContent = this.editor.getMarkdown();
+    const updatedContent = `${currentContent}\n${markdownImage}`;
+    this.editor.setMarkdown(updatedContent);
+  }
+     },
+     },
+
   setup() {
     onMounted(async () => {
       const loginCheck = commonUtil.loginCheck();
@@ -81,12 +85,16 @@ export default {
     });
   },
 };
+
 </script>
 
 <template>
   <div class="edit-container">
     <input type="text" v-model="title" placeholder="제목" />
     <div class="editdiv" style="width: 100%" ref="editorRef" />
+    <input type="file" @change="handleFileChange" accept="image/*" />
+        <button class="upload" @click="savePhoto">이미지 추가</button>
     <button class="upload" @click="saveContents">저장하기</button>
+
   </div>
 </template>
