@@ -57,7 +57,7 @@ export default {
   }
       await apiClient("crew/JoinCrew", {
         userName: userLocalInfo.userIdx,
-        crewName: e,
+        crewName: boardData.crewName,
       })
         .then((r) => {
           alert("크루 가입 성공!");
