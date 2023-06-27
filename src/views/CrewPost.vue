@@ -125,17 +125,16 @@ export default defineComponent({
         </div>
         <div class="crew-post-container">
             <div class="post-box">
-                <div class="postbox-img"><p>{{ crewData.profileImg }}</p></div>
+                <div class="postbox-img" v-for="data in crewData" :key="data._id"><p>{{ data.profileImg }}</p></div>
                 <div class="postbox-summary">
                     <div>
-                        <div class="post-title"><p>{{ crewData.crewTitle }}</p></div>
-                        <div class="post-contents"><p>{{ crewData.crewContents }}</p></div>
+                        <div class="post-title" v-for="data in crewData" :key="data._id"><p>{{ data.crewTitle }}</p></div>
+                        <div class="post-contents" v-for="data in crewData" :key="data._id"><p>{{ data.crewContents }}</p></div>
                     </div>
                     <div class="postcircle">
 
                     </div>
-                    <div class="postusername">
-                        <p>by {{ crewData.userEmail }}</p>
+                    <div class="postusername" v-for="data in crewData" :key="data._id"><p>{{ data.userEmail }}</p>
                     </div>
                 </div>
             </div>
