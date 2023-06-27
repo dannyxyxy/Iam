@@ -45,9 +45,8 @@ export default {
     });
     const crewInfo = {
       id: 0,
-      crewId: "",
-      profileImg: "",
       crewName: "",
+      profileImg: "",
       crewIntro: "",
       ownerName: "",
       crewMember: 0,

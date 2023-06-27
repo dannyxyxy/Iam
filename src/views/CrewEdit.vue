@@ -48,9 +48,9 @@ export default {
           await apiClient("crew/writecrewBoard", {
             crewTitle: title,
             crewContents: contents,
-            userEmail: JSON.parse(
+            userIdx: JSON.parse(
               commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
-            ).userEmail,
+            ).userIdx,
             crewName: this.previousPageValue,
           })
             .then((r) => {
@@ -78,7 +78,7 @@ export default {
       const loginCheck = commonUtil.loginCheck();
       if (!loginCheck) {
         alert("로그인 후에 이용해주세요");
-        await router.push("/");
+        await router.go(-1);
       }
     });
   },
@@ -92,18 +92,9 @@ export default {
 </script>
 
 <template>
-  <div class="maintext">
-    <input
-      type="text"
-      v-model="title"
-      class="title-input-box"
-      placeholder="제목"
-    />
-    <div class="editdiv">
-      <div ref="editorRef"></div>
-    </div>
-    <div class="upload">
-      <button class="savebutton" @click="saveContents">업로드</button>
-    </div>
+  <div class="edit-container">
+    <input type="text" v-model="title" placeholder="제목" />
+    <div class="editdiv" style="width: 100%" ref="editorRef" />
+    <button class="upload" @click="saveContents">저장하기</button>
   </div>
 </template>
