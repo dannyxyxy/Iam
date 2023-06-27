@@ -47,13 +47,13 @@ export default {
           console.log(e);
         });
     };
-    const joinCrew = async (e) => {
+    const JoinCrew = async (e) => {
       const userLocalInfo = JSON.parse(
         commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
       );
       await apiClient("crew/JoinCrew", {
-        userIdx: userLocalInfo.userIdx,
-        crewIdx: e,
+        userName: userLocalInfo.userIdx,
+        crewName: e,
       })
         .then((r) => {
           alert("크루 가입 성공!");
@@ -71,14 +71,10 @@ export default {
 
     return {
       boardData,
-      joinCrew,
+      JoinCrew,
     };
   },
-  methods: {
-    JoinCrew(crewId) {
-      alert("크루 가입이 완료되었습니다");
-    },
-  },
+
 };
 </script>
 
