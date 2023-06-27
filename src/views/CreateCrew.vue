@@ -52,10 +52,10 @@ export default {
       crewMember: 0,
     };
     const crewUp = async () => {
-      if ( crewInfo.profileImg && crewInfo.crewName && crewInfo.crewIntro) {
-        const data = await apiClient("crew/createCrew", crewInfo);
-        if (data.resultCode === 1) {
-          alert("크루 생성 성공!");
+      if (crewInfo.profileImg && crewInfo.crewName && crewInfo.crewIntro) {
+    const data = await apiClient("crew/createCrew", crewInfo);
+    if (data && data.resultCode === 1) { // 데이터가 정의되어 있는지 확인 후 resultCode 속성에 접근합니다.
+      alert("크루 생성 성공!");
           location.reload();
         } else {
           alert("크루생성 실패!");
@@ -63,12 +63,7 @@ export default {
       } else {
         alert("빈 칸 없이 모두 입력 해주세요.");
       }
-      this.$router.push("/CrewPost");
-      // 크루 생성 처리 로직
-      console.log("크루 이름:", this.crewName);
-      console.log("크루 소개:", this.crewDescription);
-      console.log("크루 대표 사진:", this.crewImage);
-      // 크루 생성 API 호출 등 추가 작업 수행
+      router.push("/CrewPost");
     };
     return {
       crewInfo,
