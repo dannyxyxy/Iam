@@ -14,41 +14,49 @@ export default {
   },
   setup() {
     const editing = ref(false);
-    const userData = ref({});
+    const userData = ref({
+      userEmail: "",
+      userIntro: "",
+      userName: "",
+      profileImg: "",
+    });
     const boardData = ref({});
-    const userLocalInfo = JSON.parse(
-      commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
-    );
     const getUserData = async () => {
-      if (commonUtil.loginCheck()) {
-        await apiClient("user/getUserInfo", userLocalInfo)
-          .then((r) => {
-            userData.value = r.data;
-          })
-          .catch((e) => {
-            console.log(e);
-          });
+      const data = await apiClient(
+        "user/getUserInfo",
+        JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO))
+      );
+      if (data.data) {
+        userData.value = await data.data;
       } else {
-        alert("로그인 후에 이용해주세요");
-        await router.push("/");
+        alert("데이터를 불러오는데 실패했습니다.");
       }
     };
 
     const getBoardList = async () => {
-      await apiClient("user/getBoardList", userLocalInfo)
-        .then((r) => {
-          boardData.value = r.data;
-          console.log(r);
-        })
-        .catch((e) => {
-          console.log(e);
-          alert("게시물 정보를 불러올 수 없습니다.");
-          router.push("/");
-        });
+      const data = await apiClient(
+        "user/getBoardList",
+        JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO))
+      );
+      if (data.data) {
+        boardData.value = await data.data;
+        for (let item in data.data) {
+          data.data[item].color = `hsl(${
+            parseInt(Math.random() * 24, 10) * 15
+          }, 16%, 75%)`;
+        }
+      } else {
+        alert("게시물 정보를 불러올 수 없습니다.");
+        await router.push("/");
+      }
     };
     const profileFormData = new FormData();
     const profileImgUpload = async (e) => {
-      profileFormData.set("userIdx", userLocalInfo.userIdx);
+      profileFormData.set(
+        "userIdx",
+        JSON.parse(commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO))
+          .userIdx
+      );
       profileFormData.set("file", e.target.files[0]);
 
       await apiClient("user/uploadProfile", profileFormData)
@@ -79,8 +87,13 @@ export default {
     };
 
     onMounted(() => {
-      getUserData();
-      getBoardList();
+      if (!commonUtil.loginCheck()) {
+        alert("로그인 후에 이용해주세요");
+        router.push("/");
+      } else {
+        getUserData();
+        getBoardList();
+      }
     });
 
     return {
@@ -104,7 +117,6 @@ export default {
         <div class="profile-img-box">
           <div class="profile-img">
             <img :src="CONSTANTS.API_URL + userData.profileImg" alt="" />
-            <input type="file" ref="imageInput" style="display: none" />
           </div>
           <label class="action-button">
             이미지 변경
@@ -134,23 +146,23 @@ export default {
       </div>
 
       <!-- 여기가 크루. 크루 사진주소랑 크루 이름주소 필요해요 -->
-      <div class="photo-gallery">
-        <div v-for="group in groups" :key="group.id" class="photo-group">
-          <h2>{{ group.name }}</h2>
-          <div class="photo-container">
-            <div
-              v-for="photo in group.photos"
-              :key="photo.id"
-              class="photo-item"
-            >
-              <div class="rounded-photo">
-                <img :src="photo.url" alt="사진" />
-              </div>
-              <p class="photo-name">{{ photo.name }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!--      <div class="photo-gallery">-->
+      <!--        <div v-for="group in groups" :key="group.id" class="photo-group">-->
+      <!--          <h2>{{ group.name }}</h2>-->
+      <!--          <div class="photo-container">-->
+      <!--            <div-->
+      <!--              v-for="photo in group.photos"-->
+      <!--              :key="photo.id"-->
+      <!--              class="photo-item"-->
+      <!--            >-->
+      <!--              <div class="rounded-photo">-->
+      <!--                <img :src="photo.url" alt="사진" />-->
+      <!--              </div>-->
+      <!--              <p class="photo-name">{{ photo.name }}</p>-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
     </div>
 
     <div class="divider">
@@ -160,8 +172,8 @@ export default {
       <div class="mypost-container">
         <div class="container">
           <div class="box" v-for="(item, index) in boardData" :key="index">
-            <router-link :to="PostMain">
-              <img src="../assets/img/hi.jpg" />
+            <router-link :to="{ name: 'PostMain', query: { id: item._id } }">
+              <div class="box-img" :style="`background-color: ${item.color}`" />
             </router-link>
             <div class="box-summary">
               <div>
@@ -169,7 +181,7 @@ export default {
                 <div class="board-contents">{{ item.boardContents }}</div>
               </div>
               <div class="circle">
-                <img :src="CONSTANTS.API_URL + userData.profileImg" />
+                <img :src="CONSTANTS.API_URL + userData.profileImg" alt="" />
               </div>
               <div class="username">
                 <span style="font-weight: lighter">by </span>

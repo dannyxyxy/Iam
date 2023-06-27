@@ -15,20 +15,15 @@ export default {
     };
   },
   emits: ["closeLoginModal"],
-  methods: {
-    toggleMode() {
-      this.isDarkMode = !this.isDarkMode;
-    },
-  },
   setup() {
-    const loginInfo = {
+    let loginInfo = ref({
       userEmail: "",
       userPassword: "",
-    };
+    });
     const loginHandler = async () => {
-      if (loginInfo.userEmail && loginInfo.userPassword) {
-        const data = await apiClient("user/login", loginInfo);
-        if (data.resultCode === 1) {
+      if (loginInfo.value.userEmail && loginInfo.value.userPassword) {
+        const data = await apiClient("user/login", loginInfo.value);
+        if (data.data) {
           if (data.data.token) {
             setHeader(data.data.token);
             commonUtil.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO, data.data);
@@ -37,10 +32,9 @@ export default {
               data.data.token
             );
             store.commit(STORE_TYPE.loginUserIdx, data.data.userIdx);
-            // localStorage.setItem("userData", JSON.stringify(data.data));
+            localStorage.setItem("userData", JSON.stringify(data.data));
           }
           alert("로그인 성공!");
-          console.log(data.data);
           location.reload();
         } else {
           alert("로그인 실패!");
