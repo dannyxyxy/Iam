@@ -62,18 +62,18 @@ export default {
       } else alert("제목을 입력해주세요");
     },
     handleFileChange(event) {
-      const file = event.target.files[0];
+      const file = event.target.files;
       this.selectedPhoto = URL.createObjectURL(file);
     },
     savePhoto() {
       if (this.selectedPhoto) {
-    const markdownImage = `![](${this.selectedPhoto})`;
-    const currentContent = this.editor.getMarkdown();
-    const updatedContent = `${currentContent}\n${markdownImage}`;
-    this.editor.setMarkdown(updatedContent);
-  }
-     },
-     },
+        const markdownImage = `![](${this.selectedPhoto})`;
+        const currentContent = this.editor.getMarkdown();
+        const updatedContent = `${currentContent}\n${markdownImage}`;
+        this.editor.setMarkdown(updatedContent);
+      }
+    },
+  },
 
   setup() {
     onMounted(async () => {
@@ -85,7 +85,6 @@ export default {
     });
   },
 };
-
 </script>
 
 <template>
@@ -93,8 +92,7 @@ export default {
     <input type="text" v-model="title" placeholder="제목" />
     <div class="editdiv" style="width: 100%" ref="editorRef" />
     <input type="file" @change="handleFileChange" accept="image/*" />
-        <button class="upload" @click="savePhoto">이미지 추가</button>
+    <button class="upload" @click="savePhoto">이미지 추가</button>
     <button class="upload" @click="saveContents">저장하기</button>
-
   </div>
 </template>
