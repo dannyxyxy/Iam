@@ -51,6 +51,10 @@ export default {
       const userLocalInfo = JSON.parse(
         commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
       );
+      if (userLocalInfo.isMember) {
+    alert("이미 크루에 가입된 사용자입니다!");
+    return; // Stop further execution of the function
+  }
       await apiClient("crew/JoinCrew", {
         userName: userLocalInfo.userIdx,
         crewName: e,
@@ -60,7 +64,7 @@ export default {
           location.reload();
         })
         .catch((e) => {
-          alert("크루 가입 실패! 관리자에게 문의하세요.");
+          alert("오류 발생!");
           location.reload();
         });
     };
