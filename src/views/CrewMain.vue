@@ -89,7 +89,7 @@ export default {
           <div class="crew-box-container">
             <div class="crew-box" v-for="item in boardData" :key="item._crewId">
               <router-link
-                :to="{ name: 'CrewPost', query: { id: item._d } }"
+                :to="{ name: 'CrewPost', query: { id: item._id } }"
               >
                 <div
                   class="crew-avatar"
