@@ -61,8 +61,10 @@ export default {
 
       await apiClient("user/uploadProfile", profileFormData)
         .then((r) => {
-          alert("프로필 사진 변경 완료!");
-          location.reload();
+          setTimeout(() => {
+            alert("프로필 사진 변경 완료!");
+            location.reload();
+          }, 1500);
         })
         .catch((e) => {
           console.log(e);
