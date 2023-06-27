@@ -53,7 +53,7 @@ export default {
       crewMember: 0,
     };
     const crewUp = async () => {
-      if (crewInfo.crewName && crewInfo.crewIntro) {
+      if ( crewInfo.profileImg && crewInfo.crewName && crewInfo.crewIntro) {
         const data = await apiClient("crew/createCrew", crewInfo);
         if (data.resultCode === 1) {
           alert("크루 생성 성공!");
