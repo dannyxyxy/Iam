@@ -10,10 +10,10 @@ export default {
   data() {
     return {
       CrewPost: "/CrewPost",
-      crewName: '',
-      crewDescription: '',
+      crewName: "",
+      crewDescription: "",
       crewImage: null,
-      crewImagePreview: ''
+      crewImagePreview: "",
     };
   },
   methods: {
@@ -31,7 +31,7 @@ export default {
         };
         reader.readAsDataURL(this.crewImage);
       } else {
-        this.crewImagePreview = '';
+        this.crewImagePreview = "";
       }
     },
   },
@@ -64,11 +64,11 @@ export default {
       } else {
         alert("빈 칸 없이 모두 입력 해주세요.");
       }
-      this.$router.push('/CrewPost');
+      this.$router.push("/CrewPost");
       // 크루 생성 처리 로직
-      console.log('크루 이름:', this.crewName);
-      console.log('크루 소개:', this.crewDescription);
-      console.log('크루 대표 사진:', this.crewImage);
+      console.log("크루 이름:", this.crewName);
+      console.log("크루 소개:", this.crewDescription);
+      console.log("크루 대표 사진:", this.crewImage);
       // 크루 생성 API 호출 등 추가 작업 수행
     };
     return {
@@ -80,35 +80,62 @@ export default {
 </script>
 
 <template>
-  <div class="maintext">
+  <div class="create-crew-container">
     <h2>크루 만들기</h2>
-    <div class="crew-preview">
+    <div class="createcrew-preview">
       <div class="preview-img">
-        <img :src="crewImagePreview" alt="크루 대표 사진" v-if="crewImagePreview" class="centered-image">
+        <img
+          :src="crewImagePreview"
+          alt="크루 대표 사진"
+          v-if="crewImagePreview"
+          class="centered-image"
+        />
         <div class="centered-text">
           <h1>{{ crewName }}</h1>
         </div>
       </div>
       <form @submit.prevent>
-        <div class="crew-imageLoad">크루 표지사진을 업로드 해주세요.
-          <input type="file" id="crew-image" @change="handleImageUpload" class="upload-btn"
-            @input="crewInfo.profileImg = $event.target.value" required />
+        <div class="crew-imageLoad">
+          크루 표지사진을 업로드 해주세요.
+          <input
+            type="file"
+            id="crew-image"
+            @change="handleImageUpload"
+            class="upload-btn"
+            @input="crewInfo.profileImg = $event.target.value"
+            required
+          />
         </div>
         <div class="crew-text">
           <div class="crew-name-container">
-            <input type="text" id="crew-name" v-model="crewName" class="input-box" placeholder="크루 이름을 입력하세요."
-              @input="crewInfo.crewName = $event.target.value" required />
+            <input
+              type="text"
+              id="crew-name"
+              v-model="crewName"
+              class="input-box"
+              placeholder="크루 이름을 입력하세요."
+              @input="crewInfo.crewName = $event.target.value"
+              required
+            />
           </div>
           <div class="description-space">
             <div class="crew-description">
-              <input type="text" id="crew-description" v-model="crewDescription" class="input-box"
-                placeholder="간단하게 크루를 소개해주세요." @input="crewInfo.crewIntro = $event.target.value" required>
+              <input
+                type="text"
+                id="crew-description"
+                v-model="crewDescription"
+                class="input-box"
+                placeholder="간단하게 크루를 소개해주세요."
+                @input="crewInfo.crewIntro = $event.target.value"
+                required
+              />
             </div>
           </div>
         </div>
-        <button class="create-crew-btn" type="submit" @click="crewUp">크루 만들기</button>
+        <button class="action-button" type="submit" @click="crewUp">
+          만들기
+        </button>
       </form>
     </div>
-
   </div>
 </template>

@@ -84,18 +84,9 @@ export default {
 </script>
 
 <template>
-  <div class="maintext">
-    <input
-      type="text"
-      v-model="title"
-      class="title-input-box"
-      placeholder="제목"
-    />
-    <div class="editdiv">
-      <div ref="editorRef"></div>
-    </div>
-    <div class="upload">
-      <button class="savebutton" @click="saveContents">업로드</button>
-    </div>
+  <div class="edit-container">
+    <input type="text" v-model="title" placeholder="제목" />
+    <div class="editdiv" style="width: 100%" ref="editorRef" />
+    <button class="upload" @click="saveContents">저장하기</button>
   </div>
 </template>

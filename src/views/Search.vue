@@ -19,6 +19,7 @@ export default {
     const search = async () => {
       await apiClient("board/search", { searchQuery: data.value })
         .then((r) => {
+          console.log(r);
           searchResults.value = r.data;
           for (let item in r.data) {
             r.data[item].color = `hsl(${
@@ -42,31 +43,24 @@ export default {
 
 <template>
   <div class="maintext">
-    <div class="container">
+    <div class="search-container">
       <div class="search">
         <input
-          type="text"
+          type="search"
           placeholder="검색어를 입력하세요."
           @input="data = $event.target.value"
           @submit.prevent
           @keydown.enter.prevent="search"
         />
-        <div class="search_img">
-          <button
-            @click="search"
-            style="background-color: transparent; border: none; padding: 0"
-          >
-            <img
-              src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
-              alt=""
-            />
-          </button>
-        </div>
+        <img
+          src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
+          alt=""
+        />
       </div>
 
       <div class="search-results">
         <h2>검색 결과</h2>
-        <div class="container-box" v-if="searchResults.length > 0">
+        <div class="search-results-box" v-if="searchResults.length > 0">
           <div class="box" v-for="item in searchResults" :key="item._id">
             <router-link :to="{ name: 'PostMain', query: { id: item._id } }">
               <div class="box-img" :style="`background-color: ${item.color}`" />
@@ -108,30 +102,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style>
-.search {
-  position: relative;
-  width: 100%;
-  margin-bottom: 20px;
-}
-.search input {
-  width: 100%;
-  border: 1px solid #bbb;
-  border-radius: 10px;
-  padding: 30px;
-  font-size: 20px;
-}
-.search img {
-  position: absolute;
-  width: 30px;
-  top: 25px;
-  right: 20px;
-  margin: 0;
-}
-.container-box {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-</style>

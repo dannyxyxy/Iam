@@ -2,19 +2,15 @@
 import loginModal from "../views/Login.vue";
 import { ref } from "vue";
 import commonUtil from "../utils/common-util.js";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 export default {
   name: "topBar",
-  components: { loginModal },
+  components: { FontAwesomeIcon, loginModal },
   data() {
-    //데이터 변수값 저장
     return {
-      user_email: "",
       showLoginModal: false,
     };
-  },
-  methods: {
-    //함수만드는곳 this. 꼭 붙힐것
   },
   setup() {
     const loginCheck = ref(commonUtil.loginCheck());
@@ -22,6 +18,7 @@ export default {
       commonUtil.logOutUser();
       location.reload();
     };
+
     return {
       loginCheck,
       signOut,
@@ -32,33 +29,29 @@ export default {
 
 <template>
   <div class="top">
-    <router-link to="/" class="logo">
-      <img src="../assets/img/components/topBar/logo.png" alt="" />
-    </router-link>
-    <nav class="top-nav">
-      <ul>
-        <li>
-          <router-link to="/CreateCrew" class="make-crew">
-            <img src="../assets/img/components/topbar/makecrew.png" alt="" />
-          </router-link>
-        </li>
-        <li>
-          <button
-            v-if="!loginCheck"
-            class="login-btn"
-            @click="showLoginModal = true"
-          >
-            로그인
-          </button>
-          <button v-if="loginCheck" class="login-btn" @click="signOut()">
-            로그아웃
-          </button>
-        </li>
-      </ul>
-    </nav>
+    <div class="top-container">
+      <router-link to="/" class="logo">
+        <img src="../assets/img/components/topBar/logo.svg" alt="" />
+      </router-link>
+      <nav class="top-nav">
+        <router-link to="/CreateCrew" class="make-crew">
+          <img src="../assets/img/components/topBar/makecrew.png" alt="" />
+        </router-link>
+        <button
+          v-if="!loginCheck"
+          class="login-btn"
+          @click="showLoginModal = true"
+        >
+          로그인
+          <loginModal
+            v-if="showLoginModal === true"
+            @closeLoginModal="showLoginModal = false"
+          />
+        </button>
+        <button v-if="loginCheck" class="login-btn" @click="signOut()">
+          로그아웃
+        </button>
+      </nav>
+    </div>
   </div>
-  <loginModal
-    v-if="showLoginModal === true"
-    @closeLoginModal="showLoginModal = false"
-  />
 </template>

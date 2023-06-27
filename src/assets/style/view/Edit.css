@@ -1,50 +1,31 @@
-.editdiv {
-  margin-top: 10px;
-  align-items: center;
+.edit-container {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  height: 100%;
 }
-.title-input-box {
-  padding: 10px;
-  font-size: 20px;
-  width: 98.1%;
-  margin-bottom: 10px;
+.edit-container input {
+  width: initial;
+  height: 20px;
+  padding: 1rem;
+  border-radius: 5px;
+  font-size: 18px;
   border: 1px solid #cccaca;
-  border-radius: 5px;
 }
-.upload {
-  float: right;
-  padding: 60px 0px 0px 0px;
+.edit-container .editdiv {
+  width: initial;
+  min-height: 400px;
 }
-.savephoto-btn {
+.edit-container .upload {
+  width: 6rem;
+  height: 2rem;
+  margin: 1rem 0 0 auto;
+  padding: 0;
   border: none;
-  width: 100px;
-  padding: 7px;
-  color: #fff;
-  font-weight: bold;
-}
-.savebutton {
-  margin-right: 10%;
-  margin-bottom: 100px;
-  width: 80px;
-  bottom: 20px;
-  right: 0;
-  border-radius: 30px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #161515;
+  border-radius: 10px;
   color: #ffffff;
-  cursor: pointer;
+  font-size: 16px;
   font-weight: bold;
-  margin-left: auto;
-}
-.savebutton:hover {
-  background-color: rgb(240, 240, 240);
-  color: #000;
-}
-.savephoto-btn:hover {
-  background-color: rgb(240, 240, 240);
-  color: #000;
-}
-.toastui-editor-mode-switch {
-  display: none;
+  cursor: pointer;
+  background-color: black;
 }

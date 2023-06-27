@@ -1,12 +1,16 @@
+.maintext {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* 가운데로 배치 */
-  align-items: flex-start; /* 위쪽 정렬 */
 }
 .box {
   width: 300px;
-  height: 350px;
+  height: 360px;
   border-radius: 15px;
   margin: 14px;
   box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2);
@@ -17,14 +21,14 @@
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
   background-color: rgb(240, 240, 240);
 }
 .box img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 12px 12px 0 0;
   background-color: rgb(240, 240, 240);
 }
 .box:hover {
@@ -32,35 +36,35 @@
   transform: scale(1.1);
 }
 .box-summary {
-  margin-top: 5px;
-  margin-left: 20px;
-  margin-right: 20px;
+  height: 100%;
+  margin: 0.5rem 1rem;
   text-align: left;
 }
 .board-title {
   font-weight: bold;
   font-size: 20px;
-
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .board-contents {
+  min-height: 78px;
   margin-top: 5px;
-  height: 20px;
   font-size: 15px;
-  display: inline-block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 20px;
+}
+.meta-info-box {
+  display: flex;
+  align-items: center;
 }
 .circle {
   float: left;
-  margin-top: 35px;
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: rgb(240, 240, 240);
 }
 
 .circle img {
@@ -71,11 +75,9 @@
   border-radius: inherit;
 }
 .username {
-  margin-top: 37px;
-  margin-left: 10px;
-  float: left;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 16px;
+  margin: 0.5rem;
 }
 .btn {
   padding: 5px;

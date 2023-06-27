@@ -67,21 +67,23 @@ export default {
               </div>
               <div class="board-contents">{{ item.boardContents }}</div>
             </div>
-            <div class="circle">
-              <img
-                v-if="item.profileImg !== null || undefined"
-                :src="CONSTANTS.API_URL + item.profileImg"
-                alt=""
-              />
-              <div
-                v-else
-                class="exchangeImg"
-                :style="`background-color: ${item.color}`"
-              />
-            </div>
-            <div class="username">
-              <span style="font-weight: lighter">by </span>
-              <span style="font-weight: bold">{{ item.userName }}</span>
+            <div class="meta-info-box">
+              <div class="circle">
+                <img
+                  v-if="item.profileImg !== null || undefined"
+                  :src="CONSTANTS.API_URL + item.profileImg"
+                  alt=""
+                />
+                <div
+                  v-else
+                  class="exchangeImg"
+                  :style="`background-color: ${item.color}`"
+                />
+              </div>
+              <div class="username">
+                <span style="font-weight: lighter">by </span>
+                <span style="font-weight: bold">{{ item.userName }}</span>
+              </div>
             </div>
           </div>
         </div>

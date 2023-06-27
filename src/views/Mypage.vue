@@ -98,31 +98,18 @@ export default {
 </script>
 
 <template>
-  <div class="maintext">
-    <div>
-      <div class="profile">
-        <div class="profile-picture">
+  <div class="mypage-container">
+    <div class="profile-container">
+      <div class="profile-box">
+        <div class="profile-img-box">
           <div class="profile-img">
             <img :src="CONSTANTS.API_URL + userData.profileImg" alt="" />
+            <input type="file" ref="imageInput" style="display: none" />
           </div>
-          <input type="file" ref="imageInput" style="display: none" />
-        </div>
-
-        <div class="profile-info">
-          <!-- 닉네임 -->
-          <h1>{{ userData.userName }}</h1>
-          <!-- 자기소개글
-          <h3>{{ userData.userIntro }}</h3>
-           -->
-          <p>{{ userData.userEmail }}</p>
-        </div>
-      </div>
-
-      <div class="button-wrapper">
-        <div class="upload-button">
-          <label>
-            이미지 업로드
+          <label class="action-button">
+            이미지 변경
             <input
+              style="display: none"
               type="file"
               accept="image/*"
               multiple="multiple"
@@ -130,20 +117,13 @@ export default {
             />
           </label>
         </div>
-        <!-- <button class="upload-button">개인정보 수정</button> -->
-
-        <div>
-          <div v-if="!editing">
-            <button class="name-upload-button" @click="startEditing">
-              개인정보 수정
-            </button>
-          </div>
-          <div v-else>
-            <input v-model="userData.userName" class="uploadName" type="text" />
-            <button class="uploadCompleteButton" @click="saveUsername">
-              수정 완료
-            </button>
-          </div>
+        <div class="profile-info">
+          <p>{{ userData.userName }}</p>
+          <p>{{ userData.userEmail }}</p>
+          <p>{{ userData.userIntro }}</p>
+          <button class="action-button" @click="startEditing">
+            개인정보 수정
+          </button>
         </div>
       </div>
     </div>
