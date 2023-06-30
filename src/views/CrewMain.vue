@@ -2,7 +2,6 @@
 import { apiClient } from "../utils/axios.js";
 import { onMounted, ref } from "vue";
 import { CONSTANTS } from "../utils/constants.js";
-import router from "../router/index.js";
 import commonUtil from "../utils/common-util.js";
 
 export default {

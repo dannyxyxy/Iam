@@ -1,5 +1,4 @@
 <script>
-import "vue3-carousel/dist/carousel.css";
 import { get } from "../utils/axios.js";
 import { onMounted, ref } from "vue";
 import { defineComponent } from "vue";

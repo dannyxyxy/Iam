@@ -2,7 +2,6 @@
 import { CONSTANTS } from "../utils/constants.js";
 import { ref } from "vue";
 import { apiClient } from "../utils/axios.js";
-import router from "../router/index.js";
 
 export default {
   name: "Search",
