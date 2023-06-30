@@ -22,25 +22,21 @@ export default {
     });
     const loginHandler = async () => {
       if (loginInfo.value.userEmail && loginInfo.value.userPassword) {
-        const data = await apiClient("user/login", loginInfo.value);
-        if (data.data) {
-          if (data.data.token) {
-            setHeader(data.data.token);
-            commonUtil.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO, data.data);
-            commonUtil.setLocalStorage(
-              CONSTANTS.KEY_LIST.USER_INFO_TOKEN,
-              data.data.token
-            );
-            store.commit(STORE_TYPE.loginUserIdx, data.data.userIdx);
-            localStorage.setItem("userData", JSON.stringify(data.data));
-          }
+        await apiClient("user/login", loginInfo.value).then((r) => {
+          console.log(r.data);
+          setHeader(r.data.token);
+          commonUtil.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO, r.data);
+          commonUtil.setLocalStorage(
+            CONSTANTS.KEY_LIST.USER_INFO_TOKEN,
+            r.data.token
+          );
+          store.commit(STORE_TYPE.loginUserIdx, r.data.userIdx);
+          localStorage.setItem("userData", JSON.stringify(r.data));
           alert("로그인 성공!");
           location.reload();
-        } else {
-          alert("로그인 실패!");
-        }
+        });
       } else {
-        alert("다시 입력 해주세요");
+        alert("다시 입력해주세요");
       }
     };
 

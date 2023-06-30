@@ -1,6 +1,6 @@
 <script>
 import loginModal from "../views/Login.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import commonUtil from "../utils/common-util.js";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -13,12 +13,15 @@ export default {
     };
   },
   setup() {
-    const loginCheck = ref(commonUtil.loginCheck());
-    const signOut = () => {
-      commonUtil.logOutUser();
-      location.reload();
-    };
+    const loginCheck = ref(false);
 
+    const signOut = async () => {
+      commonUtil.logOutUser();
+      await location.reload();
+    };
+    onMounted(async () => {
+      loginCheck.value = await commonUtil.loginCheck();
+    });
     return {
       loginCheck,
       signOut,
