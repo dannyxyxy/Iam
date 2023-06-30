@@ -108,7 +108,7 @@ const logOutUser = () => {
   const u = getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
   const ut = getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO_TOKEN);
   if (u && ut) {
-    //console.log("remove");
+    // console.log("remove");
     removeLocalStorage(CONSTANTS.KEY_LIST.USER_INFO);
     removeLocalStorage(CONSTANTS.KEY_LIST.USER_INFO_TOKEN);
   }

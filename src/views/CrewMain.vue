@@ -24,13 +24,10 @@ export default {
   },
   setup() {
     const boardData = ref({
-      id: 0,
-      crewId: "",
-      profileImg: "",
       crewName: "",
       crewIntro: "",
-      ownerName: "",
-      crewMember: 0,
+      crewImg: "",
+      ownerInfo: "",
     });
     const getCrewList = async () => {
       await apiClient("crew/getCrewList")
@@ -52,9 +49,9 @@ export default {
         commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
       );
       if (userLocalInfo.isMember) {
-    alert("이미 크루에 가입된 사용자입니다!");
-    return; // Stop further execution of the function
-  }
+        alert("이미 크루에 가입된 사용자입니다!");
+        return; // Stop further execution of the function
+      }
       await apiClient("crew/JoinCrew", {
         userIdx: userLocalInfo.userIdx,
         crewIdx: boardData.crewName,
@@ -78,32 +75,31 @@ export default {
       JoinCrew,
     };
   },
-
 };
 </script>
 
 <template>
   <div class="crewmain-container">
-        <div class="recommended-crews">
-          <h2>전체 크루 목록</h2>
-          <div class="crew-box-container">
-            <div class="crew-box" v-for="item in boardData" :key="item._crewId">
-              <router-link
-                :to="{ name: 'CrewPost', query: { id: item._id } }"
-              >
-                <div
-                  class="crew-avatar"
-                  :style="`background-color: ${item.color}`"
-                />
-              </router-link>
-              <div class="crew-info">
-                <h3>{{ item.crewName }}</h3>
-                <p class="crew-description">{{ item.crewIntro }}</p>
-                <button type="submit" class="CrewJoin-button" @click="JoinCrew">크루가입</button>
-              </div>
-            </div>
+    <div class="recommended-crews">
+      <h2>전체 크루 목록</h2>
+      <div class="crew-box-container">
+        <div class="crew-box" v-for="item in boardData" :key="item._crewId">
+          <router-link :to="{ name: 'CrewPost', query: { id: item._id } }">
+            <div
+              class="crew-avatar"
+              :style="`background-color: ${item.color}`"
+            />
+          </router-link>
+          <div class="crew-info">
+            <h3>{{ item.crewName }}</h3>
+            <p class="crew-description">{{ item.crewIntro }}</p>
+            <button type="submit" class="CrewJoin-button" @click="JoinCrew">
+              크루가입
+            </button>
           </div>
         </div>
+      </div>
+    </div>
   </div>
 </template>
 <style>
