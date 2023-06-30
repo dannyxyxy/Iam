@@ -1,0 +1,101 @@
+.maintext {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* 가운데로 배치 */
+}
+.box {
+  width: 300px;
+  height: 360px;
+  border-radius: 15px;
+  margin: 14px;
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.box-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+  background-color: rgb(240, 240, 240);
+}
+.box img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+  background-color: rgb(240, 240, 240);
+}
+.box:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transform: scale(1.1);
+}
+.box-summary {
+  height: 100%;
+  margin: 0.5rem 1rem;
+  text-align: left;
+}
+.board-title {
+  font-weight: bold;
+  font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.board-contents {
+  min-height: 78px;
+  margin-top: 5px;
+  font-size: 15px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.meta-info-box {
+  display: flex;
+  align-items: center;
+}
+.circle {
+  float: left;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.circle img {
+  height: 100%;
+}
+.exchangeImg {
+  height: 100%;
+  border-radius: inherit;
+}
+.username {
+  font-weight: 700;
+  font-size: 16px;
+  margin: 0.5rem;
+}
+.btn {
+  padding: 5px;
+  margin-left: 10px;
+  background-color: rgba(255, 255, 255, 0);
+  color: #000;
+  border: none;
+  font-size: 18px;
+  letter-spacing: -2px;
+  font-weight: bolder;
+  position: relative;
+}
+.btn.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0px; /* 밑줄의 위치를 조정 */
+  width: 100%;
+  height: 2px;
+  background-color: black; /* 밑줄의 색상을 지정 */
+}

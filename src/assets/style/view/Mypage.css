@@ -1,0 +1,119 @@
+.mypage-container {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  height: 100%;
+}
+.profile-container {
+  width: 60%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto auto 2rem auto;
+  justify-content: center;
+}
+.profile-box {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+.profile-img-box {
+  float: left;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.profile-img {
+  margin: auto;
+  width: 15rem;
+  height: 15rem;
+}
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.profile-info :first-child {
+  margin: auto auto 0;
+  font-size: 42px;
+  font-weight: bold;
+}
+.profile-info :nth-child(3) {
+  margin: 2rem auto;
+}
+.profile-container .action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 8rem;
+  margin: 1rem auto;
+}
+.mypost {
+  margin-top: 50px;
+  position: relative;
+  z-index: 1;
+}
+.mypost-container {
+  width: 100%;
+  height: 100vh;
+}
+.upload-button:hover {
+  background-color: rgb(240, 240, 240);
+  color: #000;
+}
+label:hover {
+  background-color: rgb(240, 240, 240);
+  color: #000;
+  cursor: pointer;
+}
+.edit-button:hover {
+  background-color: rgb(240, 240, 240);
+  color: #000;
+}
+
+.photo-gallery {
+  display: flex;
+  overflow-x: scroll;
+}
+.photo-group {
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+.photo-container {
+  display: flex;
+}
+.photo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+}
+.rounded-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.rounded-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photo-name {
+  margin-top: 5px;
+  text-align: center;
+}
