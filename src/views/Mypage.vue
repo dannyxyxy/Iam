@@ -147,24 +147,19 @@ export default {
         <h2>내 크루</h2>
       </div>
 
-      <!-- 여기가 크루. 크루 사진주소랑 크루 이름주소 필요해요 -->
-      <!--      <div class="photo-gallery">-->
-      <!--        <div v-for="group in groups" :key="group.id" class="photo-group">-->
-      <!--          <h2>{{ group.name }}</h2>-->
-      <!--          <div class="photo-container">-->
-      <!--            <div-->
-      <!--              v-for="photo in group.photos"-->
-      <!--              :key="photo.id"-->
-      <!--              class="photo-item"-->
-      <!--            >-->
-      <!--              <div class="rounded-photo">-->
-      <!--                <img :src="photo.url" alt="사진" />-->
-      <!--              </div>-->
-      <!--              <p class="photo-name">{{ photo.name }}</p>-->
-      <!--            </div>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </div>-->
+      <div class="photo-gallery">
+  <div v-for="group in groups" :key="group.id" class="photo-group">
+    <h2>{{ CrewInfo.CrewName }}</h2>
+    <div class="photo-container">
+      <div v-for="photo in group.photos" :key="photo.id" class="photo-item">
+        <div class="rounded-photo">
+          <img :src="CrewInfo.CrewImg" alt="사진" />
+        </div>
+        <p class="photo-name">{{ photo.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
 
     <div class="divider">
