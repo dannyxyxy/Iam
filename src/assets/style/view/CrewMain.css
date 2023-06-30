@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .group-page {
   display: flex;
   justify-content: center;
@@ -8,6 +9,13 @@
 }
 .recommended-crews {
   margin-top: 40px;
+=======
+.crewmain-container {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  height: 100%;
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
 }
 .crew-box-container {
   display: flex;
@@ -19,8 +27,13 @@
   width: 300px;
   height: 350px;
   margin: 20px;
+<<<<<<< HEAD
   border-radius: 15px; 
   box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.2);
+=======
+  border-radius: 15px;
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2);
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   display: flex;
@@ -28,8 +41,13 @@
   align-items: center;
   text-align: center;
 }
+<<<<<<< HEAD
 .crew-box:hover{
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
+=======
+.crew-box:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
   transform: scale(1.1);
 }
 .crew-image {
@@ -39,6 +57,7 @@
   margin-bottom: 10px;
 }
 .crew-avatar {
+<<<<<<< HEAD
   width: 100%;
   height: 200px;
   object-fit: cover;
@@ -46,6 +65,16 @@
   background-color: rgb(240,240,240);
 }
 .crew-info h3 {
+=======
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  background-color: rgb(240, 240, 240);
+}
+.crew-info h3 {
+  padding-top: 10px;
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
   margin: 0;
 }
 .crew-description {
@@ -74,7 +103,11 @@
   margin: 0;
 }
 .CrewJoin-button {
+<<<<<<< HEAD
   width:150px;
+=======
+  width: 150px;
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
   padding: 5px 10px;
   margin: 0px;
   background-color: #000;
@@ -86,6 +119,12 @@
   box-sizing: border-box;
 }
 .CrewJoin-button:hover {
+<<<<<<< HEAD
   background-color: rgb(240,240,240);
   color:#000;
 }
+=======
+  background-color: rgb(240, 240, 240);
+  color: #000;
+}
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43

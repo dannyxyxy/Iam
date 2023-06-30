@@ -38,10 +38,26 @@ const routes = [
     component: () => import("../views/CreateCrew.vue"),
   },
   {
+<<<<<<< HEAD
+=======
+    path: "/CrewEdit",
+    name: "CrewEdit",
+    component: () => import("../views/CrewEdit.vue"),
+  },
+  {
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
     path: "/Mypage",
     name: "Mypage",
     component: () => import("../views/Mypage.vue"),
   },
+<<<<<<< HEAD
+=======
+  {
+    path: "/UpdateEdit",
+    name: "UpdateEdit",
+    component: () => import("../views/UpdateEdit.vue"),
+  },
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
 ];
 
 const router = createRouter({

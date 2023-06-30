@@ -15,6 +15,7 @@ export default {
     };
   },
   emits: ["closeLoginModal"],
+<<<<<<< HEAD
   methods: {
     toggleMode() {
       this.isDarkMode = !this.isDarkMode;
@@ -47,6 +48,30 @@ export default {
         }
       } else {
         alert("다시 입력 해주세요");
+=======
+  setup() {
+    let loginInfo = ref({
+      userEmail: "",
+      userPassword: "",
+    });
+    const loginHandler = async () => {
+      if (loginInfo.value.userEmail && loginInfo.value.userPassword) {
+        await apiClient("user/login", loginInfo.value).then((r) => {
+          console.log(r.data);
+          setHeader(r.data.token);
+          commonUtil.setLocalStorage(CONSTANTS.KEY_LIST.USER_INFO, r.data);
+          commonUtil.setLocalStorage(
+            CONSTANTS.KEY_LIST.USER_INFO_TOKEN,
+            r.data.token
+          );
+          store.commit(STORE_TYPE.loginUserIdx, r.data.userIdx);
+          localStorage.setItem("userData", JSON.stringify(r.data));
+          alert("로그인 성공!");
+          location.reload();
+        });
+      } else {
+        alert("다시 입력해주세요");
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
       }
     };
 

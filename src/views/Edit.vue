@@ -9,9 +9,15 @@ import router from "../router/index.js";
 
 export default {
   components: {
+<<<<<<< HEAD
     editor: Editor
   },
   
+=======
+    editor: Editor,
+  },
+
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
   data() {
     return {
       title: "",
@@ -39,6 +45,7 @@ export default {
     });
   },
   methods: {
+<<<<<<< HEAD
     async saveContent() {
       const title = this.title;
       const content = this.editor.getMarkdown();
@@ -73,18 +80,63 @@ export default {
   },
   setup() {
     const getLoginInfo = async () => {
+=======
+    async saveContents() {
+      const title = this.title;
+      const contents = this.editor.getMarkdown();
+      if (title) {
+        if (contents) {
+          await apiClient("board/writeBoard", {
+            boardTitle: title,
+            boardContents: contents,
+            userIdx: JSON.parse(
+              commonUtil.getLocalStorage(CONSTANTS.KEY_LIST.USER_INFO)
+            ).userIdx,
+          })
+            .then((r) => {
+              alert("글 작성 완료!");
+              router.push("/");
+            })
+            .catch((e) => {
+              alert("글이 저장되지 않았습니다.");
+            });
+        } else alert("내용을 입력해주세요");
+      } else alert("제목을 입력해주세요");
+    },
+    handleFileChange(event) {
+      const file = event.target.files;
+      this.selectedPhoto = URL.createObjectURL(file);
+    },
+    savePhoto() {
+      if (this.selectedPhoto) {
+        const markdownImage = `![](${this.selectedPhoto})`;
+        const currentContent = this.editor.getMarkdown();
+        const updatedContent = `${currentContent}\n${markdownImage}`;
+        this.editor.setMarkdown(updatedContent);
+      }
+    },
+  },
+
+  setup() {
+    onMounted(async () => {
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
       const loginCheck = commonUtil.loginCheck();
       if (!loginCheck) {
         alert("로그인 후에 이용해주세요");
         await router.push("/");
       }
+<<<<<<< HEAD
     };
     onMounted(getLoginInfo);
+=======
+    });
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
   },
 };
 </script>
 
 <template>
+<<<<<<< HEAD
   <div class="maintext">
     <input
         type="text"
@@ -104,3 +156,13 @@ export default {
 </template>
 
 <style scoped></style>
+=======
+  <div class="edit-container">
+    <input type="text" v-model="title" placeholder="제목" />
+    <div class="editdiv" style="width: 100%" ref="editorRef" />
+    <input type="file" @change="handleFileChange" accept="image/*" />
+    <button class="upload" @click="savePhoto">이미지 추가</button>
+    <button class="upload" @click="saveContents">저장하기</button>
+  </div>
+</template>
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43

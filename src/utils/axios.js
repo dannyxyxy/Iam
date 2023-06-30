@@ -58,6 +58,7 @@ export const apiClient = async (url, data) => {
 };
 
 export const get = async (url, params) => {
+<<<<<<< HEAD
   return await axiosInstance.get(url, { params });
 };
 
@@ -72,6 +73,10 @@ export const setHeader = (v) => {
 export const getImg = async (url, data) => {
   return await axiosInstance
     .get(url, data)
+=======
+  return await axiosInstance
+    .get(url + params)
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
     .then((res) => {
       if (res.status === 200) {
         return res.data;
@@ -84,3 +89,12 @@ export const getImg = async (url, data) => {
       console.error(e);
     });
 };
+<<<<<<< HEAD
+=======
+
+export const setHeader = (v) => {
+  if (axiosInstance && typeof v === "string") {
+    axiosInstance.defaults.headers.common["Authorization"] = v;
+  }
+};
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43

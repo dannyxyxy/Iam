@@ -35,7 +35,10 @@ a:hover {
 body {
   margin: 0;
   display: flex;
+<<<<<<< HEAD
   place-items: center;
+=======
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
   min-width: 320px;
   min-height: 100vh;
 }
@@ -69,10 +72,18 @@ button:focus-visible {
 }
 
 #app {
+<<<<<<< HEAD
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+=======
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+>>>>>>> 2d5904f06dfbeec2a98285db8234a28f0fa88d43
 }
 
 @media (prefers-color-scheme: light) {
